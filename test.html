@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS5 Repository Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- En-tête / Barre de navigation -->
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xl">
+                    PS5
+                </div>
+                <div>
+                    <h1 class="text-base font-bold text-white leading-tight">Repository Hub</h1>
+                    <p class="text-xs text-slate-400">Écosystème & Homebrews</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- Bouton What's New -->
+                <button id="whats-new-btn" class="flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    What's New
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+        <!-- Barre de recherche et filtres de catégories -->
+        <div class="mb-8 space-y-4">
+            <div class="relative max-w-md">
+                <input type="text" id="search-input" placeholder="Rechercher un dépôt, une description..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors">
+            </div>
+
+            <!-- Liste des filtres de catégories dynamiques -->
+            <div id="category-filters" class="flex flex-wrap gap-2">
+                <button class="category-filter px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition-colors" data-category="all">
+                    Tous
+                </button>
+                <!-- Injecté dynamiquement par JS -->
+            </div>
+        </div>
+
+        <!-- Grille des Dépôts -->
+        <div id="repos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-slate-400 col-span-full text-center py-12">Chargement des dépôts...</p>
+        </div>
+    </main>
+
+    <!-- Panneau Latéral "What's New" -->
+    <div id="whats-new-panel" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="flex items-center justify-between p-4 border-b border-slate-800">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">🔥 Dernières Mises à Jour</h3>
+            <button id="close-whats-new" class="text-slate-400 hover:text-white text-2xl font-bold px-2">&times;</button>
+        </div>
+        <div id="whats-new-content" class="flex-1 overflow-y-auto p-4 space-y-4">
+            <p class="text-slate-400 text-center">Chargement...</p>
+        </div>
+    </div>
+
+    <!-- Script de chargement et d'affichage -->
+    <script>
+        let globalData = { categories: [], repos: [] };
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        async function init() {
+            try {
+                const response = await fetch('./json/repos-database.json');
+                if (!response.ok) throw new Error("Impossible de charger le fichier JSON");
+                globalData = await response.json();
+                
+                renderCategories();
+                renderRepos();
+            } catch (err) {
+                document.getElementById('repos-grid').innerHTML = `
+                    <div class="col-span-full bg-red-950/30 border border-red-900/50 p-6 rounded-xl text-center">
+                        <p class="text-red-400 font-semibold">Erreur de chargement de la base de données</p>
+                        <p class="text-xs text-slate-400 mt-1">${err.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('category-filters');
+            // Garder le bouton "Tous"
+            let html = `<button class="category-filter px-3.5 py-1.5 rounded-lg text-xs font-semibold ${currentCategory === 'all' ? 'bg-blue-600 text-white' : 'bg-slate-900 text-slate-300 hover:bg-slate-800'} transition-colors" data-category="all">Tous</button>`;
+            
+            globalData.categories.forEach(cat => {
+                const isActive = currentCategory === cat.id;
+                html += `<button class="category-filter px-3.5 py-1.5 rounded-lg text-xs font-semibold ${isActive ? 'bg-blue-600 text-white' : 'bg-slate-900 text-slate-300 hover:bg-slate-800'} transition-colors" data-category="${cat.id}">${cat.name}</button>`;
+            });
+
+            container.innerHTML = html;
+
+            // Ajouter les écouteurs de clics
+            document.querySelectorAll('.category-filter').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    currentCategory = e.target.getAttribute('data-category');
+                    renderCategories();
+                    renderRepos();
+                });
+            });
+        }
+
+        function renderRepos() {
+            const grid = document.getElementById('repos-grid');
+            
+            const filtered = globalData.repos.filter(repo => {
+                const matchesCategory = currentCategory === 'all' || repo.categoryId === currentCategory;
+                const matchesSearch = repo.name.toLowerCase().includes(searchQuery) || 
+                                      repo.description.toLowerCase().includes(searchQuery) ||
+                                      repo.owner.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="text-slate-400 col-span-full text-center py-12">Aucun dépôt trouvé.</p>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(repo => {
+                const cat = globalData.categories.find(c => c.id === repo.categoryId);
+                const catName = cat ? cat.name : 'Non catégorisé';
+                const latestTag = repo.latestRelease ? repo.latestRelease.tagName : 'Pas de release';
+
+                return `
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-all shadow-sm">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-800 text-blue-400 border border-slate-700/50">${catName}</span>
+                                <span class="text-xs text-slate-400 font-mono">⭐ ${repo.stars}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-1 flex items-center gap-2">
+                                ${repo.ownerAvatar ? `<img src="\${repo.ownerAvatar}" class="w-5 h-5 rounded-full">` : ''}
+                                <a href="${repo.htmlUrl}" target="_blank" class="hover:text-blue-400 transition-colors">${repo.name}</a>
+                            </h3>
+                            <p class="text-xs text-slate-300 line-clamp-3 mb-4">${repo.description || 'Aucune description fournie.'}</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-indigo-400 font-medium">${latestTag}</span>
+                            <a href="${repo.htmlUrl}" target="_blank" class="text-slate-400 hover:text-white font-medium flex items-center gap-1">GitHub &rarr;</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Recherche en direct
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderRepos();
+        });
+
+        // Gestion du panneau What's New
+        const panel = document.getElementById('whats-new-panel');
+        document.getElementById('whats-new-btn').addEventListener('click', () => {
+            panel.classList.remove('translate-x-full');
+            loadWhatsNewData();
+        });
+        document.getElementById('close-whats-new').addEventListener('click', () => {
+            panel.classList.add('translate-x-full');
+        });
+
+        function loadWhatsNewData() {
+            const container = document.getElementById('whats-new-content');
+            if (!globalData.repos || globalData.repos.length === 0) {
+                container.innerHTML = '<p class="text-slate-400 text-center">Aucune donnée disponible.</p>';
+                return;
+            }
+
+            const reposWithReleases = globalData.repos
+                .filter(repo => repo.latestRelease && repo.latestRelease.publishedAt)
+                .sort((a, b) => new Date(b.latestRelease.publishedAt) - new Date(a.latestRelease.publishedAt));
+
+            if (reposWithReleases.length === 0) {
+                container.innerHTML = '<p class="text-slate-400 text-center">Aucune release récente trouvée.</p>';
+                return;
+            }
+
+            container.innerHTML = reposWithReleases.map(repo => {
+                const release = repo.latestRelease;
+                const dateFormatted = new Date(release.publishedAt).toLocaleDateString('fr-FR', {
+                    day: 'numeric', month: 'short', year: 'numeric'
+                });
+
+                return `
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold px-2.5 py-0.5 bg-blue-500/20 text-blue-400 rounded-full">${repo.name}</span>
+                            <span class="text-xs text-slate-400">${dateFormatted}</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">${release.name || release.tagName}</h4>
+                        <p class="text-xs text-slate-300 line-clamp-2 mb-3">${release.body ? release.body.substring(0, 120) + '...' : 'Pas de description de release.'}</p>
+                        <div class="flex items-center justify-between">
+                            <a href="${release.htmlUrl}" target="_blank" class="text-xs text-indigo-400 hover:underline font-medium">Voir sur GitHub &rarr;</a>
+                            ${release.assets && release.assets.length > 0 ? `<span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">\${release.assets.length} fichier(s)</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialisation au chargement de la page
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
