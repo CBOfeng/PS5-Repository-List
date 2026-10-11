@@ -11,16 +11,22 @@
       "name": "PS5_Overlay",
       "color": "#4259ff",
       "parentId": null
+    },
+    {
+      "id": "cat-PS5_Remote",
+      "name": "PS5_Remote",
+      "color": "#4448fd",
+      "parentId": null
     }
   ],
   "repos": [
     {
       "url": "https://github.com/notmaj0r/CheatRunner",
-      "categoryId": "cat-PS5_Activation"
+      "categoryId": "cat-PS5_Cheat"
     },
     {
       "url": "https://github.com/aydencharles/kylin-core-release",
-      "categoryId": "cat-PS5_Activation"
+      "categoryId": "cat-PS5_Cheat"
     },
     {
       "url": "https://github.com/porhe911/Common-FPS-for-PS5",
@@ -29,6 +35,10 @@
     {
       "url": "https://github.com/smoxa/ps5-new-overlay",
       "categoryId": "cat-PS5_Overlay"
+    },
+    {
+      "url": "https://github.com/StonedModder/ActRemoteLink-13.x",
+      "categoryId": "cat-PS5_Remote"
     }
   ]
 }
