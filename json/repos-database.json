@@ -1,0 +1,565 @@
+{
+  "version": "2.0.0",
+  "exportedAt": "2026-10-11T22:12:58.960Z",
+  "appName": "PS5-Repository-List",
+  "categories": [
+    {
+      "id": "cat-PS5_Cheat",
+      "name": "PS5_Cheat",
+      "color": "#3B82F6",
+      "parentId": null
+    },
+    {
+      "id": "cat-PS5_Overlay",
+      "name": "PS5_Overlay",
+      "color": "#4259ff",
+      "parentId": null
+    }
+  ],
+  "repos": [
+    {
+      "id": "repo-1791756776349-6",
+      "url": "https://github.com/notmaj0r/CheatRunner",
+      "owner": "notmaj0r",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+      "name": "CheatRunner",
+      "fullName": "notmaj0r/CheatRunner",
+      "description": "Web-Based Cheat Trainer for PS5!",
+      "customNotes": "",
+      "tags": [],
+      "categoryId": "cat-PS5_Activation",
+      "stars": 207,
+      "forks": 15,
+      "openIssues": 1,
+      "language": "Assembly",
+      "license": "GPL-3.0",
+      "defaultBranch": "main",
+      "pushedAt": "2026-10-10T18:01:49Z",
+      "updatedAt": "2026-10-11T22:07:11Z",
+      "htmlUrl": "https://github.com/notmaj0r/CheatRunner",
+      "readme": "<p align=\"center\">\n  <img src=\"CheatRunner.png\" alt=\"CheatRunner\" width=\"240\"/>\n</p>\n\n<h1 align=\"center\">CheatRunner</h1>\n\n<p align=\"center\">\n  <b>A web-based cheat trainer for your PlayStation 5!</b>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/notmaj0r/CheatRunner/releases/latest\"><img src=\"https://img.shields.io/github/v/release/notmaj0r/CheatRunner?label=Release&logo=github&color=blue\" alt=\"Latest release\"/></a>\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/License-GPLv3-blue.svg\" alt=\"License: GPLv3\"/></a>\n  <a href=\"https://discord.gg/E4g6fEqp46\"><img src=\"https://img.shields.io/badge/Discord-Join%20our%20Server-5865F2?logo=discord&logoColor=white\" alt=\"Join our Discord Server\"/></a>\n  <a href=\"https://ko-fi.com/maj0r\"><img src=\"https://img.shields.io/badge/Ko--fi-Support-FF5E5B?logo=kofi&logoColor=white\" alt=\"Support on Ko-fi\"/></a>\n</p>\n\n---\n\n**CheatRunner** runs as a single ELF on an already-jailbroken PS5 and serves its complete interface over HTTP.\n\nNo desktop client is required. Send `CheatRunner.elf` to the console, open the PS5 IP address on port `9999` in a browser, and manage your games and cheats from a desktop, tablet, or smartphone.\n\nCheatRunner brings the most common PS5 trainer workflows together in one interface:\n\n- Browse installed games and apps, with covers, version, play time, and last played;\n- Launch installed titles from a browser;\n- Load local cheat files (`.mc4`, `.shn`, `.json`) and turn cheats on or off with one click;\n- Apply PS-Game-Patch XML patches;\n- Download cheat collections from community sources;\n- Re-apply your cheats and patches automatically when a game starts;\n- Open a game's trainer from a controller shortcut or the game's options menu;\n- Inspect logs and diagnostics.\n\n> **One payload. One dashboard. No companion application required.**\n\n---\n\n## ✨ Features\n\n- **Games library** — PS5 / PS4 / Apps filters, covers, title ID, version, time played, last played, and one-click launch.\n- **Favorites and Recent** — stored on the console, so every device that opens the dashboard sees the same lists.\n- **Full-page trainer** — per-game **Cheats**, **Patches** and **Files** tabs, a readiness strip, and the cheat and patch authors shown up front.\n- **Cheat formats** — `.mc4`, `.shn`, and `.json`; master-code and code-cave cheats of any size are supported.\n- **One-click cheats** — click to turn on, click again to turn off, with post-write verification and rollback.\n- **Version-aware selection** — exact version first, generic file as fallback, wrong version as a last resort with a visible warning.\n- **PS-Game-Patch XML patches** — version-aware (`AppVer`), with mask-version patches applied regardless of game version.\n- **Autoload profiles** — save the cheats and/or patches that are on; they are re-applied the next time the game launches, with an on-screen notification.\n- **Crash-suspect detection** — mods that crashed the game are flagged and blocked from re-enabling automatically.\n- **Controller shortcut and game menu** — hold two buttons (L2 + R3 by default) or pick **★ CheatRunner** in a game's options menu to open that game's trainer.\n- **Cheat sources** — download a whole repository as one archive with a live progress panel; unchanged files are skipped.\n- **16 Languages** — complete UI translation with RTL support for Arabic and Persian.\n- **Themes and visual effects** — five themes, plus a **Full** and a **Reduced** effects preset; Reduced is the default in the PS5 browser.\n- **Responsive interface** — designed for desktop, tablets, and smartphones.\n- **Phone access** — a QR code opens CheatRunner on your phone.\n- **Command palette** — quick keyboard navigation with `Ctrl/Cmd + K`.\n- **Logs and diagnostics** — a health summary, a Copy Logs button, and a per-session log file.\n- **Config hot-reload** — edits to `config.ini` over FTP/SSH are picked up automatically, no restart needed.\n- **Update notice** — shows a message when a newer GitHub release exists.\n\n---\n\n## 🚀 Getting Started\n\n### Requirements\n\nCheatRunner is intended for a PS5 that already has a compatible jailbreak/homebrew environment running.\n\nYou will need:\n\n- An already-jailbroken PlayStation 5;\n- A compatible ELF/payload loader;\n- A computer, phone, or tablet on the same local network as the console.\n\n### Run CheatRunner\n\nSend:\n\n```text\nCheatRunner.elf\n```\n\nto the PS5 using your preferred ELF loader.\n\nThen open the dashboard from another device on the same network:\n\n```text\nhttp://<PS5-IP>:9999\n```\n\nExample:\n\n```text\nhttp://192.168.1.100:9999\n```\n\nCheatRunner serves the complete frontend directly from the ELF.\n\n### Homebrew Launcher\n\nCheatRunner also ships as a Homebrew Launcher package (`CheatRunner.zip`).\n\n1. Extract the zip **directly into `/data/homebrew/`** on your PS5 via FTP.\n2. Check that the result is:\n\n   ```text\n   /data/homebrew/CheatRunner/\n   ├── CheatRunner.elf\n   ├── homebrew.js\n   └── sce_sys/\n       └── icon0.png\n   ```\n\n3. Open the Homebrew Launcher on your PS5, launch **CheatRunner**, then open the dashboard in your browser.\n\n---\n\n## 🔄 Updating CheatRunner\n\n**Before updating to a new version, please follow these steps:**\n\n1. Go to `/data/cheatrunner` and delete **everything** except the `cheats` and `patches` folders.\n   - Keep both folders — there is **no need** to delete them.\n   - Do this **before** using the new version, **not after**.\n2. Delete the old **CheatRunner PKG** (home-screen tile) from your PS5.\n3. Clear your browser cache: **Settings → System → Browser → Clear Cache**.\n\nThen send the new `CheatRunner.elf` as usual.\n\n---\n\n## 🎮 Games & Trainer\n\nThe **Games** page lists everything installed on the console, with the PS5 / PS4 / Apps filters, search, favorites, and recent titles.\n\nEach game card shows the title ID, a PS5/PS4 badge, version, time played, and last played, plus **Play** and **Trainer** actions.\n\nThe trainer opens as a full page with three tabs:\n\n- **Cheats** — switches for every mod in the loaded cheat file;\n- **Patches** — the PS-Game-Patch entries that match the game and its version;\n- **Files** — the cheat files found for this title, with a selector to force another candidate.\n\nCheat and patch authors are shown on the page and on each patch, so credit always stays visible.\n\n---\n\n## 🧰 Local Cheats\n\nCheatRunner is local-first. Local cheat files remain the primary workflow.\n\n### Search paths (scanned in order)\n\n```text\n/data/cheatrunner/cheats   ← primary path\n/data/etaHEN/cheats        ← etaHEN cross-compatibility\n/data/elf-arsenal/cheats   ← elf-arsenal cross-compatibility\n```\n\nRecommended sub-folders inside the primary path:\n\n```text\n/data/cheatrunner/cheats/mc4\n/data/cheatrunner/cheats/shn\n/data/cheatrunner/cheats/json\n```\n\nExample files:\n\n```text\n/data/cheatrunner/cheats/mc4/PPSA30803_01.200.000.mc4\n/data/cheatrunner/cheats/mc4/PPSA30803.mc4\n/data/cheatrunner/cheats/shn/CUSA00000.shn\n/data/cheatrunner/cheats/json/CUSA00000.json\n```\n\n### Version-aware selection\n\nCheatRunner matches cheat files by title ID and game version:\n\n- **Exact match** (`CUSA00000_01.09.json`) — selected automatically when the running game reports that version.\n- **Generic** (`CUSA00000.json`, no version in the filename) — used as fallback when no exact match exists.\n- **Wrong version** — loaded as a last resort when no exact or generic file exists; the trainer shows a version-mismatch warning and a `WRONG VER` badge. The candidate selector lets you force-switch or download a better match.\n\n---\n\n## 🩹 Local Patches\n\nCheatRunner supports **PS-Game-Patch** XML patches.\n\nPatch search paths (scanned in this order):\n\n```text\n/data/cheatrunner/patches/xml_prospero   ← PS5-native patches\n/data/cheatrunner/patches/xml            ← PS4 BC / general patches\n/data/elf-arsenal/patches/xml            ← elf-arsenal cross-compatibility\n/data/cheatrunner/patches                ← loose .xml files\n```\n\nNotes:\n\n- Sub-folders (such as a downloaded repo) are scanned too, and `.xml` is matched in any letter case.\n- Files need a `<TitleID>` block; ones without it are skipped and logged as `index_skip no_title_id`.\n- New files are picked up automatically, or press Refresh in the dashboard.\n- **CheatRunner Patches** are saved in `xml/cheatrunner` and `xml_prospero/cheatrunner`. If a game has patches there, only those are used and PS-Game-Patch files for the same game are ignored; games they don't cover keep using PS-Game-Patch.\n\n### Patches that must be applied at game start\n\nSome patches only take effect if they are written in the first seconds of the game, because the game reads the value once at boot (for example the RDR2 60 FPS patch). Applying them while the game is already running writes the bytes but changes nothing.\n\n1. Open the game and apply the patch from the **Patches** tab.\n2. Click **Save autoload**.\n3. Close the game and open it again. CheatRunner applies the patch on its own as soon as the game starts.\n\n---\n\n## 🌐 Sources\n\nThe **Sources** page downloads community cheat and patch collections straight to the console:\n\n- HEN Cheats Collection (recommended);\n- PS5 Cheats;\n- GoldHEN Cheats;\n- HEN PPSA Cheats;\n- CheatRunner Patches (community patches released by the maintainer);\n- The official PS-Game-Patch release.\n\nRepositories are fetched as a single archive, with live progress, speed, and ETA. A download in progress also shows in the top bar on every page.\n\nBy default, files that already exist are left untouched and only new files are added. Turn on **Also update files that changed** to refresh existing files with the repository's latest version; local-only files are never deleted. Keep it off if you edited a file by hand.\n\n---\n\n## 🔁 Autoload Profiles\n\nAutoload profiles re-apply your cheats and/or patches every time you launch a game — no need to open the dashboard and toggle them on again.\n\n**Important:** an autoload profile only saves the cheats/patches that are **currently ON/applied at the moment you save it**. It does not save the whole cheat or patch file.\n\n### Cheats\n\n1. Open a game's trainer and enable the cheats you want.\n2. In the **Cheats** tab, click **Save Autoload Profile**.\n3. Next time you launch that game, CheatRunner re-applies those cheats and shows an on-screen notification.\n4. To stop, click **Clear Autoload Profile**.\n\n### Patches\n\n1. Open a game's trainer and apply the patches you want.\n2. In the **Patches** tab, click **Save Autoload Profile**.\n3. Next time you launch that game, CheatRunner re-applies those patches and shows an on-screen notification.\n4. To stop, click **Clear Autoload Profile**.\n\nCheat and patch profiles are independent — you can save one, both, or neither for any game.\n\n---\n\n## 🕹️ Controller Shortcut & Game Menu\n\nOff by default. Turn on **Controller shortcut and game menu** in Settings to:\n\n- hold the chosen two buttons (L2 + R3 by default) while a game is running to open its trainer;\n- get a **★ CheatRunner** entry in the game's options menu that opens that game's trainer.\n\nThis works by hooking SceShellUI, so it needs a few seconds after boot or rest mode to arm. CheatRunner never restarts the system UI. If the console misbehaves, turn the option off in Settings and restart CheatRunner.\n\n---\n\n## 🎨 Look & Feel\n\n- **Themes** — five themes; Midnight (blue) is the default.\n- **Visual effects** — **Full** keeps blur, glow, and motion; **Reduced** turns them off for the PS5 browser. Reduced is chosen automatically on the PS5 until you pick Full in Settings.\n- **Phones and tablets** — the layout adapts down to small phone widths.\n\nTip: keep the dashboard open on a PC or phone while playing. The PS5 browser competes with the game for resources.\n\n---\n\n## 🌍 Languages\n\nCheatRunner supports a fully localized interface in:\n\n- 🇺🇸 **English**\n- 🇸🇦 **Arabic**\n- 🇨🇳 **Chinese Simplified**\n- 🇫🇷 **French**\n- 🇩🇪 **German**\n- 🇮🇹 **Italian**\n- 🇯🇵 **Japanese**\n- 🇰🇷 **Korean**\n- 🇮🇷 **Persian**\n- 🇵🇱 **Polish**\n- 🇧🇷 **Brazilian Portuguese**\n- 🇷🇺 **Russian**\n- 🇪🇸 **Spanish**\n- 🇹🇭 **Thai**\n- 🇹🇷 **Turkish**\n- 🇺🇦 **Ukrainian**\n\nEnglish is the default language. Arabic and Persian use RTL layouts, while technical values such as paths, URLs, title IDs, versions, and logs stay in their natural LTR form.\n\n---\n\n## 🧪 Notes & Bug Reports\n\nCheatRunner is still experimental. Some cheats may work correctly, fail to apply, mismatch the game version, crash the game, require a specific game update, or behave differently after relaunching the game.\n\nWhen reporting bugs, include:\n\n- CheatRunner logs (Copy Logs button, or `/data/cheatrunner/logs.txt`);\n- the game title ID and version/update;\n- the cheat file used;\n- which cheat was enabled or disabled;\n- what happened before the issue.\n\nEach log session starts with a header line, and the log level is `debug` by default.\n\n---\n\n## ⚠️ Disclaimer\n\nCheatRunner is **not a jailbreak**, **not an exploit**, and **not a tool for stock/retail consoles**.\n\nIt only works when your PS5 is already jailbroken and already has the required homebrew/payload environment running.\n\nCheatRunner does **not** provide:\n\n- jailbreaks or kernel exploits;\n- game backups or game content;\n- piracy features;\n- PSN bypasses;\n- online services.\n\nIt is a local homebrew tool for testing trainers on your own already-jailbroken console.\n\nRuntime cheat memory writes can crash the game, break a session, corrupt your savegame, softlock the title, or behave differently depending on the game version/update.\n\n**Always back up your save files before using any cheats.**\n\nUse CheatRunner at your own risk.\n\n---\n\n## 🛠️ Building\n\nCheatRunner is built with the **PS5 Payload SDK** and a plain `Makefile`. On Windows, build inside WSL.\n\nYou need the SDK, `make` and `python3` (the dashboard, i18n, and payload blobs are generated at build time), plus a host C compiler (used to pre-compress the dashboard).\n\n```sh\nmake            # writes build-make/CheatRunner.elf\nmake clean\n```\n\n`./build-cheatrunner.sh` wraps `make` with a tool check, a single progress line and a build summary (size, SHA-256, time):\n\n```sh\n./build-cheatrunner.sh                # normal build\n./build-cheatrunner.sh --clean -j 4   # wipe build-make/ first, 4 parallel jobs\n./build-cheatrunner.sh --verbose      # full make output\n./build-cheatrunner.sh --help         # all options (--sqlite, --no-sqlite, --skip-js-check)\n```\n\nEach log session starts with a short build id, so reports say which ELF was running.\n\nThe Makefile looks for the SDK in this order:\n\n```text\n1. /opt/ps5-payload-sdk\n2. PS5_PAYLOAD_SDK environment variable\n3. ./PS5-Projects/sdk-master\n4. ./ps5-payload-sdk\n```\n\nSQLite: if `src/third_party/sqlite3.c` and `sqlite3.h` exist, bundled SQLite is enabled automatically. Use `make SQLITE=1` to force it on and `make SQLITE=0` to disable it.\n\nOutput:\n\n```text\nbuild-make/CheatRunner.elf\n```\n\n---\n\n## 📁 Repository Layout\n\n```text\n.\n├── build-make/     Build output\n├── pkg-source/     PS5 home-screen tile sources\n├── src/\n│   ├── web/        Dashboard (HTML, CSS, vanilla JS, locales)\n│   ├── payload/    Code injected into SceShellUI\n│   └── third_party/ Bundled libraries\n├── tools/          Build and validation scripts\n├── Makefile\n└── build-cheatrunner.sh\n```\n\nThe dashboard is written as plain files in `src/web/`; `make` compresses and embeds it directly into `CheatRunner.elf`.\n\n---\n\n## ❤️ Support\n\nCheatRunner is free and open-source.\n\nIf you find it useful, consider supporting further development.\n\n<a href=\"https://ko-fi.com/maj0r\"><img src=\"https://img.shields.io/badge/Ko--fi-Support-FF6433?style=for-the-badge&logo=kofi&logoColor=white\" alt=\"Support CheatRunner on Ko-fi\"/></a>\n<a href=\"https://buymeacoffee.com/maj0r\"><img src=\"https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black\" alt=\"Support CheatRunner on Buy Me a Coffee\"/></a>\n\n**PIX - Brazilian method**\n\n**LivePix**: https://livepix.gg/notmaj0r\n\n**Donate via Crypto**\n\n- **BTC**  \n  `bc1ppfcad9ytyzmmzq3nfatfcag7q38rqcpsvxfqusq0uzv4gh82pa4syeknlk`\n\n- **BCH (Bitcoin Cash)**  \n  `qz2h97c2pyexn3fwhveu33tn5xkd3qlfn5796zhtcq`\n\n- **USDC (Solana)**  \n  `BNpezXSQWuUR9HWGjzQUS7AeEBCwiY2ZGxArWNwYXKKV`\n\n- **USDT (TON)**  \n  `UQA18f4cVS0778fL_nIssdN1GIHRYR7dQ3UnNgjPwgYvIQi_`\n\n---\n\n## 🤝 Credits & References\n\nCheatRunner exists thanks to the PS4/PS5 homebrew and research community.\n\n- **ELF Arsenal & VoidShell** — for project ideas and implementations.\n- **[Ps5-Payload-Dev](https://github.com/ps5-payload-dev)** — for the [SDK](https://github.com/ps5-payload-dev/sdk) CheatRunner is built with.\n- **[etaHEN](https://github.com/etaHEN/etaHEN)** (LightningMods) and **[onionHEN](https://github.com/aydencharles/onionHEN)** (aydencharles) — the SceShellUI injection and hooking approach behind the controller shortcut and the ★ CheatRunner game-menu entry is adapted from their work.\n- **miniz** (Rich Geldreich) and **[qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)** (Kazuhiko Arase) — bundled libraries used for unpacking cheat archives and the QR code.\n- **TeeKay87** — for the [HEN-Cheats-Collection](https://github.com/TeeKay87/HEN-Cheats-Collection) project.\n- **etaHEN** — for the [PS5_Cheats](https://github.com/etaHEN/PS5_Cheats) project.\n- **GoldHEN** — for the [GoldHEN_Cheat_Repository](https://github.com/GoldHEN/GoldHEN_Cheat_Repository) project.\n- **RDX-Sci01** — for the [HEN-PPSA-Cheats](https://github.com/RDX-Sci01/HEN-PPSA-Cheats) project.\n- **illusionyy** — for the [PS-Game-Patch](https://github.com/illusionyy/ps-game-patch) and [ps-patch-system](https://github.com/illusionyy/ps-patch-system) projects.\n- Everyone testing, reporting issues, sharing logs, and helping improve the project.\n\n---\n\n## 📜 License\n\nCheatRunner is licensed under the **GNU General Public License v3.0**.\n\nSee the `LICENSE` file for the full license text.\n\n```text\nGNU General Public License v3.0\n```\n\n---\n\n<p align=\"center\">\n  <b>CheatRunner</b><br/>\n  One dashboard for your jailbroken PS5.\n</p>\n",
+      "readmeFetchedAt": "2026-10-11T22:12:56.349Z",
+      "autoSaveAssets": false,
+      "hasNewCommitsAlert": true,
+      "recentCommits": [
+        {
+          "sha": "779411d",
+          "message": "Update CheatRunner.png",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-10-10T18:00:05Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/779411debfdd72559b407796a532f068d0f149ae"
+        },
+        {
+          "sha": "eb0d9c4",
+          "message": "v0.18 update",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-10-10T17:59:19Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/eb0d9c4e22315d4b67565692a9d30dcc8d4e2830"
+        },
+        {
+          "sha": "ad582ab",
+          "message": "Update FUNDING.yml",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-10-07T04:22:58Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/ad582ab34f575be66e39a6d4dbc47cc7d284d135"
+        },
+        {
+          "sha": "59dcb9e",
+          "message": "Update CHANGELOG.md",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-10-01T18:01:23Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/59dcb9efaba71af00dc29d6cfe35da7d1ea43651"
+        },
+        {
+          "sha": "7eb6a78",
+          "message": "Merge pull request #26 from inf1nit3/fix/fw1360-vmspace-pmap-offset",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-10-01T17:53:01Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/7eb6a785225ea490059f6df1bee5c87ec0d9e58c"
+        },
+        {
+          "sha": "332d7d1",
+          "message": "mdbg: take vmspace pmap offset from the SDK (fixes writes on FW 13.60)",
+          "authorName": "inf1nit3",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/16724135?v=4",
+          "date": "2026-10-01T08:36:29Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/332d7d1c802ce1f8a3362748f936fb4e25781447"
+        },
+        {
+          "sha": "548f21a",
+          "message": "v0.17.1: Rebuilt with latest SDK",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-09-30T17:32:13Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/548f21a41f1e0b86ce0de82e2f5a1c384b96ea52"
+        },
+        {
+          "sha": "89095e4",
+          "message": "Update README.md",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-08-05T21:19:45Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/89095e4b8a7d06897c7a9f37a794e737b94b04a1"
+        },
+        {
+          "sha": "9c75165",
+          "message": "v0.17 update",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-07-30T21:17:15Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/9c75165182bedb9c21e9b58a1468caeb8a3fdb0f"
+        },
+        {
+          "sha": "adbea63",
+          "message": "delete",
+          "authorName": "maj0r",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/253086874?v=4",
+          "date": "2026-07-25T05:25:38Z",
+          "url": "https://github.com/notmaj0r/CheatRunner/commit/adbea63eae3c8c5320eba6844415f2cd5328ad04"
+        }
+      ],
+      "latestRelease": {
+        "id": 409110768,
+        "tagName": "v0.18",
+        "name": "v0.18",
+        "publishedAt": "2026-10-10T18:01:49Z",
+        "body": "CheatRunner v0.18\r\n\r\nSee the full changelog here: [Changelog](https://github.com/notmaj0r/CheatRunner/blob/main/CHANGELOG.md)\r\n\r\nCheck [GUIDE](https://github.com/notmaj0r/CheatRunner#homebrew-launcher) to setup CheatRunner.zip on Homebrew Launcher.\r\n\r\n⚠️ Before updating to a new CheatRunner version, please follow these steps: [Updating CheatRunner](https://github.com/notmaj0r/CheatRunner#-updating-cheatrunner)\r\n\r\nSpecial Thanks:\r\n\r\n💖 Supporters - those who supported the project through [Ko-Fi](https://ko-fi.com/maj0r) or [Buy Me a Coffee](https://buymeacoffee.com/maj0r).\r\n• primo • lal3x • jawad • anonymous • Maffioh • X-F1REBALL-X • Br0ken4life • Nimrod • l gave a tip! • Someone • johnfugate \r\n\r\n💚 Testers - those who tested early builds of CheatRunner before release.",
+        "htmlUrl": "https://github.com/notmaj0r/CheatRunner/releases/tag/v0.18",
+        "assets": [
+          {
+            "id": 628618191,
+            "name": "CheatRunner.elf",
+            "size": 8272800,
+            "downloadCount": 1991,
+            "downloadUrl": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18/CheatRunner.elf",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-10-10T17:56:27Z"
+          }
+        ]
+      },
+      "lastCheckedAt": "2026-10-11T22:12:56.350Z"
+    },
+    {
+      "id": "repo-1791756777221-208",
+      "url": "https://github.com/aydencharles/kylin-core-release",
+      "owner": "aydencharles",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+      "name": "kylin-core-release",
+      "fullName": "aydencharles/kylin-core-release",
+      "description": "kylin-core-release",
+      "customNotes": "",
+      "tags": [],
+      "categoryId": "cat-PS5_Activation",
+      "stars": 76,
+      "forks": 3,
+      "openIssues": 2,
+      "language": "Unknown",
+      "license": "MIT",
+      "defaultBranch": "main",
+      "pushedAt": "2026-10-01T13:32:10Z",
+      "updatedAt": "2026-10-11T03:44:39Z",
+      "htmlUrl": "https://github.com/aydencharles/kylin-core-release",
+      "readme": "<p align=\"center\">\n  <img src=\"assets/logo.png\" alt=\"Kylin Core\" height=\"128\" width=\"128\"/>\n</p>\n\n<p align=\"center\">\n  <b>Kylin Core</b><br/>\n  A homebrew cheat loader and real-time game modifier for PlayStation 5\n</p>\n\n<p align=\"center\">\n  <b>English</b>\n  ·\n  <a href=\"zh/README.md\">简体中文</a>\n</p>\n\n<p align=\"center\">\n  <b><a href=\"#features\">Features</a></b>\n  ·\n  <b><a href=\"#run\">Run</a></b>\n  ·\n  <b><a href=\"#cheat-files\">Cheat files</a></b>\n  ·\n  <b><a href=\"#web-ui\">Web UI</a></b>\n  ·\n  <b><a href=\"#runtime-data\">Runtime data</a></b>\n  ·\n  <b><a href=\"#troubleshooting\">Troubleshooting</a></b>\n  ·\n  <b><a href=\"#support\">Support</a></b>\n  ·\n  <b><a href=\"#credits\">Credits</a></b>\n</p>\n\n---\n\n<p align=\"center\">\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/License-MIT-green.svg\" alt=\"MIT\"/></a>\n  <a href=\"https://github.com/aydencharles/kylin-core-release/releases/latest\"><img src=\"https://img.shields.io/github/v/release/aydencharles/kylin-core-release?label=Release&logo=github&color=blue\" alt=\"Latest release\"/></a>\n  <img src=\"https://img.shields.io/badge/Platform-PlayStation%205-003791?style=flat&logo=playstation\" alt=\"PlayStation 5\"/>\n  <img src=\"https://img.shields.io/badge/Firmware-4.0.3%20%E2%80%93%2013.60-brightgreen\" alt=\"Firmware 4.0.3 – 13.60\"/>\n</p>\n\n<p align=\"center\">\n  Kylin Core ships as a single ELF. The payload boots a background daemon,<br/>\n  registers its own home-screen tile, detects the running title, patches game<br/>\n  memory on demand, and serves a local web UI on port <b>9023</b>.\n</p>\n\n<p align=\"center\">\n  <img src=\"assets/screenshots_01.jpg\" alt=\"Kylin Core\"/>\n</p>\n\n<br>\n\n# Features\n\nKylin Core is a single-payload cheat tool for jailbroken PS5 consoles. It runs\nas a persistent daemon instead of a one-shot loader.\n\n- **Real-time cheat toggle** — enable or disable a cheat while the game is running; the patch is applied or reverted immediately\n- **Automatic game detection** — the daemon resolves the running title by itself, so no manual title ID is needed\n- **Four cheat formats** — `.json`, `.shn`, `.mc4`, and `.ShnExt` (Alpha), all loaded from a single flat directory\n- **Hot reload** — cheat file edits apply immediately, with no restart\n- **Built-in web UI** — served straight from the payload on port `9023` and opened by the home-screen tile\n- **Home-screen tile** — the tile is registered automatically under the **Media** section of the home screen\n- **Game media** — the UI streams the installed title's icon and hero art through the daemon\n- **System notifications** — the daemon reports startup, ready, stop, and game launch through PS5 notifications\n- **Single-tool distribution** — no `ps5debug-NG`, no extra modules, no additional runtime dependencies\n- **Stable in-game operation** — no freeze on APR-protected titles\n\nThe web UI is localized in **简体中文**, **English**, and **한국어**.\n\n<br>\n\n# Run\n\n### Requirements\n\n1. A jailbroken PS5 with a working ELF loader\n2. [PS5 Payload Manager (PLDMGR)](https://github.com/itsPLK/ps5-payload-manager) installed on the console\n\n### Install\n\n1. Load `kylin-core.elf` with **PS5 Payload Manager (PLDMGR)**.\n2. Wait for the ready notification. The **Kylin Core** tile is under **Media** on the home screen.\n3. Launch **Kylin Core** from the home screen.\n\n> [!IMPORTANT]\n> Load `kylin-core.elf` through PLDMGR **before** opening the tile. The tile is\n> only a browser launcher pointing at `http://127.0.0.1:9023/`; if the daemon is\n> not running, the UI has nothing to load.\n\n### Compatibility\n\n| Target | Status |\n| --- | --- |\n| PS4 games running on PS5 | Supported |\n| PS5 native games | Supported |\n| PS5 games with APR | Supported |\n| Firmware | Jailbroken consoles on **4.0.3 through 13.60** |\n| Cheat formats | `.json` · `.shn` · `.mc4` · `.ShnExt` (Alpha) |\n\n<br>\n\n# Cheat files\n\nCheat files live in one directory and follow one naming rule:\n\n```text\n/data/kylin/cheats/<TITLE_ID>_<VERSION>.json\n/data/kylin/cheats/<TITLE_ID>_<VERSION>.shn\n/data/kylin/cheats/<TITLE_ID>_<VERSION>.mc4\n/data/kylin/cheats/<TITLE_ID>_<VERSION>.ShnExt\n```\n\n- The directory is flat. Subfolders are not scanned.\n- `<TITLE_ID>` is the running title's ID, for example `PPSA00001`.\n- `<VERSION>` is the running title's version with anything outside `0-9`, `A-Z`, `a-z`, `.`, `_`, and `-` replaced by `_`, so a version of `01.000.000` stays `01.000.000`.\n- One file is resolved per title, in the order `.json` → `.shn` → `.mc4` → `.ShnExt`. The first match wins, so a `.json` file shadows an `.shn` file for the same title and version.\n\nEditing a cheat file takes effect right away, even mid-session — no restart.\n\n> [!NOTE]\n> `.ShnExt` support is Alpha and not fully supported yet. `.json`, `.shn`, and\n> `.mc4` are the fully supported formats.\n\n<br>\n\n# Web UI\n\nThe daemon serves its own frontend, embedded in the ELF.\n\n```text\nhttp://127.0.0.1:9023/      on the console (what the launcher tile opens)\nhttp://<console-ip>:9023/   from any device on the same network\n```\n\n| Page | What it does |\n| --- | --- |\n| Cheats | Lists the running title and its cheats; toggles them individually |\n| Game | Shows the detected title, its icon and hero art, and the resolved cheat file |\n| Profile | Current user and avatar |\n| Settings | UI language and theme |\n| Logs | Reads and downloads the daemon log |\n\nThe UI can also be pointed at a console manually from its connect screen, which\nis how it is used when served from a development build rather than from the\ndaemon.\n\n<br>\n\n# Runtime data\n\n| Path | Purpose |\n| --- | --- |\n| `/data/kylin/` | Daemon data root, created on startup |\n| `/data/kylin/cheats/` | Cheat files, flat directory |\n| `/data/kylin/logs/kylin-core.log` | Daemon log, rotated at 256 KiB with 3 files kept |\n| `/tmp/kylin-core.log` | Log fallback used when the data root is not writable |\n\n<br>\n\n# Repository layout\n\n```text\n.\n├── assets/          Project artwork and screenshots\n├── guide/           Installation guide\n├── zh/              Simplified Chinese README and installation guide\n├── LICENSE\n└── README.md\n```\n\n<br>\n\n# Troubleshooting\n\n1. **The tile opens a blank page or a browser error.** The daemon is not running. Load `kylin-core.elf` through PLDMGR first, wait for the ready notification, then reopen the tile.\n2. **There is no Kylin Core tile on the home screen.** The tile is registered automatically when the payload starts. Confirm the payload reached the ready state, then check `/data/kylin/logs/kylin-core.log`.\n3. **The daemon never becomes ready.** Confirm the payload matches your firmware and that PLDMGR reported a successful load. Check `/data/kylin/logs/kylin-core.log`, or `/tmp/kylin-core.log` if the data root was not writable.\n4. **No game is detected.** Start the game first and let it reach the main menu, then refresh the Cheats page. The daemon only reports titles that are actually running.\n5. **The cheat list is empty.** Check the filename. It must be `<TITLE_ID>_<VERSION>.json`, `.shn`, `.mc4`, or `.ShnExt`, directly inside `/data/kylin/cheats` with no subfolder.\n6. **A cheat is listed but does nothing.** Cheats are only as good as their implementation, and some depend on a specific game version. Verify the version segment of the filename against the running title.\n\nWhen reporting a problem, include the firmware version, the game title ID and\nversion, the daemon log, and the steps that reproduce it.\n\n<br>\n\n# Support\n\n<a href=\"https://ko-fi.com/0xp0co\"><img src=\"https://img.shields.io/badge/Ko--fi-Support-FF6433?style=for-the-badge&logo=kofi&logoColor=white\" alt=\"Support Kylin Core on Ko-fi\"/></a>\n\nIf Kylin Core is useful to you, consider supporting its continued development.\nThank you.\n\n<br>\n\n# Credits\n\nKylin Core exists because of the PS5 homebrew and reverse-engineering community.\n\n### Used or embedded\n\n- [PS5 Payload SDK](https://github.com/ps5-payload-dev/sdk) — Prospero toolchain, target headers, and runtime used to build the payload\n- [PS5 Payload Manager (PLDMGR)](https://github.com/itsPLK/ps5-payload-manager) — itsplk; the ELF loader used to send the payload to the console; not shipped in the release\n- [CivetWeb](https://github.com/civetweb/civetweb) — the embedded web server that serves the UI\n- [cJSON](https://github.com/DaveGamble/cJSON) — JSON parsing and serialization\n- MC4 helper subset — `base64.c` carries a BSD notice by Jouni Malinen; `aes.c` is derived from [tiny-AES-c](https://github.com/kokke/tiny-AES-c) by kokke\n- [miniz](https://github.com/richgel999/miniz) — deflate and archive handling\n- [SHA-256](https://github.com/B-Con/crypto-algorithms) — Brad Conte; hashing used by the daemon\n- [Keystone](https://github.com/keystone-engine/keystone) — assembler used by the cheat engine\n\n<br>\n\n# License\n\nThis project is licensed under the [MIT License](LICENSE).\nThird-party components retain their respective licenses and notices.\n\n> Kylin Core is an unofficial homebrew project and is not affiliated with Sony Interactive Entertainment.\n> Use it only on hardware you own and at your own risk. No warranty is provided.\n",
+      "readmeFetchedAt": "2026-10-11T22:12:57.221Z",
+      "autoSaveAssets": false,
+      "hasNewCommitsAlert": false,
+      "recentCommits": [
+        {
+          "sha": "86eb4bb",
+          "message": "update: docs",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-10-01T13:32:07Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/86eb4bbc208b3347b98623c604950788b0dd1181"
+        },
+        {
+          "sha": "1eeb9aa",
+          "message": "update: docs",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-10-01T12:15:23Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/1eeb9aa73d488e70c66cc0d947fbb83a8e9d11ad"
+        },
+        {
+          "sha": "84a1097",
+          "message": "update: README.md",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-19T18:34:45Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/84a10975dfa5d1ebc035ea0c69d26aa7e7c34b7f"
+        },
+        {
+          "sha": "42bd521",
+          "message": "update: README.md",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-19T18:32:42Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/42bd5217fb0d930a8ea93b892c56e4582a9ce202"
+        },
+        {
+          "sha": "c6b55f2",
+          "message": "Merge pull request #1 from aydencharles/develop",
+          "authorName": "Hexwell",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-15T04:34:04Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/c6b55f2b0ad028c8f10b7c08f2e125dfe16c59f6"
+        },
+        {
+          "sha": "6735fed",
+          "message": "update: README.md",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-15T04:32:19Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/6735fed1a55e4c85cf8833c3b314b3530b2effb4"
+        },
+        {
+          "sha": "0a348d0",
+          "message": "update: README.md",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-15T04:27:21Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/0a348d083c0240962bf73b33b801eacd49dbbff8"
+        },
+        {
+          "sha": "41bcc8f",
+          "message": "docs: README.md",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-15T04:26:17Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/41bcc8fded14c2d1b87e8e9cc4a5dcaa9b51a155"
+        },
+        {
+          "sha": "cfb82a3",
+          "message": "update: license",
+          "authorName": "Hexwell",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-15T04:19:38Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/cfb82a318ba6aa678201a27ad8aaefad31fed280"
+        },
+        {
+          "sha": "a119611",
+          "message": "init: init",
+          "authorName": "aydencharles",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/222953547?v=4",
+          "date": "2026-06-06T14:18:27Z",
+          "url": "https://github.com/aydencharles/kylin-core-release/commit/a119611a42c4a7bc1b6b351a845215cf6462fedc"
+        }
+      ],
+      "latestRelease": {
+        "id": 400996187,
+        "tagName": "v2.0.0-community-lite",
+        "name": "v2.0.0 Community Lite",
+        "publishedAt": "2026-10-01T13:29:25Z",
+        "body": "# Kylin Core v2.0.0 Community Lite\n\n<a href=\"https://ko-fi.com/0xp0co\"><img src=\"https://img.shields.io/badge/Ko--fi-Support-FF6433?style=for-the-badge&logo=kofi&logoColor=white\" alt=\"Support Kylin Core on Ko-fi\"></a>\n\nIf you find this project helpful, please consider supporting its continued development. Your support is greatly appreciated!\n\n## 🎮 Features\n\n- **Real-time cheat toggle** — enable or disable cheats anytime during gameplay, changes apply instantly\n- **Multi-format support** — `.json` / `.shn` / `.mc4` / `.ShnExt` cheat files, all from a single flat directory (`.ShnExt` is Alpha)\n- **Automatic game detection** — no manual title ID needed\n- **Built-in web UI** — served by the payload itself and opened from the home-screen tile\n- **Cheat credits** — author names are read from the cheat file and shown on the game page\n- **Self-recovering service** — comes back on its own after rest mode or a network change\n- **Stable in-game operation** — no freeze on APR games\n\n## 📦 Files\n\n| File | Description | Size |\n|---|---|---|\n| `kylin-core.elf` | The whole distribution: daemon, cheat engine and web UI | 4.8 MB |\n\n## 🚀 Installation\n\n1. Load `kylin-core.elf` via [PLDMGR](https://github.com/itsPLK/ps5-payload-manager)\n2. Wait for the ready notification. The **Kylin Core** tile is under **Media** on the home screen\n3. Launch **Kylin Core** from the home screen\n\n> ⚠️ Load `kylin-core.elf` before opening the tile, otherwise the UI has nothing to load.\n\n📖 **Full installation guide:** [guide/installation.md](https://github.com/aydencharles/kylin-core-release/blob/main/guide/installation.md)\n\n## 📋 Compatibility\n\n- PS4 games (running on PS5): ✅ Supported\n- PS5 native games: ✅ Supported\n- PS5 games with APR: ✅ Supported\n- Firmware: **4.0.3 – 13.60**\n- Cheat formats: `.json` · `.shn` · `.mc4` · `.ShnExt` (Alpha — not fully supported yet)\n\n> [!NOTE]\n> `.ShnExt` support is Alpha. `.json`, `.shn` and `.mc4` are the fully supported formats.\n\n## 📁 Cheat Directory\n\nPlace cheat files in `/data/kylin/cheats` (flat directory only, no subfolders).\n\n## 📝 Changelog\n\n### Distribution\n- The release is a single ELF. The home-screen tile registers itself under **Media**, so nothing else needs to be installed.\n- The payload is about 1 MB smaller than v1.3.x.\n\n### Web UI\n- Interface rebuilt with a refreshed layout and components\n- Korean added — the UI now ships 简体中文, English and 한국어\n- New profile page: console hardware info, quick actions and credits\n- Settings now cover theme, display size, component size and text size\n- Log page rebuilt with level filter, search, auto-scroll and download\n- Support and community dialogs\n\n### Cheats\n- Cheat file credits are read from all four formats and shown on the game page\n\n### Reliability\n- The service recovers by itself after rest mode and after network changes\n- Reduced memory footprint\n\n## 🔗 Links\n\n- 📖 **README:** [English](https://github.com/aydencharles/kylin-core-release/blob/main/README.md) | [中文](https://github.com/aydencharles/kylin-core-release/blob/main/zh/README.md)\n- 📚 **Installation:** [English](https://github.com/aydencharles/kylin-core-release/blob/main/guide/installation.md) | [中文](https://github.com/aydencharles/kylin-core-release/blob/main/zh/guide/installation.md)\n- 💝 **Support:** [Ko-fi](https://ko-fi.com/0xp0co)\n- 📄 **License:** [MIT](https://github.com/aydencharles/kylin-core-release/blob/main/LICENSE)\n\n## 🙏 Credits\n\n- [PS5 Payload Manager (PLDMGR)](https://github.com/itsPLK/ps5-payload-manager) — PS5 ELF loader\n- [PS5 Payload SDK](https://github.com/ps5-payload-dev/sdk) — open-source SDK for PS5 payload development\n- The PS5 homebrew community\n",
+        "htmlUrl": "https://github.com/aydencharles/kylin-core-release/releases/tag/v2.0.0-community-lite",
+        "assets": [
+          {
+            "id": 603327386,
+            "name": "kylin-core.elf",
+            "size": 4999968,
+            "downloadCount": 1945,
+            "downloadUrl": "https://github.com/aydencharles/kylin-core-release/releases/download/v2.0.0-community-lite/kylin-core.elf",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-10-01T13:29:24Z"
+          }
+        ]
+      },
+      "lastCheckedAt": "2026-10-11T22:12:57.221Z"
+    },
+    {
+      "id": "repo-1791756778082-770",
+      "url": "https://github.com/porhe911/Common-FPS-for-PS5",
+      "owner": "porhe911",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+      "name": "Common-FPS-for-PS5",
+      "fullName": "porhe911/Common-FPS-for-PS5",
+      "description": "Common FPS for PS5 v1.0.0  First public stable release.  Universal real-time FPS overlay for PS4 and PS5 games on PS5.  This release includes both a standalone ELF and an etaHEN plugin.",
+      "customNotes": "",
+      "tags": [],
+      "categoryId": "cat-PS5_Overlay",
+      "stars": 27,
+      "forks": 2,
+      "openIssues": 10,
+      "language": "C++",
+      "license": "GPL-3.0",
+      "defaultBranch": "main",
+      "pushedAt": "2026-09-29T21:23:01Z",
+      "updatedAt": "2026-10-11T13:24:20Z",
+      "htmlUrl": "https://github.com/porhe911/Common-FPS-for-PS5",
+      "readme": "# Common FPS for PS5 v1.2.1\n\nReal-time FPS overlay for PS4 and PS5 games on a modified PlayStation 5.\n\nCommon FPS displays the current frame rate directly over the game and is\navailable as a standalone ELF or etaHEN plugin.\n\n## Features\n\n- real-time integer FPS for PS4 and PS5 games;\n- compact bottom-left overlay;\n- purple `FPS:` label and white FPS value;\n- 24px default font;\n- `FPS: Loading` while the FPS source is being prepared;\n- VideoOut sampling with adaptive `/dev/dce` fallback;\n- no game-memory writes from the FPS sampler;\n- automatic game PID reattachment;\n- automatic ShellUI PID recovery;\n- Rest Mode recovery on tested firmware;\n- standalone ELF and etaHEN plugin builds;\n- automated source build and artifact verification.\n\n## Firmware status\n\n| System software | Status | Notes |\n|---|---|---|\n| **4.51** | **Confirmed** | PS4 + PS5 games, 30/60 FPS, game switching, Rest Mode recovery, normal reboot |\n| **9.00** | **Confirmed** | Shadow of the Colossus and Spider-Man 2 tested; FPS survives Rest Mode |\n| **9.60** | **Confirmed baseline** | Existing hardware-tested FPS and lifecycle path |\n| **7.60** | Test pending | Current v1.2.1 build needs a fresh hardware regression test |\n| **10.xx** | Experimental | Code path exists, but hardware validation is still required |\n\nA code path being present does not mean every firmware revision has been\nphysically tested. Confirmed and experimental status are kept separate.\n\n## Download\n\nUse **one** of these two files from the latest GitHub Release:\n\n```text\nCommon_FPS_PS5_v1.2.1.elf\nCommon_FPS_PS5_etaHEN_v1.2.1.plugin\n```\n\n**Do not run the standalone ELF and etaHEN plugin at the same time.**\n\nLatest release:\n\nhttps://github.com/porhe911/Common-FPS-for-PS5/releases/latest\n\n## Installation\n\n### Standalone ELF\n\n1. Start your jailbreak/etaHEN environment.\n2. Send `Common_FPS_PS5_v1.2.1.elf` with your preferred payload launcher.\n3. Start a PS4 or PS5 game.\n4. The overlay appears automatically after the game and ShellUI readiness\n   checks complete.\n\n### etaHEN plugin\n\n1. Install `Common_FPS_PS5_etaHEN_v1.2.1.plugin` through etaHEN's plugin\n   system.\n2. Enable the plugin/autoload option.\n3. Start a game.\n4. Common FPS waits for a stable game process before creating the overlay.\n\nThe plugin is the recommended option for persistent use.\n\n## What's new in v1.2.1\n\nFW 9.00 required a different ShellUI write path than the one used by earlier\ntested firmware. Reading the target JIT code through MDBG worked, but the\nverified one-byte UI-thread guard could not be written while the page remained\nRX.\n\nv1.2.1 adds a FW 9.00-specific safe transaction:\n\n- ShellUI is stopped;\n- expected bytes are verified;\n- the target 16 KiB JIT page is temporarily changed from RX to RWX;\n- only the required one-byte guard is written;\n- the page is restored to RX immediately;\n- the result is read back and verified;\n- auth state is restored before the transaction completes.\n\nNo game-process write path was added.\n\n## How FPS is measured\n\nCommon FPS prefers a validated VideoOut counter associated with the active\ngame. If that counter cannot be resolved safely, it falls back to the PS5\ndisplay controller through `/dev/dce`.\n\nThe DCE path:\n\n- does not depend on per-game hardcoded offsets;\n- does not write to game memory;\n- can automatically identify a stable display-like counter;\n- is confirmed on FW 4.51 and FW 9.00.\n\nWhen DCE is healthy, expensive VideoOut discovery uses a 60-second backoff.\nIf DCE stops producing valid samples, VideoOut recovery is allowed again.\n\n## Overlay\n\nDefault appearance:\n\n```text\nPosition: bottom-left\nFont size: 24\nFPS: label: purple\nFPS value: white\nFormat: integer only\n```\n\n## Rest Mode and recovery\n\nCommon FPS tracks both the active game process and `SceShellUI`.\n\nWhen a game or ShellUI PID changes, the old state is discarded and the\nrequired sampler/renderer components are brought up again.\n\nRest Mode recovery is hardware-confirmed on FW 4.51 and FW 9.00.\n\n## Logs\n\nController:\n\n```text\n/data/CommonFPS_v1_2_1.log\n```\n\nShellUI:\n\n```text\n/data/CommonFPS_v1_2_1_shellui.log\n```\n\nIf the overlay shows `FPS: Loading`, the controller log is the first file to\ncheck.\n\n## Build from source\n\nGitHub Actions runs:\n\n- **Host Source Tests**\n- **PS5 Source Build**\n\nThe PS5 build produces:\n\n```text\nCommon_FPS_PS5_v1.2.1.elf\nCommon_FPS_PS5_etaHEN_v1.2.1.plugin\nCommon_FPS_ShellUI_v1.2.1.elf\nSHA256SUMS.txt\n```\n\n## License\n\nCommon FPS-owned source is licensed under **GPL-3.0-or-later**.\n\nHomebrew software for modified PlayStation 5 systems. Use at your own risk.\n",
+      "readmeFetchedAt": "2026-10-11T22:12:58.082Z",
+      "autoSaveAssets": false,
+      "hasNewCommitsAlert": false,
+      "recentCommits": [
+        {
+          "sha": "b7969fd",
+          "message": "Publish Common FPS for PS5 v1.2.1",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-29T21:02:00Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/b7969fdf6ae509818d28fe4072bc9b8c49779fd7"
+        },
+        {
+          "sha": "03cf9aa",
+          "message": "Keep v1.2.0 release assets minimal",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-28T21:08:16Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/03cf9aa3ba3672ea7927e2d5f2ea80357ebe617c"
+        },
+        {
+          "sha": "31bee87",
+          "message": "Align v1.2.0 tag with published release",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-28T21:00:54Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/31bee878f3342e62880e02f39d5a25773fcb8489"
+        },
+        {
+          "sha": "3d16dbb",
+          "message": "Common FPS for PS5 v1.2.0: compact overlay and refreshed release",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-28T20:58:38Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/3d16dbb505e44689202e08f5f888c77e9fc8d8f3"
+        },
+        {
+          "sha": "758d5fa",
+          "message": "Publish Common FPS for PS5 v1.2.0 Universal",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-28T20:29:20Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/758d5fa2eeb91ac21a19eeb501abbdda1c26db17"
+        },
+        {
+          "sha": "d50b94b",
+          "message": "Common FPS Universal Stage 8.9: DCE standby and lifecycle recovery",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-28T20:24:46Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/d50b94bcb296d7298f7d5743a84351dad7d3160b"
+        },
+        {
+          "sha": "887bf32",
+          "message": "Normalize v1.1.0 evidence label",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-05T22:56:46Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/887bf3223614451f64109f6210dc24ce0a00bfa1"
+        },
+        {
+          "sha": "5f60ec4",
+          "message": "Mark v1.1.0 release notes as stable",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-05T22:27:02Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/5f60ec461b93e35d7619a13da9a76b622314122f"
+        },
+        {
+          "sha": "d89ebb1",
+          "message": "Promote hardware-validated build to v1.1.0",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-05T22:24:33Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/d89ebb18ce11edc344f0a0ef5dc42172e9a6235d"
+        },
+        {
+          "sha": "302a6f3",
+          "message": "Update version format in README.md",
+          "authorName": "porhe911",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/114869553?v=4",
+          "date": "2026-09-05T22:10:44Z",
+          "url": "https://github.com/porhe911/Common-FPS-for-PS5/commit/302a6f303257d0a9255411cb892845a987e5d370"
+        }
+      ],
+      "latestRelease": {
+        "id": 399526073,
+        "tagName": "v1.2.1",
+        "name": "Common FPS for PS5 v1.2.1",
+        "publishedAt": "2026-09-29T21:02:45Z",
+        "body": "# Common FPS for PS5 v1.2.1\n\n## Changes\n\n- Added confirmed FW 9.00 support.\n- Fixed the ShellUI one-byte guard transaction on FW 9.00.\n- FW 9.00 now uses MDBG for the verified ShellUI probe/guard path.\n- The target JIT page is temporarily unlocked only for the verified one-byte\n  write, then restored to RX before readback verification.\n- No game-process write path was added.\n- Rest Mode recovery is confirmed on FW 9.00.\n- Shadow of the Colossus and Spider-Man 2 were tested successfully on FW 9.00.\n- Existing FW 4.51 and FW 9.60 paths remain unchanged.\n- Overlay remains compact with the 24px default font.\n\n## Firmware status\n\n| System software | Status |\n|---|---|\n| 4.51 | Confirmed |\n| 9.00 | Confirmed |\n| 9.60 | Confirmed baseline |\n| 7.60 | Fresh v1.2.1 test pending |\n| 10.xx | Experimental / hardware test pending |\n\n## Files\n\nStandalone:\n\n`Common_FPS_PS5_v1.2.1.elf`\n\netaHEN plugin:\n\n`Common_FPS_PS5_etaHEN_v1.2.1.plugin`\n\n**Do not run ELF and plugin at the same time.**\n\n## License\n\nGPL-3.0-or-later.\n",
+        "htmlUrl": "https://github.com/porhe911/Common-FPS-for-PS5/releases/tag/v1.2.1",
+        "assets": [
+          {
+            "id": 599216454,
+            "name": "Common_FPS_PS5_etaHEN_v1.2.1.plugin",
+            "size": 915917,
+            "downloadCount": 156,
+            "downloadUrl": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.1/Common_FPS_PS5_etaHEN_v1.2.1.plugin",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-09-29T21:02:44Z"
+          },
+          {
+            "id": 599216453,
+            "name": "Common_FPS_PS5_v1.2.1.elf",
+            "size": 915888,
+            "downloadCount": 704,
+            "downloadUrl": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.1/Common_FPS_PS5_v1.2.1.elf",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-09-29T21:02:44Z"
+          }
+        ]
+      },
+      "lastCheckedAt": "2026-10-11T22:12:58.082Z"
+    },
+    {
+      "id": "repo-1791756778960-399",
+      "url": "https://github.com/smoxa/ps5-new-overlay",
+      "owner": "smoxa",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+      "name": "ps5-new-overlay",
+      "fullName": "smoxa/ps5-new-overlay",
+      "description": "",
+      "customNotes": "",
+      "tags": [],
+      "categoryId": "cat-PS5_Overlay",
+      "stars": 10,
+      "forks": 5,
+      "openIssues": 1,
+      "language": "C++",
+      "license": "NOASSERTION",
+      "defaultBranch": "main",
+      "pushedAt": "2026-09-21T18:57:18Z",
+      "updatedAt": "2026-10-10T11:04:50Z",
+      "htmlUrl": "https://github.com/smoxa/ps5-new-overlay",
+      "readme": "# PS5 Hardware Overlay 🎮\n\nЛегковесный автономный оверлей мониторинга температур и нагрузки для взломанной PlayStation 5 (поддержка FW 1.xx - 10.xx+).\n\n[English](#english) | [Русский](#русский)\n\n---\n\n## Русский\n\nСпециализированное легковесное решение для мониторинга аппаратных показателей PlayStation 5 в реальном времени. В отличие от громоздких наборов вроде onionHEN / etaHEN, данный проект сфокусирован **исключительно на функции оверлея**: он не содержит лишних инструментов, читов, FTP-серверов или тяжелых зависимостей и не рискует вызвать панику ядра на высоких прошивках (включая FW 10.20).\n\n### Основные возможности\n\n- ⚡ **Аппаратный счётчик кадров (FPS Counter)**: Замер реальной частоты вертикальной синхронизации и смены кадров дисплея через Display Controller Engine (`/dev/dce`) или секлок OnionHEN (`/system_tmp/fps_sample`).\n- 🖥️ **Нативный экранный оверлей (In-Game HUD)**: Настоящая полоса мониторинга, отрисовываемая прямо поверх игр через внедрение в `SceShellUI` (с активным `kstuff`).\n- 🎨 **Цветовая дифференциация метрик**:\n  - **FPS**: золотисто-жёлтый (`#FFEB3B`)\n  - **CPU**: зеленый (`#66FF66`)\n  - **GPU**: фиолетовый (`#B366FF`)\n  - **RAM**: оранжевый (`#FFB34D`)\n  - **FAN**: бирюзовый (`#33E0FF`)\n- 🔕 **Без спама уведомлениями**: Постоянно всплывающие тосты отключены по умолчанию, чтобы не мешать погружению в игру.\n- 🌡️ **Температура CPU & GPU (SoC)**: Прямое чтение сенсоров в реальном времени (°C).\n- 💾 **Использование RAM & VRAM**: Объем занятой системной и видеопамяти.\n- 🌀 **Обороты кулера (Fan Duty)**: Скорость вращения вентилятора в процентах.\n- ⚙️ **Гибкая конфигурация**: Настройка через файл `/data/ps5_overlay/config.ini`.\n\n---\n\n### Отображение в играх\n\n- **Наэкранный HUD в играх (SceShellUI)**:\n  - Внедряется автоматически в системный процесс `SceShellUI`.\n  - В верхней части экрана во время любой игры отображается аккуратная полупрозрачная плашка с цветными показателями:\n    ```text\n    FPS: 60  |  CPU: 58°C  |  GPU: 61°C  |  RAM: 4.8 GB  |  FAN: 35%\n    ```\n\n---\n\n### Быстрый старт\n\n#### Вариант 1: Запуск через ELF Loader (Port 9020 / 9021)\nПосле активации джейлбрейка отправьте скомпилированный `.elf` на консоль:\n```bash\n# Через Netcat на порт 9020 (или 9021):\nnc -w 3 <IP_PS5> 9020 < ps5_overlay.elf\n```\nили воспользуйтесь любой программой для отправки пейлоадов (PS5 Payload Sender / Netcat GUI).\n\n#### Вариант 2: Автозапуск через менеджер пейлоадов\nСкопируйте `ps5_overlay.elf` в директорию пейлоадов на консоли:\n```text\n/data/OnionHEN/payloads/ps5_overlay.elf\n# или\n/data/etaHEN/payloads/ps5_overlay.elf\n```\nи включите автозапуск в меню консоли.\n\n---\n\n### Настройка (`config.ini`)\n\nФайл конфигурации можно разместить по пути:\n```text\n/data/ps5_overlay/config.ini\n```\nПример настроек (`config.ini.example`):\n```ini\n[ps5_overlay]\nenabled = true\nshow_fps = true             ; Счётчик FPS (Hardware DCE / OnionHEN)\nshow_cpu_temp = true        ; Температура CPU\nshow_cpu_load = true        ; Загрузка CPU %\nshow_all_cores = false      ; Нагрузка по ядрам\nshow_gpu_temp = true        ; Температура GPU (SOC)\nshow_gpu_load = true        ; Загрузка VRAM %\nshow_ram = true             ; Использование RAM\nshow_fan = true             ; Обороты кулера %\ninterval_ms = 1000          ; Опрос сенсоров (мс)\n\ntoast_notifications = false ; Экранный OSD в играх (true/false)\ntoast_interval_sec = 10     ; Интервал обновления OSD (сек)\n```\n\n---\n\n<a name=\"english\"></a>\n## English\n\nA lightweight, standalone hardware monitoring overlay for jailbroken PlayStation 5 consoles (FW 1.xx - 10.xx+).\n\nUnlike full HEN suites (like onionHEN or etaHEN), this project focuses **exclusively on the overlay experience**: minimal footprint, zero bloat, no cheats, and no risk of kernel panics on newer firmwares (including FW 10.20).\n\n### Features\n\n- ⚡ **Real-Time In-Game FPS Counter**: Accurate framerate monitoring sampled via Display Controller Engine (`/dev/dce`) hardware flip deltas or OnionHEN seqlock sampler (`/system_tmp/fps_sample`).\n- 🖥️ **Native In-Game HUD**: Translucent top-screen status bar rendered seamlessly over active gameplay via Mono PUI in `SceShellUI`.\n- 🌡️ **CPU Temperature**: Real-time reading of internal Zen 2 CPU sensors.\n- 🎯 **CPU Utilization**: Accurate CPU load percentage and 8-core tracks.\n- 🔥 **GPU / SoC Temperature**: APU / SoC thermal monitoring.\n- 🎮 **VRAM Usage**: Video memory usage percentage and MB.\n- 💾 **System RAM**: Memory footprint in GB and percentage (`4.8 / 16.0 GB`).\n- 🌀 **Fan Duty Cycle**: Real-time cooling fan speed percentage.\n- 🔕 **Zero Toast Spam**: Notification popups disabled by default to protect gameplay immersion.\n- ⚙️ **Configurable**: Managed via `/data/ps5_overlay/config.ini`.\n\n---\n\n## Сборка и GitHub Releases\n\nПроект настроен для автоматической компиляции и выпуска релизов через **GitHub Actions**:\n\n1. **Автоматическая сборка**: При каждом коммите в ветку `main` GitHub Actions собирает `ps5_overlay.elf` с помощью актуального `ps5-payload-sdk` и сохраняет артефакты.\n2. **Публикация релиза**:\n   - При создании тега версии:\n     ```bash\n     git tag v1.0.1\n     git push origin v1.0.1\n     ```\n   - Или вручную через вкладку **Actions** -> **Build and Release PS5 Overlay** -> **Run workflow**.\n\nGitHub Action автоматически скомпилирует бинарный файл, сгенерирует `SHA256SUMS.txt` и прикрепит их к новому релизу в разделе **Releases**.\n\n---\n\n## Лицензия\n\nРаспространяется под лицензией MIT / GPLv3.\nОтдельная благодарность разработчикам `ps5-payload-dev`, `etaHEN` и сообществу сцены PS5.\n",
+      "readmeFetchedAt": "2026-10-11T22:12:58.960Z",
+      "autoSaveAssets": false,
+      "hasNewCommitsAlert": false,
+      "recentCommits": [
+        {
+          "sha": "eacf871",
+          "message": "refactor: completely remove web server and focus purely on in-game overlay (v1.0.15)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-21T18:55:54Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/eacf87137d7370ac859a31243493be77a8db79ee"
+        },
+        {
+          "sha": "7039f12",
+          "message": "docs: update v1.0.14 release notes, README and config for FPS counter",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T23:25:54Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/7039f12664a69f3d7859459404d7d30c62f6492e"
+        },
+        {
+          "sha": "ce3ded6",
+          "message": "fix(build): add fcntl.h, sys/types.h, and O_RDONLY fallbacks",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T23:09:07Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/ce3ded6f0198a51a86598821a113b113d6e3db9d"
+        },
+        {
+          "sha": "7006cc4",
+          "message": "feat(fps): add hardware scanout FPS counter to in-game overlay and Web HUD (v1.0.14)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T23:05:19Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/7006cc454b5647af23b28aea8f3c0466c718c11f"
+        },
+        {
+          "sha": "da1eda7",
+          "message": "revert(shellui): restore exact proven v1.0.8 baseline without themes (v1.0.13)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T22:51:20Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/da1eda77f3e886bd6ca80b69273ed07465ec1e5e"
+        },
+        {
+          "sha": "0d09954",
+          "message": "fix(shellui): correct AppSystem assembly path to Sce.Vsh.ShellUI.AppSystem.dll (v1.0.12)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T22:41:24Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/0d099549ce754d91dc543f7bf77b2896822af6f6"
+        },
+        {
+          "sha": "3e861c0",
+          "message": "fix(shellui): eliminate 10s watchdog freeze, restore rock-solid v1.0.8 architecture with 10 themes (v1.0.11)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T22:29:06Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/3e861c014e3f241bb49f60f5aed02ba34b65cdd6"
+        },
+        {
+          "sha": "29ce952",
+          "message": "fix(shellui): eliminate RemoveFromParent crash via static dual-container architecture (v1.0.10)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T22:02:36Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/29ce9522a8b043d436e7e6863ad24c79c47b79fd"
+        },
+        {
+          "sha": "7e1a305",
+          "message": "feat(themes): add multi-theme in-game overlay engine and 10-theme live web studio",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T21:39:14Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/7e1a305c41d30cd4490b59b14172607f7cbd818f"
+        },
+        {
+          "sha": "c50a4f5",
+          "message": "fix(shellui): move widget_append_child before create_hud_item (v1.0.8)",
+          "authorName": "smoxa",
+          "authorAvatar": "https://avatars.githubusercontent.com/u/25540186?v=4",
+          "date": "2026-09-20T21:00:01Z",
+          "url": "https://github.com/smoxa/ps5-new-overlay/commit/c50a4f512d305f1343e0f71388f58234493a8556"
+        }
+      ],
+      "latestRelease": {
+        "id": 393215773,
+        "tagName": "v1.0.15",
+        "name": "PS5 Hardware Overlay v1.0.15",
+        "publishedAt": "2026-09-21T18:58:07Z",
+        "body": "## 🎮 PS5 Hardware Overlay v1.0.15\n\nLightweight, standalone in-game hardware monitoring overlay for jailbroken PlayStation 5 (FW 1.xx - 10.xx+, kstuff active).\n\n### ✨ What's New in v1.0.15\n- **🧹 Streamlined Architecture (Pure In-Game Overlay)**:\n  - Completely removed embedded HTTP web server, sockets, and heavy HTML template assets.\n  - Minimal footprint, zero background network listening, and maximum stability.\n- **⚡ Real-Time In-Game FPS Counter**:\n  - Hardware scanout flip delta sampling via Display Controller Engine (`/dev/dce`, `ioctl 0x80308217`).\n  - Native fallback support for OnionHEN seqlock sampler (`/system_tmp/fps_sample`).\n  - Dedicated **FPS** badge in gold/yellow (`#FFEB3B`) with live framerate (`60` / `120` / `--`).\n  - Configurable via `show_fps = true` in `/data/ps5_overlay/config.ini`.\n- **🖥️ Native On-Screen In-Game HUD**:\n  - Automatically injected into `SceShellUI` via `ptrace` (with `kstuff` active).\n  - Rendered directly on top of gameplay via Mono PUI (`Scene.RootWidget`).\n  - Sleek translucent 2D bar at top of screen with color-coded metrics:\n    - **FPS** (Gold/Yellow `#FFEB3B`)\n    - **CPU** (Green `#66FF66`)\n    - **GPU** (Purple `#B366FF`)\n    - **RAM** (Orange `#FFB34D`)\n    - **FAN** (Cyan `#33E0FF`)\n- **🔕 Zero Toast Spam**:\n  - Recurring notification popups completely disabled to protect your gameplay immersion.\n  - Only a single silent startup toast confirms the overlay is loaded.\n\n### 🚀 Quick Start\n1. Ensure **kstuff** is active on your PS5.\n2. Send `ps5_overlay.elf` to your console via port **9020** or **9021**:\n   ```bash\n   nc -w 3 <ps5_ip> 9020 < ps5_overlay.elf\n   ```\n3. A single notification appears confirming the overlay is active.\n4. Launch any game — the hardware HUD bar appears at the top of the screen!\n\n### 🔒 SHA-256 Checksums\nIncluded in `SHA256SUMS.txt`.\n\n\n**Full Changelog**: https://github.com/smoxa/ps5-new-overlay/compare/v1.0.14...v1.0.15",
+        "htmlUrl": "https://github.com/smoxa/ps5-new-overlay/releases/tag/v1.0.15",
+        "assets": [
+          {
+            "id": 579664283,
+            "name": "config.ini.example",
+            "size": 1367,
+            "downloadCount": 44,
+            "downloadUrl": "https://github.com/smoxa/ps5-new-overlay/releases/download/v1.0.15/config.ini.example",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-09-21T18:58:06Z"
+          },
+          {
+            "id": 579664282,
+            "name": "ps5_overlay.elf",
+            "size": 683600,
+            "downloadCount": 459,
+            "downloadUrl": "https://github.com/smoxa/ps5-new-overlay/releases/download/v1.0.15/ps5_overlay.elf",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-09-21T18:58:06Z"
+          },
+          {
+            "id": 579664287,
+            "name": "ps5_overlay_shellui.elf",
+            "size": 111576,
+            "downloadCount": 305,
+            "downloadUrl": "https://github.com/smoxa/ps5-new-overlay/releases/download/v1.0.15/ps5_overlay_shellui.elf",
+            "contentType": "application/octet-stream",
+            "updatedAt": "2026-09-21T18:58:06Z"
+          },
+          {
+            "id": 579664281,
+            "name": "SHA256SUMS.txt",
+            "size": 172,
+            "downloadCount": 8,
+            "downloadUrl": "https://github.com/smoxa/ps5-new-overlay/releases/download/v1.0.15/SHA256SUMS.txt",
+            "contentType": "text/plain",
+            "updatedAt": "2026-09-21T18:58:06Z"
+          }
+        ]
+      },
+      "lastCheckedAt": "2026-10-11T22:12:58.960Z"
+    }
+  ]
+}
