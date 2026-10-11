@@ -111,6 +111,16 @@
           </button>
         </div>
 
+        <!-- Bouton Panneau Latéral (Drawer Toggle) -->
+        <button 
+          @click="useDrawer = !useDrawer" 
+          :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'bg-slate-800 text-slate-300 border-slate-700'"
+          class="border px-2.5 py-1.5 rounded-lg font-medium transition hidden sm:inline-block"
+          title="Alterner entre le panneau latéral et la popup"
+        >
+          Panneau: {{ useDrawer ? 'Activé' : 'Désactivé' }}
+        </button>
+
         <!-- Bouton FR / EN -->
         <button 
           @click="toggleLang" 
@@ -327,7 +337,33 @@
       </main>
     </div>
 
-    <!-- DRAWER / POPUP "WHAT'S NEW" (Affichage en liste des derniers dépôts mis à jour) -->
+    <!-- DRAWER LATÉRAL DROIT POUR README / COMMITS (Si 'useDrawer' est activé) -->
+    <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+      <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-sm text-white truncate max-w-[450px]">{{ activeDrawerTitle }}</h3>
+          </div>
+          <button @click="closeDrawer" class="text-slate-400 hover:text-white px-2 py-1 rounded text-lg font-bold">&times;</button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-1 space-y-4">
+          <div v-if="drawerType === 'readme'" class="markdown-body text-xs md:text-sm" v-html="renderMarkdown(activeDrawerData.readme, activeDrawerData)"></div>
+          <div v-else-if="drawerType === 'commits'" class="space-y-3">
+            <div v-for="c in activeDrawerData.recentCommits" :key="c.sha" class="p-3 bg-slate-950 border border-slate-800 rounded-lg text-xs">
+              <p class="font-medium text-slate-200">{{ c.message }}</p>
+              <div class="flex items-center gap-2 text-slate-500 text-[11px] mt-1">
+                <span class="text-slate-400">{{ c.authorName }}</span>
+                <span>·</span>
+                <span class="font-mono">{{ formatDate(c.date) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRAWER "WHAT'S NEW" (Liste des derniers repos mis à jour) -->
     <div v-if="showWhatsNewDrawer" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[650px] lg:w-[750px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
@@ -338,7 +374,7 @@
           <button @click="showWhatsNewDrawer = false" class="text-slate-400 hover:text-white px-2 py-1 rounded text-xl font-bold">&times;</button>
         </div>
 
-        <!-- Liste chronologique des dépôts mis à jour -->
+        <!-- Liste chronologique -->
         <div class="p-6 overflow-y-auto flex-1 space-y-4">
           <div v-if="reposWithReleasesSorted.length === 0" class="text-center py-12 text-slate-500">
             <p>Aucune release récente trouvée.</p>
@@ -422,7 +458,7 @@
       </div>
     </div>
 
-    <!-- Release & Assets Modal avec Notes de version et Changelog -->
+    <!-- Release & Assets Modal -->
     <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -439,7 +475,6 @@
         </div>
 
         <div class="p-6 overflow-y-auto flex-1 space-y-6">
-          <!-- Assets Disponibles -->
           <div>
             <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles au Téléchargement</h4>
             <div class="space-y-2">
@@ -453,7 +488,6 @@
             </div>
           </div>
 
-          <!-- Notes de version & Changelog -->
           <div v-if="activeReleaseRepo.latestRelease.body">
             <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de Version & Changelog</h4>
             <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
@@ -559,7 +593,6 @@
         const alertReposCount = computed(() => repos.value.filter(r => r.hasNewCommitsAlert).length);
         const reposWithReleasesCount = computed(() => repos.value.filter(r => r.latestRelease && r.latestRelease.assets?.length > 0).length);
 
-        // Liste triée des repos ayant une release, de la plus récente à la plus ancienne
         const reposWithReleasesSorted = computed(() => {
           return repos.value
             .filter(r => r.latestRelease && r.latestRelease.publishedAt)
