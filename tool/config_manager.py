@@ -3,7 +3,8 @@ import os
 import tkinter as tk
 from tkinter import colorchooser, messagebox, ttk
 
-CONFIG_PATH = os.path.join("json", "repos-config.json")
+# Comme l'outil est dans le dossier 'tools', on remonte d'un cran (..) pour accéder au dossier 'json'
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "json", "repos-config.json")
 
 
 class ConfigManagerApp:
@@ -43,7 +44,8 @@ class ConfigManagerApp:
     try:
       with open(CONFIG_PATH, "w", encoding="utf-8") as f:
         json.dump(self.data, f, indent=2, ensure_ascii=False)
-      messagebox.succès(
+      # CORRECTION : Remplacement de messagebox.succès par messagebox.showinfo
+      messagebox.showinfo(
           "Succès", f"Configuration enregistrée avec succès dans {CONFIG_PATH} !"
       )
     except Exception as e:
@@ -76,7 +78,6 @@ class ConfigManagerApp:
     btn_save.pack(fill=tk.X, padx=10, pady=10)
 
   def setup_repos_tab(self):
-    # Cadre formulaire gauche/haut pour les Repos
     form_frame = ttk.LabelFrame(
         self.tab_repos, text=" Ajouter / Modifier un dépôt "
     )
@@ -120,7 +121,6 @@ class ConfigManagerApp:
         btn_frame, text="Vider les champs", command=self.clear_repo_form
     ).pack(side=tk.LEFT, padx=5)
 
-    # Tableau (Treeview) des Repos
     tree_frame = ttk.Frame(self.tab_repos)
     tree_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
@@ -142,7 +142,6 @@ class ConfigManagerApp:
 
     self.repo_tree.bind("<<TreeviewSelect>>", self.on_repo_select)
 
-    # Boutons d'action tableau
     action_frame = tk.Frame(self.tab_repos)
     action_frame.pack(fill=tk.X, padx=10, pady=5)
     tk.Button(
@@ -156,7 +155,6 @@ class ConfigManagerApp:
     self.refresh_repo_list()
 
   def setup_cats_tab(self):
-    # Formulaire Catégorie
     form_frame = ttk.LabelFrame(
         self.tab_cats, text=" Ajouter / Modifier une catégorie "
     )
@@ -209,7 +207,6 @@ class ConfigManagerApp:
         btn_frame, text="Vider", command=self.clear_cat_form
     ).pack(side=tk.LEFT, padx=5)
 
-    # Tableau Catégories
     tree_frame = ttk.Frame(self.tab_cats)
     tree_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
@@ -238,7 +235,6 @@ class ConfigManagerApp:
 
     self.refresh_cat_list()
 
-  # --- LOGIQUE CATÉGORIES ---
   def pick_color(self):
     color = colorchooser.askcolor(title="Choisir une couleur")
     if color[1]:
@@ -342,7 +338,6 @@ class ConfigManagerApp:
     self.cat_color_entry.delete(0, tk.END)
     self.cat_color_entry.insert(0, "#3B82F6")
 
-  # --- LOGIQUE DÉPÔTS (REPOS) ---
   def refresh_repo_list(self):
     for row in self.repo_tree.get_children():
       self.repo_tree.delete(row)
