@@ -13,33 +13,6 @@
       "order": 0
     },
     {
-      "id": "subcat-react",
-      "name": "React & Meta-frameworks",
-      "description": "React, Next.js, Remix et composants associés",
-      "icon": "Atom",
-      "color": "#06B6D4",
-      "parentId": "cat-frontend",
-      "order": 0
-    },
-    {
-      "id": "subcat-vue",
-      "name": "Vue & Nuxt",
-      "description": "Écosystème Vue.js 3 progressif et composants réactifs",
-      "icon": "Layers",
-      "color": "#10B981",
-      "parentId": "cat-frontend",
-      "order": 1
-    },
-    {
-      "id": "subcat-styling",
-      "name": "Styling & Design Systems",
-      "description": "Tailwind CSS, Radix, Shadcn et typographie",
-      "icon": "Palette",
-      "color": "#8B5CF6",
-      "parentId": "cat-frontend",
-      "order": 2
-    },
-    {
       "id": "cat-backend",
       "name": "Webkit exploit",
       "description": "Webkit exploit",
@@ -49,15 +22,6 @@
       "order": 1
     },
     {
-      "id": "subcat-runtimes",
-      "name": "Node, Bun & Deno",
-      "description": "Runtimes JavaScript/TypeScript haute performance",
-      "icon": "Zap",
-      "color": "#F59E0B",
-      "parentId": "cat-backend",
-      "order": 0
-    },
-    {
       "id": "cat-desktop-mobile",
       "name": "PC APPS",
       "description": "Applications Windows",
@@ -65,15 +29,6 @@
       "color": "#3B82F6",
       "parentId": null,
       "order": 2
-    },
-    {
-      "id": "subcat-tauri-native",
-      "name": "Tauri & Electron",
-      "description": "Frameworks légers pour packager en .exe et applications bureau",
-      "icon": "Monitor",
-      "color": "#6366F1",
-      "parentId": "cat-desktop-mobile",
-      "order": 0
     },
     {
       "id": "cat-devops",
