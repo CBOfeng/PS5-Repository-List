@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "cat-PS5_Cheat",
+      "name": "PS5_Cheat",
+      "color": "#3B82F6",
+      "parentId": null
+    },
+    {
+      "id": "cat-PS5_Overlay",
+      "name": "PS5_Overlay",
+      "color": "#4259ff",
+      "parentId": null
+    }
+  ],
+  "repos": [
+    {
+      "url": "https://github.com/notmaj0r/CheatRunner",
+      "categoryId": "cat-PS5_Activation"
+    },
+    {
+      "url": "https://github.com/aydencharles/kylin-core-release",
+      "categoryId": "cat-PS5_Activation"
+    },
+    {
+      "url": "https://github.com/porhe911/Common-FPS-for-PS5",
+      "categoryId": "cat-PS5_Overlay"
+    },
+    {
+      "url": "https://github.com/smoxa/ps5-new-overlay",
+      "categoryId": "cat-PS5_Overlay"
+    }
+  ]
+}
