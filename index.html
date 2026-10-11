@@ -52,6 +52,7 @@
     .markdown-body a { color: #38bdf8; text-decoration: underline; }
     .markdown-body ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; }
     .markdown-body blockquote { border-left: 3px solid #38bdf8; padding-left: 0.75rem; color: #94a3b8; font-style: italic; }
+    .markdown-body img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 0.5rem 0; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
@@ -301,7 +302,7 @@
           </div>
           <button @click="activeReadmeRepo = null" class="text-slate-400 hover:text-white px-2 py-1 rounded text-base">&times;</button>
         </div>
-        <div class="p-6 overflow-y-auto markdown-body text-xs md:text-sm flex-1" v-html="renderMarkdown(activeReadmeRepo.readme)"></div>
+        <div class="p-6 overflow-y-auto markdown-body text-xs md:text-sm flex-1" v-html="renderMarkdown(activeReadmeRepo.readme, activeReadmeRepo)"></div>
       </div>
     </div>
 
@@ -381,7 +382,7 @@
           <!-- Changelog Body -->
           <div v-if="activeReleaseRepo.latestRelease.body">
             <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">{{ t('versionNotes') }}</h4>
-            <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body)"></div>
+            <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
           </div>
         </div>
       </div>
@@ -619,10 +620,30 @@
           return groups;
         });
 
-        const renderMarkdown = (text) => {
+        const renderMarkdown = (text, repo) => {
           if (!text) return `<p>${t('noContent')}</p>`;
           try {
-            return marked.parse(text);
+            let processedText = text;
+            if (repo && repo.htmlUrl) {
+              const branch = repo.defaultBranch || 'main';
+              const rawBaseUrl = repo.htmlUrl
+                .replace('github.com', 'raw.githubusercontent.com') + '/' + branch + '/';
+              
+              processedText = processedText
+                .replace(/src="([^"]+)"/g, (match, p1) => {
+                  if (!p1.startsWith('http://') && !p1.startsWith('https://') && !p1.startsWith('data:')) {
+                    return `src="${rawBaseUrl}${p1.replace(/^\//, '')}"`;
+                  }
+                  return match;
+                })
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
+                  if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+                    return `![${alt}](${rawBaseUrl}${url.replace(/^\//, '')})`;
+                  }
+                  return match;
+                });
+            }
+            return marked.parse(processedText);
           } catch(e) {
             return text;
           }
