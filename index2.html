@@ -54,9 +54,9 @@
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
-  <div id="app" class="flex flex-col min-h-screen">
+  <div id="app" class="flex flex-col min-h-screen relative">
     <!-- Top Navigation -->
-    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40 px-4 md:px-8 py-3.5 flex items-center justify-between gap-4">
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-30 px-4 md:px-8 py-3.5 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-sm shadow-blue-500/20">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
@@ -262,7 +262,7 @@
           </div>
         </div>
 
-        <!-- VUE LISTE (inspirée de votre image de référence) -->
+        <!-- VUE LISTE -->
         <div v-else class="space-y-6">
           <div v-for="group in repoGroups" :key="group.title" class="space-y-3">
             <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
@@ -328,14 +328,16 @@
           </div>
         </div>
       </main>
+    </div>
 
-      <!-- DRAWER LATÉRAL DROIT (Alternative Popup) -->
-      <aside v-if="useDrawer && activeDrawerContent" class="w-full md:w-[500px] lg:w-[600px] border-l border-slate-800 bg-slate-900 flex flex-col z-40 shadow-2xl shrink-0">
-        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
+    <!-- DRAWER LATÉRAL DROIT (Superposition / Overlay avec fond flouté) -->
+    <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+      <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
           <div class="flex items-center gap-2">
-            <h3 class="font-bold text-sm text-white truncate max-w-[380px]">{{ activeDrawerTitle }}</h3>
+            <h3 class="font-bold text-sm text-white truncate max-w-[450px]">{{ activeDrawerTitle }}</h3>
           </div>
-          <button @click="closeDrawer" class="text-slate-400 hover:text-white px-2 py-1 rounded text-base">&times;</button>
+          <button @click="closeDrawer" class="text-slate-400 hover:text-white px-2 py-1 rounded text-lg font-bold">&times;</button>
         </div>
 
         <div class="p-6 overflow-y-auto flex-1 space-y-4">
@@ -354,7 +356,7 @@
             </div>
           </div>
         </div>
-      </aside>
+      </div>
     </div>
 
     <!-- Readme Modal (si Drawer désactivé) -->
@@ -396,7 +398,7 @@
       </div>
     </div>
 
-    <!-- Release & Assets Modal -->
+    <!-- Release & Assets Modal avec Notes de version et Changelog -->
     <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -413,17 +415,24 @@
         </div>
 
         <div class="p-6 overflow-y-auto flex-1 space-y-6">
+          <!-- Assets Disponibles -->
           <div>
-            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles</h4>
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles au Téléchargement</h4>
             <div class="space-y-2">
               <div v-for="asset in activeReleaseRepo.latestRelease.assets" :key="asset.id" class="p-3 bg-slate-950 border border-slate-800 rounded-lg flex items-center justify-between gap-3 text-xs">
                 <div>
                   <span class="font-mono font-medium text-slate-200 block">{{ asset.name }}</span>
-                  <span class="text-slate-500 text-[11px]">{{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
+                  <span class="text-slate-500 text-[11px]">Taille: {{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
                 </div>
                 <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition shrink-0">Télécharger</a>
               </div>
             </div>
+          </div>
+
+          <!-- Notes de version & Changelog -->
+          <div v-if="activeReleaseRepo.latestRelease.body">
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de Version & Changelog</h4>
+            <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
           </div>
         </div>
       </div>
@@ -440,8 +449,8 @@
         const searchQuery = ref('');
         const selectedCategory = ref(null);
         const filterOnlyAlerts = ref(false);
-        const viewMode = ref('tiles'); // 'tiles' ou 'list'
-        const useDrawer = ref(false);  // Panneau latéral droit activé/désactivé
+        const viewMode = ref('tiles');
+        const useDrawer = ref(false);
         const isLiveData = ref(false);
         const currentLang = ref('fr');
 
@@ -487,13 +496,12 @@
         const activeCommitsRepo = ref(null);
         const activeReleaseRepo = ref(null);
 
-        // Gestion du tiroir latéral droit
-        const activeDrawerContent = ref(null); // 'readme' ou 'commits'
+        const activeDrawerContent = ref(null);
         const drawerType = ref('');
         const activeDrawerTitle = ref('');
         const activeDrawerData = ref(null);
 
-        const embeddedDatabase = {"version":"2.0.0","exportedAt":"2026-10-11T19:32:48.909Z","appName":"PS5-Repository-List","categories":[{"id":"cat-frontend","name":"PS5 Emulator","description":"PS5 Emulator","icon":"Layout","color":"#3B82F6","parentId":null,"order":0},{"id":"cat-backend","name":"Webkit exploit","description":"Webkit exploit","icon":"Atom","color":"#10B981","parentId":null,"order":1},{"id":"cat-desktop-mobile","name":"PC APPS","description":"Applications Windows","icon":"Monitor","color":"#3B82F6","parentId":null,"order":2}],"repos":[{"id":"repo-1791741722787","url":"https://github.com/blackbearreloaded/ProsperoLight","owner":"blackbearreloaded","ownerAvatar":"https://avatars.githubusercontent.com/u/316784285?v=4","name":"ProsperoLight","fullName":"blackbearreloaded/ProsperoLight","description":"An unofficial Moonlight port (game streaming) for PS5","customNotes":"","tags":[],"categoryId":"unassigned","stars":110,"forks":9,"openIssues":3,"language":"C++","license":"GPL-3.0","defaultBranch":"main","pushedAt":"2026-10-11T17:58:10Z","updatedAt":"2026-10-11T16:34:35Z","htmlUrl":"https://github.com/blackbearreloaded/ProsperoLight","readme":"# ProsperoLight\nMoonlight game streaming natively on PlayStation 5.","hasNewCommitsAlert":true,"recentCommits":[{"sha":"a8796ff","message":"Finalize approved release notes","authorName":"Nikita Dybov","date":"2026-10-11T14:23:28Z","url":"https://github.com/blackbearreloaded/ProsperoLight/commit/a8796ff"}],"latestRelease":{"tagName":"01.000.095","name":"ProsperoLight 01.000.095","publishedAt":"2026-10-11T14:33:33Z","assets":[{"id":1,"name":"PPSA99002.zip","size":37863705,"downloadCount":17,"downloadUrl":"#"}]}}]};
+        const embeddedDatabase = {"version":"2.0.0","exportedAt":"2026-10-11T19:32:48.909Z","appName":"PS5-Repository-List","categories":[{"id":"cat-frontend","name":"PS5 Emulator","description":"PS5 Emulator","icon":"Layout","color":"#3B82F6","parentId":null,"order":0},{"id":"cat-backend","name":"Webkit exploit","description":"Webkit exploit","icon":"Atom","color":"#10B981","parentId":null,"order":1},{"id":"cat-desktop-mobile","name":"PC APPS","description":"Applications Windows","icon":"Monitor","color":"#3B82F6","parentId":null,"order":2}],"repos":[{"id":"repo-1791741722787","url":"https://github.com/blackbearreloaded/ProsperoLight","owner":"blackbearreloaded","ownerAvatar":"https://avatars.githubusercontent.com/u/316784285?v=4","name":"ProsperoLight","fullName":"blackbearreloaded/ProsperoLight","description":"An unofficial Moonlight port (game streaming) for PS5","customNotes":"","tags":[],"categoryId":"unassigned","stars":110,"forks":9,"openIssues":3,"language":"C++","license":"GPL-3.0","defaultBranch":"main","pushedAt":"2026-10-11T17:58:10Z","updatedAt":"2026-10-11T16:34:35Z","htmlUrl":"https://github.com/blackbearreloaded/ProsperoLight","readme":"# ProsperoLight\nMoonlight game streaming natively on PlayStation 5.","hasNewCommitsAlert":true,"recentCommits":[{"sha":"a8796ff","message":"Finalize approved release notes","authorName":"Nikita Dybov","date":"2026-10-11T14:23:28Z","url":"https://github.com/blackbearreloaded/ProsperoLight/commit/a8796ff"}],"latestRelease":{"tagName":"01.000.095","name":"ProsperoLight 01.000.095","publishedAt":"2026-10-11T14:33:33Z","body":"### Améliorations majeures et correctifs.\n- Optimisation du streaming.\n- Stabilité accrue sur PS5.","assets":[{"id":1,"name":"PPSA99002.zip","size":37863705,"downloadCount":17,"downloadUrl":"#"}]}}]};
 
         onMounted(async () => {
           try {
@@ -571,10 +579,19 @@
             if (repo && repo.htmlUrl) {
               const branch = repo.defaultBranch || 'main';
               const rawBaseUrl = repo.htmlUrl.replace('github.com', 'raw.githubusercontent.com') + '/' + branch + '/';
-              processedText = processedText.replace(/src="([^"]+)"/g, (m, p1) => {
-                if (!p1.startsWith('http')) return `src="${rawBaseUrl}${p1.replace(/^\//, '')}"`;
-                return m;
-              });
+              processedText = processedText
+                .replace(/src="([^"]+)"/g, (m, p1) => {
+                  if (!p1.startsWith('http://') && !p1.startsWith('https://') && !p1.startsWith('data:')) {
+                    return `src="${rawBaseUrl}${p1.replace(/^\//, '')}"`;
+                  }
+                  return m;
+                })
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
+                  if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+                    return `![${alt}](${rawBaseUrl}${url.replace(/^\//, '')})`;
+                  }
+                  return match;
+                });
             }
             return marked.parse(processedText);
           } catch(e) { return text; }
