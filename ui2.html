@@ -25,7 +25,7 @@
     }
   </script>
   <style>
-    body { font-family: var(--custom-font, 'Plus Jakarta Sans'), sans-serif; font-size: var(--custom-font-size, 13px); }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 9999px; }
@@ -36,16 +36,16 @@
     .markdown-body img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 0.5rem auto; display: block; }
   </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white" :style="{ '--custom-font-size': uiFontSize + 'px', '--custom-font': uiFontFamily }">
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
   <div id="app" class="flex h-screen overflow-hidden">
     
     <!-- SIDEBAR -->
     <aside :class="sidebarCollapsed ? 'w-20' : 'w-64'" class="bg-[#0f1523] border-r border-slate-800/80 flex flex-col justify-between transition-all duration-300 z-30 select-none shrink-0">
       <div>
         <div class="h-20 flex items-center px-5 gap-3 border-b border-slate-800/50">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0 overflow-hidden border border-blue-400/30">
-            <img v-if="appConfig.sidebarLogo" :src="appConfig.sidebarLogo" class="w-full h-full object-cover" />
-            <img v-else-if="githubUser.avatarUrl" :src="githubUser.avatarUrl" class="w-full h-full object-cover" />
+          <div class="w-10 h-10 shrink-0 flex items-center justify-center">
+            <img v-if="appConfig.sidebarLogo" :src="appConfig.sidebarLogo" class="w-full h-full object-contain" />
+            <img v-else-if="githubUser.avatarUrl" :src="githubUser.avatarUrl" class="w-full h-full object-cover rounded-xl" />
             <span v-else class="text-white font-bold text-lg">PS</span>
           </div>
           <div v-if="!sidebarCollapsed" class="overflow-hidden">
@@ -106,11 +106,6 @@
           <span v-if="!sidebarCollapsed">{{ t('drawerMode') }}</span>
           <span class="font-bold text-[10px] px-1.5 py-0.5 rounded" :class="useDrawer ? 'bg-indigo-500/30 text-indigo-300' : 'bg-slate-800 text-slate-400'">{{ useDrawer ? 'ON' : 'OFF' }}</span>
         </button>
-
-        <button @click="showSettingsModal = true" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
-          <i class="fa-solid fa-gear w-5 text-center shrink-0"></i>
-          <span v-if="!sidebarCollapsed" class="text-xs font-semibold">{{ t('settings') }}</span>
-        </button>
       </div>
     </aside>
 
@@ -162,7 +157,7 @@
         <div v-if="currentView === 'dashboard'" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div class="lg:col-span-2 space-y-8">
-            <!-- Projets Épinglés (Seulement GitHub & README) -->
+            <!-- Projets Épinglés -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-white">{{ t('pinnedTitle') }} (@{{ githubUser.login }})</h2>
@@ -193,17 +188,9 @@
               </div>
             </div>
 
-            <!-- Activité Récente & Contributions -->
+            <!-- Graphique Contributions Uniquement -->
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold text-white">{{ t('recentActivity') }}</h2>
-                <div class="flex items-center gap-1 bg-[#141b2d] border border-slate-800 p-1 rounded-xl text-xs">
-                  <button @click="activityFilter = 'user'" :class="activityFilter === 'user' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">{{ githubUser.login }}</button>
-                  <button @click="activityFilter = 'host'" :class="activityFilter === 'host' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">Host</button>
-                </div>
-              </div>
-
-              <!-- Graphique Contributions -->
+              <h2 class="text-base font-bold text-white">{{ t('recentActivity') }}</h2>
               <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-5 space-y-4">
                 <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-3">
                   <span>Contributions sur l'année récente (@{{ githubUser.login }})</span>
@@ -211,23 +198,6 @@
                 </div>
                 <div class="flex justify-center overflow-x-auto py-2">
                   <img :src="'https://ghchart.rshah.org/' + githubUser.login" alt="GitHub Contributions Chart" class="rounded-xl max-w-full opacity-90 hover:opacity-100 transition" />
-                </div>
-              </div>
-
-              <!-- Liste des commits récents -->
-              <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-5 space-y-3">
-                <div v-for="act in filteredActivity" :key="act.sha || act.id" class="flex items-start justify-between gap-4 p-3 rounded-xl bg-[#0f1523] border border-slate-800/50 text-xs">
-                  <div class="flex items-start gap-3">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
-                    <div>
-                      <p class="font-semibold text-slate-200">{{ act.repoName }}: <span class="font-normal text-slate-400">{{ act.message }}</span></p>
-                      <span class="text-[10px] text-slate-500 font-mono mt-1 block">{{ t('author') }} : {{ act.author }} · {{ formatDate(act.date) }}</span>
-                    </div>
-                  </div>
-                  <a :href="act.url" target="_blank" class="font-mono text-[11px] text-blue-400 hover:underline shrink-0">{{ act.shaSnippet || t('view') }}</a>
-                </div>
-                <div v-if="filteredActivity.length === 0" class="text-center py-6 text-slate-500 text-xs font-mono">
-                  Chargement des activités et commits récents...
                 </div>
               </div>
             </div>
@@ -398,7 +368,7 @@
       </main>
     </div>
 
-    <!-- Tiroir latéral / Modales -->
+    <!-- Tiroir latéral -->
     <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-[#111827] border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-[#0f1523]">
@@ -455,59 +425,40 @@
       </div>
     </div>
 
-    <!-- Modale Assets -->
+    <!-- Modale Release & Assets (AVEC NOTES DE VERSION ET CHANGELOG RETABLIS) -->
     <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">{{ activeReleaseRepo.latestRelease.tagName }}</span>
-            <h3 class="font-bold text-sm text-white">{{ activeReleaseRepo.latestRelease.name || 'Release' }}</h3>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">{{ activeReleaseRepo.latestRelease.tagName }}</span>
+              <h3 class="font-bold text-sm text-white">{{ activeReleaseRepo.latestRelease.name || activeReleaseRepo.name }}</h3>
+            </div>
+            <span class="text-[11px] text-slate-400 mt-1 block" v-if="activeReleaseRepo.latestRelease.publishedAt">Publié le {{ formatDate(activeReleaseRepo.latestRelease.publishedAt) }}</span>
           </div>
           <button @click="activeReleaseRepo = null" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
         </div>
         <div class="p-6 overflow-y-auto flex-1 space-y-6">
-          <div>
-            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">{{ t('downloadAssets') }}</h4>
+          <div v-if="activeReleaseRepo.latestRelease.assets && activeReleaseRepo.latestRelease.assets.length > 0">
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets disponibles au téléchargement</h4>
             <div class="space-y-2">
               <div v-for="asset in activeReleaseRepo.latestRelease.assets" :key="asset.id" class="p-3 bg-[#0f1523] border border-slate-800 rounded-xl flex items-center justify-between gap-3 text-xs">
                 <div>
                   <span class="font-mono font-medium text-slate-200 block">{{ asset.name }}</span>
                   <span class="text-slate-500 text-[11px]">Taille: {{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
                 </div>
-                <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition">Télécharger</a>
+                <a :href="asset.downloadUrl" download target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition">Télécharger</a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Modale Paramètres -->
-    <div v-if="showSettingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-lg p-6 space-y-6 shadow-2xl" @click.stop>
-        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h3 class="font-bold text-base text-white">{{ t('settingsTitle') }}</h3>
-          <button @click="showSettingsModal = false" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-        </div>
-        <div class="space-y-4 text-xs">
-          <div class="space-y-2">
-            <label class="text-slate-300 font-semibold block">{{ t('fontSize') }} ({{ uiFontSize }}px)</label>
-            <input type="range" min="12" max="18" v-model="uiFontSize" class="w-full accent-blue-600" />
+          <div>
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de version & Changelog</h4>
+            <div v-if="activeReleaseRepo.latestRelease.body" class="markdown-body p-4 bg-[#0f1523] border border-slate-800/80 rounded-xl text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
+            <div v-else class="p-4 bg-[#0f1523] border border-slate-800/80 rounded-xl text-xs text-slate-500 italic">
+              Aucune note de version spécifiée pour cette release.
+            </div>
           </div>
-          <div class="space-y-2">
-            <label class="text-slate-300 font-semibold block">{{ t('fontFamily') }}</label>
-            <select v-model="uiFontFamily" class="w-full bg-[#0f1523] border border-slate-800 rounded-xl p-2.5 text-white">
-              <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
-              <option value="'Inter', sans-serif">Inter</option>
-              <option value="'Outfit', sans-serif">Outfit</option>
-              <option value="'Poppins', sans-serif">Poppins</option>
-              <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
-              <option value="'Fira Code', monospace">Fira Code</option>
-            </select>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-slate-800 flex justify-end">
-          <button @click="showSettingsModal = false" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition">{{ t('save') }}</button>
         </div>
       </div>
     </div>
@@ -522,16 +473,11 @@
         const currentView = ref('dashboard');
         const sidebarCollapsed = ref(false);
         const showSocialMenu = ref(false);
-        const showSettingsModal = ref(false);
         const searchQuery = ref('');
-        const activityFilter = ref('user');
         const viewMode = ref('tiles');
         const selectedCategory = ref(null);
         const useDrawer = ref(false);
         const currentLang = ref('fr');
-
-        const uiFontSize = ref(13);
-        const uiFontFamily = ref("'Plus Jakarta Sans', sans-serif");
 
         const i18n = {
           fr: {
@@ -540,7 +486,6 @@
             categories: 'Catégories',
             allCategories: 'Toutes',
             drawerMode: 'Panneau Latéral',
-            settings: 'Paramètres & UI',
             searchPlaceholder: 'Rechercher un dépôt, une description...',
             pinnedTitle: 'Projets Épinglés',
             projects: 'projets',
@@ -559,13 +504,7 @@
             downloadAssets: 'Fichiers d\'installation (Assets)',
             download: 'Télécharger',
             publishedOn: 'Publié le',
-            viewOnGithub: 'Voir la release sur GitHub',
-            settingsTitle: 'Paramètres de l\'Interface & UI',
-            fontSize: 'Taille de police',
-            fontFamily: 'Police d\'écriture',
-            save: 'Enregistrer',
-            author: 'Auteur',
-            view: 'Voir'
+            viewOnGithub: 'Voir la release sur GitHub'
           },
           en: {
             toggleMenu: 'Collapse menu',
@@ -573,7 +512,6 @@
             categories: 'Categories',
             allCategories: 'All',
             drawerMode: 'Side Panel',
-            settings: 'Settings & UI',
             searchPlaceholder: 'Search repositories, description...',
             pinnedTitle: 'Pinned Projects',
             projects: 'projects',
@@ -592,13 +530,7 @@
             downloadAssets: 'Download Assets',
             download: 'Download',
             publishedOn: 'Published on',
-            viewOnGithub: 'View release on GitHub',
-            settingsTitle: 'Interface & UI Settings',
-            fontSize: 'Font Size',
-            fontFamily: 'Font Family',
-            save: 'Save',
-            author: 'Author',
-            view: 'View'
+            viewOnGithub: 'View release on GitHub'
           }
         };
 
@@ -610,7 +542,6 @@
 
         const categories = ref([]);
         const repos = ref([]);
-        const userActivityCommits = ref([]);
 
         const activeReadmeRepo = ref(null);
         const activeCommitsRepo = ref(null);
@@ -641,30 +572,6 @@
               githubUser.value.name = uData.name || uData.login;
               githubUser.value.avatarUrl = uData.avatar_url;
               githubUser.value.publicReposCount = uData.public_repos || 133;
-            }
-          } catch(e) {}
-
-          // Récupération des commits récents de l'utilisateur
-          try {
-            const evRes = await fetch(`https://api.github.com/users/${username}/events/public`);
-            if (evRes.ok) {
-              const events = await evRes.json();
-              const commits = [];
-              events.forEach(ev => {
-                if (ev.type === 'PushEvent' && ev.payload && ev.payload.commits) {
-                  ev.payload.commits.forEach(c => {
-                    commits.push({
-                      repoName: ev.repo.name.split('/')[1] || ev.repo.name,
-                      message: c.message,
-                      author: c.author?.name || username,
-                      date: ev.created_at,
-                      shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
-                      url: `https://github.com/${ev.repo.name}/commit/${c.sha}`
-                    });
-                  });
-                }
-              });
-              userActivityCommits.value = commits;
             }
           } catch(e) {}
 
@@ -705,28 +612,6 @@
           return repos.value
             .filter(r => r.latestRelease && r.latestRelease.publishedAt)
             .sort((a, b) => new Date(b.latestRelease.publishedAt) - new Date(a.latestRelease.publishedAt));
-        });
-
-        const filteredActivity = computed(() => {
-          if (activityFilter.value === 'user') {
-            return userActivityCommits.value;
-          }
-          let list = [];
-          repos.value.forEach(r => {
-            if (r.recentCommits) {
-              r.recentCommits.forEach(c => {
-                list.push({
-                  repoName: r.name,
-                  message: c.message,
-                  author: c.authorName || r.owner,
-                  date: c.date,
-                  shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
-                  url: c.url || r.htmlUrl
-                });
-              });
-            }
-          });
-          return list.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, 10);
         });
 
         const renderMarkdown = (text, repo) => {
@@ -808,9 +693,9 @@
         const formatDate = (dateStr) => dateStr ? new Date(dateStr).toLocaleDateString() : '';
 
         return {
-          currentView, sidebarCollapsed, showSocialMenu, showSettingsModal, searchQuery, activityFilter, viewMode, selectedCategory, useDrawer, currentLang, t, toggleLang,
-          uiFontSize, uiFontFamily, appConfig, githubUser, categories, repos, rootCategories, getCategoryRepoCount,
-          pinnedRepos, reposWithReleasesCount, filteredRepos, sortedReleases, filteredActivity,
+          currentView, sidebarCollapsed, showSocialMenu, searchQuery, viewMode, selectedCategory, useDrawer, currentLang, t, toggleLang,
+          appConfig, githubUser, categories, repos, rootCategories, getCategoryRepoCount,
+          pinnedRepos, reposWithReleasesCount, filteredRepos, sortedReleases,
           activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
           activeDrawerContent, drawerType, activeDrawerTitle, activeDrawerData,
           renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, openPinnedReadme, formatBytes, formatDate
