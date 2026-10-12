@@ -955,6 +955,42 @@
     {
       "url": "https://github.com/pedro9261/ps5-notify-app",
       "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/LaRazaDelSol/wings-app",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5GBCX",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5GBAX",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5SNESX",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5N64X",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5NESX",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/griches/PS5_Ghostship",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/griches/PS5_SwitchWaker",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/VivaLaVent/PS5MC",
+      "categoryId": "cat-ps5_video_player"
     }
   ]
 }
