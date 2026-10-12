@@ -795,6 +795,146 @@
     {
       "url": "https://github.com/SvenGDK/Prospero-Multi-Tools",
       "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/kasobos67/SwitchPS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/notmaj0r/CheatRunner_Patches",
+      "categoryId": "cat-PS5_Cheat"
+    },
+    {
+      "url": "https://github.com/X-F1REBALL-X/elf-launcher",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/X-F1REBALL-X/HearBridge-PS5",
+      "categoryId": "cat-ps5_audio_utility"
+    },
+    {
+      "url": "https://github.com/X-F1REBALL-X/wk-autoloader",
+      "categoryId": "cat-ps5-webkit-autoloader"
+    },
+    {
+      "url": "https://github.com/X-F1REBALL-X/HearBridge-Browser",
+      "categoryId": "cat-ps5_audio_utility"
+    },
+    {
+      "url": "https://github.com/Blaze414/ps5-theme",
+      "categoryId": "cat-ps5_themes-avatars"
+    },
+    {
+      "url": "https://github.com/Not-eFootballer/NX-Controller-Tester",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/The7mirrors/ps5-captures",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/The7mirrors/msx-ps5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/bps2414/visor-ps5",
+      "categoryId": "cat-ps5_cloud_gaming"
+    },
+    {
+      "url": "https://github.com/sweenyxsky-oss/PS5-Network-Mounting",
+      "categoryId": "cat-ps5_server"
+    },
+    {
+      "url": "https://github.com/bucanero/save-decrypters",
+      "categoryId": "cat-ps5_saves"
+    },
+    {
+      "url": "https://github.com/cherfia/raiju",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/quer3q/ps5-dump-forge",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/Loopayeh/pkg-viewer",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/sweenyxsky-oss/ps5-library-browser",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/arwebSE/LibrePadPS5",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk",
+      "categoryId": "cat-ps5_sdk_debug"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/launchpad",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/GronedWaffel/TacHen",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/BRGZ3/PS5-Log-Collector",
+      "categoryId": "cat-ps5_sdk_debug"
+    },
+    {
+      "url": "https://github.com/unicxrn/prospack",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/B4ckd0orl/Padrino-Save-Vault",
+      "categoryId": "cat-ps5_saves"
+    },
+    {
+      "url": "https://github.com/ps3120/onionHEN-kernel-log-plugin",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/MasterPS0/PS5Themes",
+      "categoryId": "cat-ps5_themes-avatars"
+    },
+    {
+      "url": "https://github.com/MasterPS0/PS5download0TOOL",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/MasterPS0/PdbReaderGUI",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/MasterPS0/ps5_yt_blocker",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/TeeKay87/HEN-Cheats-Collection",
+      "categoryId": "cat-PS5_Cheat"
+    },
+    {
+      "url": "https://github.com/drakmor/pgo_stub",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/owendswang/ps5-webkit-autoloader-esp32",
+      "categoryId": "cat-ps5-webkit-autoloader"
+    },
+    {
+      "url": "https://github.com/owendswang/ps5-aria2",
+      "categoryId": "cat-ps5_utility"
+    },
+    {
+      "url": "https://github.com/seregonwar/PkgToolBox",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/seregonwar/PSXTERM",
+      "categoryId": "cat-ps5_sdk_debug"
     }
   ]
 }
