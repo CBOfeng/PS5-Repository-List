@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PS5-Repository-List — Cyberpunk Cards</title>
+  <meta name="description" content="Visualiseur universel de dépôts GitHub pour PS5 avec suivi des commits récents et téléchargement des releases." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+    .markdown-body { color: #cbd5e1; line-height: 1.6; }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #f8fafc; font-weight: 700; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+    .markdown-body h1 { font-size: 1.5rem; border-bottom: 1px solid #334155; padding-bottom: 0.25rem; }
+    .markdown-body h2 { font-size: 1.25rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.25rem; }
+    .markdown-body p { margin-bottom: 0.75rem; }
+    .markdown-body pre { background: #0f172a; border: 1px solid #334155; border-radius: 0.5rem; padding: 0.75rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .markdown-body code { background: #1e293b; padding: 0.15rem 0.3rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #38bdf8; }
+    .markdown-body pre code { background: transparent; padding: 0; color: #e2e8f0; }
+    .markdown-body a { color: #38bdf8; text-decoration: underline; }
+    .markdown-body ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; }
+    .markdown-body blockquote { border-left: 3px solid #38bdf8; padding-left: 0.75rem; color: #94a3b8; font-style: italic; }
+    .markdown-body img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 0.5rem 0; }
+  
+/* Shared appearance panel */
+#app { font-size:var(--ui-font,14px); font-family:var(--ui-font-family,'Plus Jakarta Sans',sans-serif); }
+#app .ui-settings-panel { background:#0b1220; color:#e5edf9; border-color:#334155; }
+#app .ui-settings-panel input[type="range"] { accent-color:var(--ui-accent,#2563eb); }
+#app .ui-settings-panel input[type="color"] { background:transparent; border:0; }
+#app .ui-settings-panel select { background:#111c2e; color:#e5edf9; border-color:#334155; }
+#app .ui-settings-panel .ui-theme-option { background:#111c2e; color:#e5edf9; }
+#app .ui-settings-panel .ui-theme-option:hover { transform:translateY(-2px); }
+#app .ui-settings-panel button:focus-visible, #app .ui-settings-panel select:focus-visible { outline:2px solid var(--ui-accent); outline-offset:2px; }
+
+
+#app main .rounded-xl { border-radius:var(--ui-radius,14px)!important; }
+#app main { font-size:var(--ui-font,14px); }
+#app main .bg-blue-600 { background-color:var(--ui-accent,#2563eb)!important; }
+#app .ui-settings-panel { border-color:var(--ui-accent,#2563eb)!important; }
+
+
+/* Theme 5 — Cyberpunk / rose et violet */
+#app { --ui-bg:#160b20; --ui-panel:#26112f; --ui-accent:#ec4899; --ui-border:#552b61; --ui-text:#fff0fb; --ui-muted:#c6a9ce; --ui-font:14px; --ui-radius:7px; }
+body { background:radial-gradient(ellipse at 90% 0%,#3a1245,#160b20 55%)!important; }
+#app > header { background:rgba(26,9,36,.96)!important; border-color:var(--ui-border)!important; }
+#app > header .bg-blue-600 { background:var(--ui-accent)!important; }
+#app > div.flex-1.flex.overflow-hidden > aside { background:#1e0d29!important; border-color:var(--ui-border)!important; }
+#app main .bg-slate-900 { background:var(--ui-panel)!important; }
+#app main .border-slate-800 { border-color:var(--ui-border)!important; }
+#app main .rounded-xl { border-radius:var(--ui-radius)!important; }
+#app main .text-blue-400, #app main .text-blue-300 { color:#f472b6!important; }
+
+
+#app > header { border-bottom:2px solid var(--ui-accent)!important; }
+#app > div.flex-1.flex.overflow-hidden > aside { width:205px!important; }
+#app main .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-3.xl\:grid-cols-4 > div { border-left:3px solid var(--ui-accent)!important; }
+
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
+  <div id="app" class="flex flex-col min-h-screen relative" :class="'ui-theme-' + themeChoice" :style="appearanceStyle">
+    <!-- Top Navigation -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-30 px-4 md:px-8 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-sm shadow-blue-500/20">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        </div>
+        <div>
+          <span class="font-bold text-base tracking-tight text-white">PS5-Repository-List</span>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-2 border-l border-slate-700 pl-2">Hub & Release Tracker</span>
+        </div>
+      </div>
+
+      <!-- Quick Search input -->
+      <div class="flex-1 max-w-md mx-2">
+        <div class="relative">
+          <input 
+            type="text" 
+            v-model="searchQuery" 
+            :placeholder="t('searchPlaceholder')" 
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+          <button v-if="searchQuery" @click="searchQuery = ''" class="absolute right-2 top-1.5 text-slate-400 hover:text-white text-xs">&times;</button>
+        </div>
+      </div>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-2 text-xs">
+        <!-- Bouton What's New -->
+        <button 
+          @click="openWhatsNew" 
+          class="bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-500 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition shadow-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          What's New
+        </button>
+
+        <!-- View Mode Switcher: Tuiles / Liste -->
+        <div class="bg-slate-900 border border-slate-800 rounded-lg p-0.5 hidden sm:flex items-center gap-0.5">
+          <button 
+            @click="viewMode = 'tiles'" 
+            :class="viewMode === 'tiles' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-slate-200'"
+            class="px-2.5 py-1 rounded-md font-medium transition text-xs flex items-center gap-1"
+            title="Vue Tuiles"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-16z"></path></svg>
+          </button>
+          <button 
+            @click="viewMode = 'list'" 
+            :class="viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-slate-200'"
+            class="px-2.5 py-1 rounded-md font-medium transition text-xs flex items-center gap-1"
+            title="Vue Liste"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+        <!-- Bouton Panneau Latéral (Drawer Toggle) -->
+        <button 
+          @click="useDrawer = !useDrawer" 
+          :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'bg-slate-800 text-slate-300 border-slate-700'"
+          class="border px-2.5 py-1.5 rounded-lg font-medium transition hidden sm:inline-block"
+          title="Alterner entre le panneau latéral et la popup"
+        >
+          Panneau: {{ useDrawer ? 'Activé' : 'Désactivé' }}
+        </button>
+
+
+        <button
+          @click="themePanelOpen = !themePanelOpen"
+          :class="themePanelOpen ? 'bg-blue-600 text-white border-blue-500' : 'bg-slate-800 text-slate-200 border-slate-700'"
+          class="border px-2.5 py-1.5 rounded-lg font-bold transition"
+          title="Personnaliser l'interface"
+        >🎨 Thème</button>
+
+        <!-- Bouton FR / EN -->
+        <button 
+          @click="toggleLang" 
+          class="bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1.5 rounded-lg font-bold hover:bg-slate-700 transition"
+        >
+          {{ currentLang.toUpperCase() }}
+        </button>
+
+        <button 
+          @click="filterOnlyAlerts = !filterOnlyAlerts" 
+          :class="filterOnlyAlerts ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-slate-800 text-slate-300 border-slate-700'"
+          class="border px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 font-medium transition"
+        >
+          <span class="w-2 h-2 rounded-full" :class="filterOnlyAlerts ? 'bg-amber-400' : 'bg-slate-500'"></span>
+          <span class="hidden sm:inline">{{ t('commitAlerts') }}</span>
+          <span class="font-mono text-[11px] bg-slate-700/60 px-1 rounded">{{ alertReposCount }}</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Sidebar Categories (Desktop) -->
+      <aside class="w-64 border-r border-slate-800 bg-slate-900/50 p-4 overflow-y-auto hidden md:block shrink-0">
+        <div class="flex items-center justify-between mb-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <span>{{ t('categories') }}</span>
+          <span class="text-slate-500 font-mono">{{ categories.length }}</span>
+        </div>
+        <div class="space-y-1 text-xs">
+          <button 
+            @click="selectedCategory = null" 
+            :class="selectedCategory === null ? 'bg-blue-600/20 text-blue-300 font-semibold border border-blue-500/30' : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'"
+            class="w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition"
+          >
+            <span>{{ t('allCategories') }}</span>
+            <span class="font-mono text-slate-500">{{ repos.length }}</span>
+          </button>
+
+          <!-- Tree View -->
+          <div v-for="cat in rootCategories" :key="cat.id" class="pt-1">
+            <button 
+              @click="selectedCategory = cat.id"
+              :class="selectedCategory === cat.id ? 'bg-blue-600/20 text-blue-300 font-semibold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-800/60'"
+              class="w-full text-left px-2.5 py-1.5 rounded-lg flex items-center justify-between transition"
+            >
+              <span class="flex items-center gap-2 truncate">
+                <span class="w-2 h-2 rounded-full" :style="{ backgroundColor: cat.color || '#3b82f6' }"></span>
+                <span class="truncate">{{ cat.name }}</span>
+              </span>
+              <span class="font-mono text-slate-500 text-[11px]">{{ getCategoryRepoCount(cat.id) }}</span>
+            </button>
+
+            <!-- Subcategories -->
+            <div class="pl-4 space-y-0.5 border-l border-slate-800 ml-3.5 mt-0.5">
+              <button 
+                v-for="sub in getSubcategories(cat.id)" 
+                :key="sub.id"
+                @click="selectedCategory = sub.id"
+                :class="selectedCategory === sub.id ? 'bg-blue-600/20 text-blue-300 font-semibold border border-blue-500/30' : 'text-slate-400 hover:bg-slate-800/40 hover:text-slate-200'"
+                class="w-full text-left px-2 py-1 rounded-md flex items-center justify-between transition text-[11px]"
+              >
+                <span class="truncate">{{ sub.name }}</span>
+                <span class="font-mono text-slate-500 text-[10px]">{{ getCategoryRepoCount(sub.id) }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content Area -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+        <!-- Status summary banner -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl">
+            <span class="text-slate-400 block">{{ t('trackedRepos') }}</span>
+            <span class="text-xl font-bold font-mono text-white">{{ repos.length }}</span>
+          </div>
+          <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl">
+            <span class="text-slate-400 block">{{ t('commitAlerts3d') }}</span>
+            <span class="text-xl font-bold font-mono text-amber-400">{{ alertReposCount }}</span>
+          </div>
+          <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl">
+            <span class="text-slate-400 block">{{ t('releasesAssets') }}</span>
+            <span class="text-xl font-bold font-mono text-emerald-400">{{ reposWithReleasesCount }}</span>
+          </div>
+          <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl">
+            <span class="text-slate-400 block">{{ t('dataSource') }}</span>
+            <span class="text-xs font-mono text-blue-400 mt-1 block truncate">{{ isLiveData ? t('githubPages') : t('embeddedSnapshot') }}</span>
+          </div>
+        </div>
+
+        <div v-if="filteredRepos.length === 0" class="text-center py-12 text-slate-500 border border-dashed border-slate-800 rounded-2xl p-8">
+          <p class="text-sm">{{ t('noReposFound') }}</p>
+        </div>
+
+        <!-- VUE TUILES (3 / 4 par ligne) -->
+        <div v-else-if="viewMode === 'tiles'" class="space-y-6">
+          <div v-for="group in repoGroups" :key="group.title" class="space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+              <h2 class="font-semibold text-sm text-slate-200 flex items-center gap-2">
+                <span>{{ group.title }}</span>
+                <span class="text-xs font-mono text-slate-500">({{ group.repos.length }})</span>
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div 
+                v-for="repo in group.repos" 
+                :key="repo.id"
+                class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-xl p-4 flex flex-col justify-between transition group"
+              >
+                <div>
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                      <img :src="repo.ownerAvatar" :alt="repo.owner" class="w-8 h-8 rounded-full border border-slate-700 bg-slate-800" />
+                      <div>
+                        <a :href="repo.htmlUrl" target="_blank" rel="noreferrer" class="font-bold text-sm text-white hover:text-blue-400 transition block truncate max-w-[160px]">
+                          {{ repo.name }}
+                        </a>
+                        <span class="text-xs text-slate-400">{{ repo.owner }}</span>
+                      </div>
+                    </div>
+                    <span 
+                      v-if="repo.hasNewCommitsAlert" 
+                      class="px-2 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1 shrink-0"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                    </span>
+                  </div>
+
+                  <p class="text-xs text-slate-400 mt-2.5 line-clamp-2 leading-relaxed">
+                    {{ repo.description || t('noDescription') }}
+                  </p>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+                  <span class="font-mono text-slate-400 text-[11px]">★ {{ repo.stars.toLocaleString() }}</span>
+                  <div class="flex items-center gap-1">
+                    <button @click="openCommits(repo)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">Commits</button>
+                    <button v-if="repo.latestRelease" @click="openRelease(repo)" class="px-2 py-1 bg-emerald-950/60 hover:bg-emerald-900 text-emerald-300 border border-emerald-800/60 rounded text-xs transition">Assets</button>
+                    <button @click="openReadme(repo)" class="px-2 py-1 bg-blue-950/60 hover:bg-blue-900 text-blue-300 border border-blue-800/60 rounded text-xs transition">README</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VUE LISTE -->
+        <div v-else class="space-y-6">
+          <div v-for="group in repoGroups" :key="group.title" class="space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+              <h2 class="font-semibold text-sm text-slate-200 flex items-center gap-2">
+                <span>{{ group.title }}</span>
+                <span class="text-xs font-mono text-slate-500">({{ group.repos.length }})</span>
+              </h2>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-950/60 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[11px]">
+                  <tr>
+                    <th class="py-3 px-4">Alerte</th>
+                    <th class="py-3 px-4">Dépôt</th>
+                    <th class="py-3 px-4">Auteur</th>
+                    <th class="py-3 px-4">Catégorie</th>
+                    <th class="py-3 px-4">Langage</th>
+                    <th class="py-3 px-4">Stars</th>
+                    <th class="py-3 px-4">Dernier Commit</th>
+                    <th class="py-3 px-4">Release & Assets</th>
+                    <th class="py-3 px-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60">
+                  <tr v-for="repo in group.repos" :key="repo.id" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-4">
+                      <span v-if="repo.hasNewCommitsAlert" class="w-7 h-7 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400" title="Commit récent">
+                        🔔
+                      </span>
+                    </td>
+                    <td class="py-3 px-4 font-medium">
+                      <div class="flex items-center gap-2.5">
+                        <img :src="repo.ownerAvatar" class="w-6 h-6 rounded-full bg-slate-800 border border-slate-700" />
+                        <div>
+                          <a :href="repo.htmlUrl" target="_blank" class="text-white hover:text-blue-400 font-bold block">{{ repo.name }}</a>
+                          <span class="text-[11px] text-slate-400 line-clamp-1 max-w-xs">{{ repo.description }}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-4 text-slate-300">{{ repo.owner }}</td>
+                    <td class="py-3 px-4 text-slate-400">{{ getCategoryName(repo.categoryId) }}</td>
+                    <td class="py-3 px-4 font-mono text-slate-300">{{ repo.language || 'Unknown' }}</td>
+                    <td class="py-3 px-4 font-mono text-slate-300">★ {{ repo.stars.toLocaleString() }}</td>
+                    <td class="py-3 px-4 font-mono text-slate-400">{{ formatCommitDate(repo.pushedAt) }}</td>
+                    <td class="py-3 px-4">
+                      <span v-if="repo.latestRelease" class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-emerald-950/60 border border-emerald-800/60 text-emerald-300 font-mono text-[11px]">
+                        📦 {{ repo.latestRelease.tagName }} ({{ repo.latestRelease.assets?.length || 0 }})
+                      </span>
+                      <span v-else class="text-slate-500 text-[11px]">-</span>
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                      <div class="flex items-center justify-end gap-1.5">
+                        <button @click="openReadme(repo)" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded transition" title="Voir README">📄</button>
+                        <button @click="openCommits(repo)" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition" title="Commits récents">⚙️</button>
+                        <button v-if="repo.latestRelease" @click="openRelease(repo)" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded transition" title="Assets">📦</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- DRAWER LATÉRAL DROIT POUR README / COMMITS (Si 'useDrawer' est activé) -->
+    <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+      <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-sm text-white truncate max-w-[450px]">{{ activeDrawerTitle }}</h3>
+          </div>
+          <button @click="closeDrawer" class="text-slate-400 hover:text-white px-2 py-1 rounded text-lg font-bold">&times;</button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-1 space-y-4">
+          <div v-if="drawerType === 'readme'" class="markdown-body text-xs md:text-sm" v-html="renderMarkdown(activeDrawerData.readme, activeDrawerData)"></div>
+          <div v-else-if="drawerType === 'commits'" class="space-y-3">
+            <div v-for="c in activeDrawerData.recentCommits" :key="c.sha" class="p-3 bg-slate-950 border border-slate-800 rounded-lg text-xs">
+              <p class="font-medium text-slate-200">{{ c.message }}</p>
+              <div class="flex items-center gap-2 text-slate-500 text-[11px] mt-1">
+                <span class="text-slate-400">{{ c.authorName }}</span>
+                <span>·</span>
+                <span class="font-mono">{{ formatDate(c.date) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRAWER "WHAT'S NEW" (Liste des derniers repos mis à jour) -->
+    <div v-if="showWhatsNewDrawer" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+      <div class="w-full md:w-[650px] lg:w-[750px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🔥</span>
+            <h3 class="font-bold text-sm text-white">What's New - Dernières Mises à Jour (Releases)</h3>
+          </div>
+          <button @click="showWhatsNewDrawer = false" class="text-slate-400 hover:text-white px-2 py-1 rounded text-xl font-bold">&times;</button>
+        </div>
+
+        <!-- Liste chronologique -->
+        <div class="p-6 overflow-y-auto flex-1 space-y-4">
+          <div v-if="reposWithReleasesSorted.length === 0" class="text-center py-12 text-slate-500">
+            <p>Aucune release récente trouvée.</p>
+          </div>
+
+          <div 
+            v-for="repo in reposWithReleasesSorted" 
+            :key="repo.id"
+            class="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl p-4 transition space-y-3"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <img :src="repo.ownerAvatar" class="w-7 h-7 rounded-full border border-slate-700 bg-slate-800" />
+                <div>
+                  <a :href="repo.htmlUrl" target="_blank" class="font-bold text-sm text-white hover:text-blue-400 transition">{{ repo.name }}</a>
+                  <span class="text-[11px] text-slate-400 block">{{ repo.owner }} · Catégorie: {{ getCategoryName(repo.categoryId) }}</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 font-mono text-xs font-semibold">
+                {{ repo.latestRelease.tagName }}
+              </span>
+            </div>
+
+            <div class="text-xs text-slate-300 bg-slate-900/60 p-3 rounded-lg border border-slate-800/60">
+              <p class="font-semibold text-white mb-1">{{ repo.latestRelease.name || 'Mise à jour' }}</p>
+              <p class="text-slate-400 line-clamp-3">{{ repo.latestRelease.body || 'Pas de description de release.' }}</p>
+            </div>
+
+            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-800/60">
+              <span class="text-slate-500 font-mono">Publié le {{ formatDate(repo.latestRelease.publishedAt) }}</span>
+              <div class="flex items-center gap-2">
+                <span v-if="repo.latestRelease.assets?.length > 0" class="text-slate-400 font-mono text-[11px]">
+                  📦 {{ repo.latestRelease.assets.length }} asset(s)
+                </span>
+                <button @click="showWhatsNewDrawer = false; openRelease(repo)" class="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium transition">
+                  Voir les assets &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Readme Modal (si Drawer désactivé) -->
+    <div v-if="!useDrawer && activeReadmeRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-sm text-white">README.md · {{ activeReadmeRepo.fullName }}</h3>
+            <a :href="activeReadmeRepo.htmlUrl" target="_blank" class="text-xs text-blue-400 hover:underline">GitHub</a>
+          </div>
+          <button @click="activeReadmeRepo = null" class="text-slate-400 hover:text-white px-2 py-1 rounded text-base">&times;</button>
+        </div>
+        <div class="p-6 overflow-y-auto markdown-body text-xs md:text-sm flex-1" v-html="renderMarkdown(activeReadmeRepo.readme, activeReadmeRepo)"></div>
+      </div>
+    </div>
+
+    <!-- Commits Modal (si Drawer désactivé) -->
+    <div v-if="!useDrawer && activeCommitsRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+          <div>
+            <h3 class="font-bold text-sm text-white">Commits Récents · {{ activeCommitsRepo.fullName }}</h3>
+          </div>
+          <button @click="activeCommitsRepo = null" class="text-slate-400 hover:text-white px-2 py-1 rounded text-base">&times;</button>
+        </div>
+        <div class="p-4 overflow-y-auto space-y-3 flex-1">
+          <div v-for="c in activeCommitsRepo.recentCommits" :key="c.sha" class="p-3 bg-slate-950/70 border border-slate-800/80 rounded-lg flex items-start justify-between gap-3 text-xs">
+            <div>
+              <p class="font-medium text-slate-200">{{ c.message }}</p>
+              <div class="flex items-center gap-2 text-slate-500 text-[11px] mt-1">
+                <span>{{ c.authorName }}</span>
+                <span>·</span>
+                <span class="font-mono">{{ formatDate(c.date) }}</span>
+              </div>
+            </div>
+            <a :href="c.url" target="_blank" class="font-mono text-xs text-blue-400 hover:underline shrink-0 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">{{ c.sha }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Release & Assets Modal -->
+    <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">
+                {{ activeReleaseRepo.latestRelease.tagName }}
+              </span>
+              <h3 class="font-bold text-sm text-white">{{ activeReleaseRepo.latestRelease.name || 'Release' }}</h3>
+            </div>
+            <span class="text-xs text-slate-400">Publié le {{ formatDate(activeReleaseRepo.latestRelease.publishedAt) }}</span>
+          </div>
+          <button @click="activeReleaseRepo = null" class="text-slate-400 hover:text-white px-2 py-1 rounded text-base">&times;</button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-1 space-y-6">
+          <div>
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles au Téléchargement</h4>
+            <div class="space-y-2">
+              <div v-for="asset in activeReleaseRepo.latestRelease.assets" :key="asset.id" class="p-3 bg-slate-950 border border-slate-800 rounded-lg flex items-center justify-between gap-3 text-xs">
+                <div>
+                  <span class="font-mono font-medium text-slate-200 block">{{ asset.name }}</span>
+                  <span class="text-slate-500 text-[11px]">Taille: {{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
+                </div>
+                <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition shrink-0">Télécharger</a>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="activeReleaseRepo.latestRelease.body">
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de Version & Changelog</h4>
+            <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panneau droit de personnalisation UI : indépendant des données du catalogue -->
+    <div v-if="themePanelOpen" class="ui-settings-overlay fixed inset-0 z-[70] flex justify-end bg-black/55" @click.self="themePanelOpen = false">
+      <aside class="ui-settings-panel w-full max-w-[390px] h-full overflow-y-auto border-l p-5 shadow-2xl">
+        <div class="flex items-center justify-between gap-3 mb-5">
+          <div>
+            <p class="text-xs uppercase tracking-widest opacity-60">Apparence</p>
+            <h2 class="text-xl font-extrabold">Personnaliser le thème</h2>
+          </div>
+          <button @click="themePanelOpen = false" class="text-2xl px-2 py-1 rounded-lg" aria-label="Fermer">&times;</button>
+        </div>
+        <p class="text-sm opacity-70 mb-4">Choisis une apparence pour cette variante. Les catégories et dépôts continuent de venir du JSON externe.</p>
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <button v-for="theme in availableThemes" :key="theme.id" @click="applyTheme(theme.id)"
+            class="ui-theme-option text-left rounded-xl overflow-hidden border transition"
+            :class="themeChoice === theme.id ? 'ring-2 ring-offset-2 ring-blue-500 border-blue-500' : 'border-slate-600/40'">
+            <img :src="'./assets/themes/' + theme.id + '.jpg'" :alt="'Aperçu ' + theme.name" class="w-full aspect-video object-cover">
+            <span class="block px-2.5 py-2 text-xs font-bold">{{ theme.name }}</span>
+          </button>
+        </div>
+        <div class="border-t pt-5 space-y-5">
+          <h3 class="font-bold">Réglages fins</h3>
+          <label class="block text-sm">
+            <span class="flex justify-between mb-2"><span>Couleur d'accent</span><span class="font-mono opacity-70">{{ customAccent }}</span></span>
+            <input type="color" v-model="customAccent" class="w-full h-10 rounded cursor-pointer">
+          </label>
+          <label class="block text-sm">
+            <span class="flex justify-between mb-2"><span>Taille du texte</span><span class="font-mono opacity-70">{{ fontScale }} px</span></span>
+            <input type="range" min="12" max="18" step="1" v-model.number="fontScale" class="w-full">
+          </label>
+          <label class="block text-sm">
+            <span class="flex justify-between mb-2"><span>Arrondi des cartes</span><span class="font-mono opacity-70">{{ cardRadius }} px</span></span>
+            <input type="range" min="0" max="24" step="2" v-model.number="cardRadius" class="w-full">
+          </label>
+          <label class="block text-sm">
+            <span class="block mb-2">Police</span>
+            <select v-model="fontChoice" class="w-full rounded-lg border px-3 py-2">
+              <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
+              <option value="Arial, sans-serif">Arial</option>
+              <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+              <option value="system-ui, sans-serif">System UI</option>
+            </select>
+          </label>
+          <div class="flex gap-2">
+            <button @click="resetAppearance" class="flex-1 rounded-lg border px-3 py-2 text-sm font-bold">Réinitialiser</button>
+            <button @click="themePanelOpen = false" class="flex-1 rounded-lg px-3 py-2 text-sm font-bold text-white" style="background:var(--ui-accent,#2563eb)">Terminé</button>
+          </div>
+          <p class="text-xs opacity-60">Les réglages sont temporaires : aucun stockage ni modification du JSON.</p>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const categories = ref([]);
+        const repos = ref([]);
+        const searchQuery = ref('');
+        const selectedCategory = ref(null);
+        const filterOnlyAlerts = ref(false);
+        const viewMode = ref('tiles');
+        const useDrawer = ref(false);
+        const showWhatsNewDrawer = ref(false);
+        const isLiveData = ref(false);
+        const currentLang = ref('fr');
+
+        const themePanelOpen = ref(false);
+        const themeChoice = ref('theme5');
+        const customAccent = ref('#ec4899');
+        const fontScale = ref(14);
+        const cardRadius = ref(14);
+        const fontChoice = ref("'Plus Jakarta Sans', sans-serif");
+        const availableThemes = [
+          { id: 'theme1', name: 'Midnight Blue' }, { id: 'theme2', name: 'Glass Neon' },
+          { id: 'theme3', name: 'Minimal Light' }, { id: 'theme4', name: 'Xbox Green' },
+          { id: 'theme5', name: 'Cyberpunk' }, { id: 'theme6', name: 'Terminal' },
+          { id: 'theme7', name: 'Warm Graphite' }, { id: 'theme8', name: 'Ocean' }
+        ];
+        const applyTheme = (id) => {
+          themeChoice.value = id;
+          const defaults = { theme1:'#2563eb', theme2:'#8b5cf6', theme3:'#2563eb', theme4:'#22c55e',
+            theme5:'#ec4899', theme6:'#4ade80', theme7:'#f59e0b', theme8:'#06b6d4' };
+          customAccent.value = defaults[id] || '#2563eb';
+        };
+        const resetAppearance = () => {
+          applyTheme('theme1'); fontScale.value = 14; cardRadius.value = 14;
+          fontChoice.value = "'Plus Jakarta Sans', sans-serif";
+        };
+        const appearanceStyle = computed(() => ({
+          '--ui-accent': customAccent.value,
+          '--ui-font': fontScale.value + 'px',
+          '--ui-radius': cardRadius.value + 'px',
+          '--ui-font-family': fontChoice.value
+        }));
+
+
+        const i18n = {
+          fr: {
+            searchPlaceholder: 'Rechercher (dépôt, auteur, tag, techno)...',
+            commitAlerts: 'Alertes Commits',
+            categories: 'Catégories',
+            allCategories: 'Toutes les catégories',
+            trackedRepos: 'Dépôts suivis',
+            commitAlerts3d: 'Alertes commits (3j)',
+            releasesAssets: 'Releases & Assets',
+            dataSource: 'Source de données',
+            githubPages: 'GitHub Pages (Live JSON)',
+            embeddedSnapshot: 'Snapshot Embarqué',
+            noReposFound: 'Aucun dépôt ne correspond aux critères de recherche.',
+            noDescription: 'Aucune description disponible.',
+            allRepos: 'Tous les Dépôts',
+            otherUnassigned: 'Non classé'
+          },
+          en: {
+            searchPlaceholder: 'Search (repository, author, tag, tech)...',
+            commitAlerts: 'Commit Alerts',
+            categories: 'Categories',
+            allCategories: 'All Categories',
+            trackedRepos: 'Tracked Repositories',
+            commitAlerts3d: 'Commit Alerts (3d)',
+            releasesAssets: 'Releases & Assets',
+            dataSource: 'Data Source',
+            githubPages: 'GitHub Pages (Live JSON)',
+            embeddedSnapshot: 'Embedded Snapshot',
+            noReposFound: 'No repositories match your search criteria.',
+            noDescription: 'No description available.',
+            allRepos: 'All Repositories',
+            otherUnassigned: 'Unassigned'
+          }
+        };
+
+        const t = (key) => i18n[currentLang.value][key] || key;
+        const toggleLang = () => { currentLang.value = currentLang.value === 'fr' ? 'en' : 'fr'; };
+
+        const activeReadmeRepo = ref(null);
+        const activeCommitsRepo = ref(null);
+        const activeReleaseRepo = ref(null);
+
+        const activeDrawerContent = ref(null);
+        const drawerType = ref('');
+        const activeDrawerTitle = ref('');
+        const activeDrawerData = ref(null);
+
+        const embeddedDatabase = {"version":"2.0.0","exportedAt":"2026-10-11T19:32:48.909Z","appName":"PS5-Repository-List","categories":[{"id":"cat-frontend","name":"PS5 Emulator","description":"PS5 Emulator","icon":"Layout","color":"#3B82F6","parentId":null,"order":0},{"id":"cat-backend","name":"Webkit exploit","description":"Webkit exploit","icon":"Atom","color":"#10B981","parentId":null,"order":1},{"id":"cat-desktop-mobile","name":"PC APPS","description":"Applications Windows","icon":"Monitor","color":"#3B82F6","parentId":null,"order":2}],"repos":[{"id":"repo-1791741722787","url":"https://github.com/blackbearreloaded/ProsperoLight","owner":"blackbearreloaded","ownerAvatar":"https://avatars.githubusercontent.com/u/316784285?v=4","name":"ProsperoLight","fullName":"blackbearreloaded/ProsperoLight","description":"An unofficial Moonlight port (game streaming) for PS5","customNotes":"","tags":[],"categoryId":"unassigned","stars":110,"forks":9,"openIssues":3,"language":"C++","license":"GPL-3.0","defaultBranch":"main","pushedAt":"2026-10-11T17:58:10Z","updatedAt":"2026-10-11T16:34:35Z","htmlUrl":"https://github.com/blackbearreloaded/ProsperoLight","readme":"# ProsperoLight\nMoonlight game streaming natively on PlayStation 5.","hasNewCommitsAlert":true,"recentCommits":[{"sha":"a8796ff","message":"Finalize approved release notes","authorName":"Nikita Dybov","date":"2026-10-11T14:23:28Z","url":"https://github.com/blackbearreloaded/ProsperoLight/commit/a8796ff"}],"latestRelease":{"tagName":"01.000.095","name":"ProsperoLight 01.000.095","publishedAt":"2026-10-11T14:33:33Z","body":"### Améliorations majeures et correctifs.\n- Optimisation du streaming.\n- Stabilité accrue sur PS5.","assets":[{"id":1,"name":"PPSA99002.zip","size":37863705,"downloadCount":17,"downloadUrl":"#"}]}}]};
+
+        onMounted(async () => {
+          try {
+            const res = await fetch('./json/repos-database.json', { cache: 'no-cache' });
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.repos) {
+                categories.value = data.categories || [];
+                repos.value = data.repos || [];
+                isLiveData.value = true;
+                return;
+              }
+            }
+          } catch (e) {}
+          categories.value = embeddedDatabase.categories || [];
+          repos.value = embeddedDatabase.repos || [];
+        });
+
+        const rootCategories = computed(() => categories.value.filter(c => !c.parentId));
+        const getSubcategories = (parentId) => categories.value.filter(c => c.parentId === parentId);
+        const getCategoryRepoCount = (catId) => {
+          const childIds = categories.value.filter(c => c.parentId === catId).map(c => c.id);
+          return repos.value.filter(r => [catId, ...childIds].includes(r.categoryId)).length;
+        };
+        const getCategoryName = (catId) => {
+          const cat = categories.value.find(c => c.id === catId);
+          return cat ? cat.name : t('otherUnassigned');
+        };
+
+        const alertReposCount = computed(() => repos.value.filter(r => r.hasNewCommitsAlert).length);
+        const reposWithReleasesCount = computed(() => repos.value.filter(r => r.latestRelease && r.latestRelease.assets?.length > 0).length);
+
+        const reposWithReleasesSorted = computed(() => {
+          return repos.value
+            .filter(r => r.latestRelease && r.latestRelease.publishedAt)
+            .sort((a, b) => new Date(b.latestRelease.publishedAt) - new Date(a.latestRelease.publishedAt));
+        });
+
+        const filteredRepos = computed(() => {
+          return repos.value.filter(r => {
+            if (filterOnlyAlerts.value && !r.hasNewCommitsAlert) return false;
+            if (selectedCategory.value) {
+              const childIds = categories.value.filter(c => c.parentId === selectedCategory.value).map(c => c.id);
+              if (![selectedCategory.value, ...childIds].includes(r.categoryId)) return false;
+            }
+            if (searchQuery.value.trim()) {
+              const q = searchQuery.value.toLowerCase().trim();
+              return r.name?.toLowerCase().includes(q) || r.owner?.toLowerCase().includes(q) || r.description?.toLowerCase().includes(q);
+            }
+            return true;
+          });
+        });
+
+        const repoGroups = computed(() => {
+          if (selectedCategory.value) {
+            const currentCat = categories.value.find(c => c.id === selectedCategory.value);
+            return [{ title: currentCat ? currentCat.name : t('allRepos'), repos: filteredRepos.value }];
+          }
+
+          const groups = [];
+          rootCategories.value.forEach(cat => {
+            const subIds = categories.value.filter(c => c.parentId === cat.id).map(c => c.id);
+            const matching = filteredRepos.value.filter(r => [cat.id, ...subIds].includes(r.categoryId));
+            if (matching.length > 0) groups.push({ title: cat.name, repos: matching });
+          });
+
+          const coveredIds = rootCategories.value.flatMap(c => [c.id, ...categories.value.filter(sub => sub.parentId === c.id).map(sub => sub.id)]);
+          const unassigned = filteredRepos.value.filter(r => !coveredIds.includes(r.categoryId));
+          if (unassigned.length > 0) groups.push({ title: t('otherUnassigned'), repos: unassigned });
+
+          if (groups.length === 0 && filteredRepos.value.length > 0) {
+            groups.push({ title: t('allRepos'), repos: filteredRepos.value });
+          }
+          return groups;
+        });
+
+        const renderMarkdown = (text, repo) => {
+          if (!text) return `<p>Aucun contenu.</p>`;
+          try {
+            let processedText = text;
+            if (repo && repo.htmlUrl) {
+              const branch = repo.defaultBranch || 'main';
+              const rawBaseUrl = repo.htmlUrl.replace('github.com', 'raw.githubusercontent.com') + '/' + branch + '/';
+              processedText = processedText
+                .replace(/src="([^"]+)"/g, (m, p1) => {
+                  if (!p1.startsWith('http://') && !p1.startsWith('https://') && !p1.startsWith('data:')) {
+                    return `src="${rawBaseUrl}${p1.replace(/^\//, '')}"`;
+                  }
+                  return m;
+                })
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
+                  if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+                    return `![${alt}](${rawBaseUrl}${url.replace(/^\//, '')})`;
+                  }
+                  return match;
+                });
+            }
+            return marked.parse(processedText);
+          } catch(e) { return text; }
+        };
+
+        const openWhatsNew = () => {
+          showWhatsNewDrawer.value = true;
+        };
+
+        const openReadme = (repo) => {
+          if (useDrawer.value) {
+            drawerType.value = 'readme';
+            activeDrawerTitle.value = `README.md · ${repo.fullName}`;
+            activeDrawerData.value = repo;
+            activeDrawerContent.value = true;
+          } else {
+            activeReadmeRepo.value = repo;
+          }
+        };
+
+        const openCommits = (repo) => {
+          if (useDrawer.value) {
+            drawerType.value = 'commits';
+            activeDrawerTitle.value = `Commits · ${repo.fullName}`;
+            activeDrawerData.value = repo;
+            activeDrawerContent.value = true;
+          } else {
+            activeCommitsRepo.value = repo;
+          }
+        };
+
+        const closeDrawer = () => { activeDrawerContent.value = null; };
+        const openRelease = (repo) => { activeReleaseRepo.value = repo; };
+
+        const formatBytes = (bytes) => {
+          if (!bytes) return '0 B';
+          const k = 1024, sizes = ['B', 'KB', 'MB', 'GB'];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        };
+
+        const formatDate = (dateStr) => dateStr ? new Date(dateStr).toLocaleDateString() : '';
+        const formatCommitDate = (dateStr) => {
+          if (!dateStr) return '';
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' }) + ', ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        };
+
+        return {
+          categories, repos, searchQuery, selectedCategory, filterOnlyAlerts, viewMode, useDrawer, showWhatsNewDrawer, isLiveData, currentLang,
+          themePanelOpen, themeChoice, customAccent, fontScale, cardRadius, fontChoice, availableThemes, applyTheme, resetAppearance, appearanceStyle,
+          t, toggleLang, rootCategories, getSubcategories, getCategoryRepoCount, getCategoryName, alertReposCount, reposWithReleasesCount,
+          reposWithReleasesSorted, filteredRepos, repoGroups, activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
+          activeDrawerContent, drawerType, activeDrawerTitle, activeDrawerData,
+          openWhatsNew, renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, formatBytes, formatDate, formatCommitDate
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
