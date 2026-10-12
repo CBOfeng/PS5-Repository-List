@@ -65,6 +65,30 @@
       "name": "ps5_game_dump",
       "color": "#408080",
       "parentId": null
+    },
+    {
+      "id": "cat-ps5_hen_loader",
+      "name": "ps5_hen_loader",
+      "color": "#ffff00",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_kstuff",
+      "name": "ps5_kstuff",
+      "color": "#800040",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_linux",
+      "name": "ps5_linux",
+      "color": "#ffffff",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_pad_utility",
+      "name": "ps5_pad_utility",
+      "color": "#ff8000",
+      "parentId": null
     }
   ],
   "repos": [
@@ -359,6 +383,106 @@
     {
       "url": "https://github.com/blackbearreloaded/ProsperoStore",
       "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/gasb07/ps4mount",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/griches/PS5_DevilutionX",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/blackbearreloaded/ProsperoLight",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/etaHEN/etaHEN",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/itsPLK/ps5-unified-autoloader",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/itsPLK/ps5-payload-manager",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/NookieAI/kura",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/Michele-M-Media/PIZZA-HEN",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/aydencharles/onionHEN",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/notmaj0r/ProsperoMgr",
+      "categoryId": "cat-ps5_hen_loader"
+    },
+    {
+      "url": "https://github.com/EchoStretch/kstuff",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/EchoStretch/kstuff-lite",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/EchoStretch/kstuff-toggle",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/drakmor/kstuff-lite",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/Soonniicc/kstuff-a53",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/ps5-linux/ps5-linux-loader",
+      "categoryId": "cat-ps5_linux"
+    },
+    {
+      "url": "https://github.com/ps5-linux/ps5-linux-patches",
+      "categoryId": "cat-ps5_linux"
+    },
+    {
+      "url": "https://github.com/ps5-linux/ps5-linux-image",
+      "categoryId": "cat-ps5_linux"
+    },
+    {
+      "url": "https://github.com/ps5-linux/ps5-linux-tools",
+      "categoryId": "cat-ps5_linux"
+    },
+    {
+      "url": "https://github.com/ps5-linux/ps5-linux-mwifiex",
+      "categoryId": "cat-ps5_linux"
+    },
+    {
+      "url": "https://github.com/ItsBlurf/PoorDS4",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/diegobarbosaa/OmniPad-PS5",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/FGGstore/FGG-XSense",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/sub0x00001/pad2c",
+      "categoryId": "cat-ps5_pad_utility"
+    },
+    {
+      "url": "https://github.com/elmonomalvad0/any-pad",
+      "categoryId": "cat-ps5_pad_utility"
     }
   ]
 }
