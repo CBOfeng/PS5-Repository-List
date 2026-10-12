@@ -82,8 +82,17 @@
 
       <!-- Right controls -->
       <div class="flex items-center gap-2 text-xs">
+        <!-- Bouton What's New -->
+        <button 
+          @click="openWhatsNew" 
+          class="bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-500 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition shadow-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          What's New
+        </button>
+
         <!-- View Mode Switcher: Tuiles / Liste -->
-        <div class="bg-slate-900 border border-slate-800 rounded-lg p-0.5 flex items-center gap-0.5">
+        <div class="bg-slate-900 border border-slate-800 rounded-lg p-0.5 hidden sm:flex items-center gap-0.5">
           <button 
             @click="viewMode = 'tiles'" 
             :class="viewMode === 'tiles' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-slate-200'"
@@ -91,7 +100,6 @@
             title="Vue Tuiles"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-16z"></path></svg>
-            <span class="hidden lg:inline">Tuiles</span>
           </button>
           <button 
             @click="viewMode = 'list'" 
@@ -100,11 +108,10 @@
             title="Vue Liste"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            <span class="hidden lg:inline">Liste</span>
           </button>
         </div>
 
-        <!-- Mode d'affichage Panneau Latéral vs Popup -->
+        <!-- Bouton Panneau Latéral (Drawer Toggle) -->
         <button 
           @click="useDrawer = !useDrawer" 
           :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'bg-slate-800 text-slate-300 border-slate-700'"
@@ -330,7 +337,7 @@
       </main>
     </div>
 
-    <!-- DRAWER LATÉRAL DROIT (Superposition / Overlay avec fond flouté) -->
+    <!-- DRAWER LATÉRAL DROIT POUR README / COMMITS (Si 'useDrawer' est activé) -->
     <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
@@ -341,10 +348,7 @@
         </div>
 
         <div class="p-6 overflow-y-auto flex-1 space-y-4">
-          <!-- Readme Content -->
           <div v-if="drawerType === 'readme'" class="markdown-body text-xs md:text-sm" v-html="renderMarkdown(activeDrawerData.readme, activeDrawerData)"></div>
-          
-          <!-- Commits Content -->
           <div v-else-if="drawerType === 'commits'" class="space-y-3">
             <div v-for="c in activeDrawerData.recentCommits" :key="c.sha" class="p-3 bg-slate-950 border border-slate-800 rounded-lg text-xs">
               <p class="font-medium text-slate-200">{{ c.message }}</p>
@@ -352,6 +356,62 @@
                 <span class="text-slate-400">{{ c.authorName }}</span>
                 <span>·</span>
                 <span class="font-mono">{{ formatDate(c.date) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRAWER "WHAT'S NEW" (Liste des derniers repos mis à jour) -->
+    <div v-if="showWhatsNewDrawer" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+      <div class="w-full md:w-[650px] lg:w-[750px] h-full bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🔥</span>
+            <h3 class="font-bold text-sm text-white">What's New - Dernières Mises à Jour (Releases)</h3>
+          </div>
+          <button @click="showWhatsNewDrawer = false" class="text-slate-400 hover:text-white px-2 py-1 rounded text-xl font-bold">&times;</button>
+        </div>
+
+        <!-- Liste chronologique -->
+        <div class="p-6 overflow-y-auto flex-1 space-y-4">
+          <div v-if="reposWithReleasesSorted.length === 0" class="text-center py-12 text-slate-500">
+            <p>Aucune release récente trouvée.</p>
+          </div>
+
+          <div 
+            v-for="repo in reposWithReleasesSorted" 
+            :key="repo.id"
+            class="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl p-4 transition space-y-3"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <img :src="repo.ownerAvatar" class="w-7 h-7 rounded-full border border-slate-700 bg-slate-800" />
+                <div>
+                  <a :href="repo.htmlUrl" target="_blank" class="font-bold text-sm text-white hover:text-blue-400 transition">{{ repo.name }}</a>
+                  <span class="text-[11px] text-slate-400 block">{{ repo.owner }} · Catégorie: {{ getCategoryName(repo.categoryId) }}</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 font-mono text-xs font-semibold">
+                {{ repo.latestRelease.tagName }}
+              </span>
+            </div>
+
+            <div class="text-xs text-slate-300 bg-slate-900/60 p-3 rounded-lg border border-slate-800/60">
+              <p class="font-semibold text-white mb-1">{{ repo.latestRelease.name || 'Mise à jour' }}</p>
+              <p class="text-slate-400 line-clamp-3">{{ repo.latestRelease.body || 'Pas de description de release.' }}</p>
+            </div>
+
+            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-800/60">
+              <span class="text-slate-500 font-mono">Publié le {{ formatDate(repo.latestRelease.publishedAt) }}</span>
+              <div class="flex items-center gap-2">
+                <span v-if="repo.latestRelease.assets?.length > 0" class="text-slate-400 font-mono text-[11px]">
+                  📦 {{ repo.latestRelease.assets.length }} asset(s)
+                </span>
+                <button @click="showWhatsNewDrawer = false; openRelease(repo)" class="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium transition">
+                  Voir les assets &rarr;
+                </button>
               </div>
             </div>
           </div>
@@ -398,7 +458,7 @@
       </div>
     </div>
 
-    <!-- Release & Assets Modal avec Notes de version et Changelog -->
+    <!-- Release & Assets Modal -->
     <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -415,7 +475,6 @@
         </div>
 
         <div class="p-6 overflow-y-auto flex-1 space-y-6">
-          <!-- Assets Disponibles -->
           <div>
             <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles au Téléchargement</h4>
             <div class="space-y-2">
@@ -429,7 +488,6 @@
             </div>
           </div>
 
-          <!-- Notes de version & Changelog -->
           <div v-if="activeReleaseRepo.latestRelease.body">
             <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de Version & Changelog</h4>
             <div class="markdown-body p-4 bg-slate-950/70 border border-slate-800 rounded-lg text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
@@ -451,6 +509,7 @@
         const filterOnlyAlerts = ref(false);
         const viewMode = ref('tiles');
         const useDrawer = ref(false);
+        const showWhatsNewDrawer = ref(false);
         const isLiveData = ref(false);
         const currentLang = ref('fr');
 
@@ -534,6 +593,12 @@
         const alertReposCount = computed(() => repos.value.filter(r => r.hasNewCommitsAlert).length);
         const reposWithReleasesCount = computed(() => repos.value.filter(r => r.latestRelease && r.latestRelease.assets?.length > 0).length);
 
+        const reposWithReleasesSorted = computed(() => {
+          return repos.value
+            .filter(r => r.latestRelease && r.latestRelease.publishedAt)
+            .sort((a, b) => new Date(b.latestRelease.publishedAt) - new Date(a.latestRelease.publishedAt));
+        });
+
         const filteredRepos = computed(() => {
           return repos.value.filter(r => {
             if (filterOnlyAlerts.value && !r.hasNewCommitsAlert) return false;
@@ -597,6 +662,10 @@
           } catch(e) { return text; }
         };
 
+        const openWhatsNew = () => {
+          showWhatsNewDrawer.value = true;
+        };
+
         const openReadme = (repo) => {
           if (useDrawer.value) {
             drawerType.value = 'readme';
@@ -637,11 +706,11 @@
         };
 
         return {
-          categories, repos, searchQuery, selectedCategory, filterOnlyAlerts, viewMode, useDrawer, isLiveData, currentLang,
+          categories, repos, searchQuery, selectedCategory, filterOnlyAlerts, viewMode, useDrawer, showWhatsNewDrawer, isLiveData, currentLang,
           t, toggleLang, rootCategories, getSubcategories, getCategoryRepoCount, getCategoryName, alertReposCount, reposWithReleasesCount,
-          filteredRepos, repoGroups, activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
+          reposWithReleasesSorted, filteredRepos, repoGroups, activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
           activeDrawerContent, drawerType, activeDrawerTitle, activeDrawerData,
-          renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, formatBytes, formatDate, formatCommitDate
+          openWhatsNew, renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, formatBytes, formatDate, formatCommitDate
         };
       }
     }).mount('#app');
