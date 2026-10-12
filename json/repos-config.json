@@ -17,6 +17,30 @@
       "name": "PS5_Remote",
       "color": "#4448fd",
       "parentId": null
+    },
+    {
+      "id": "cat-ps5-webkit-autoloader",
+      "name": "ps5-webkit-autoloader",
+      "color": "#00ff80",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_audio_utility",
+      "name": "ps5_audio_utility",
+      "color": "#ffff80",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_dns",
+      "name": "ps5_dns",
+      "color": "#ff0000",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_emulator",
+      "name": "ps5_emulator",
+      "color": "#ff00ff",
+      "parentId": null
     }
   ],
   "repos": [
@@ -39,6 +63,154 @@
     {
       "url": "https://github.com/StonedModder/ActRemoteLink-13.x",
       "categoryId": "cat-PS5_Remote"
+    },
+    {
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader",
+      "categoryId": "cat-ps5-webkit-autoloader"
+    },
+    {
+      "url": "https://github.com/ps4macedo/instalador-host-psm-poop2jb",
+      "categoryId": "cat-ps5-webkit-autoloader"
+    },
+    {
+      "url": "https://github.com/menfis911/FGG-PlayPods-GUI",
+      "categoryId": "cat-ps5_audio_utility"
+    },
+    {
+      "url": "https://github.com/FGGstore/FGG-PlayPods",
+      "categoryId": "cat-ps5_audio_utility"
+    },
+    {
+      "url": "https://github.com/drakmor/nanoDNS",
+      "categoryId": "cat-ps5_dns"
+    },
+    {
+      "url": "https://github.com/Al-Azif/chukei-dns",
+      "categoryId": "cat-ps5_dns"
+    },
+    {
+      "url": "https://github.com/MisterTemaki/snes9xPS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/MisterTemaki/genplusgxPS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/s0liton/ps5-romm",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/MisterTemaki/fbneo-ps",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/rpf16rj/flycast-ps5-libretro-core",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/BrinooTk/PS5X360",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/ZiZc3/XPSemu",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/BrinooTk/castation",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/elripalda/Porpoise-Dolphin-Emulator-for-PS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/GordonProsperoMan/xash3d-ps5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/lowbit/ps5-doom",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/RafaelNGP/pico8-ps5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/mpereiraesaa/prospero-win",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/tsuramatsu1/Vita3K-PS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/dmzebro/PS5_RPCS3",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/tsuramatsu1/psp5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/griches/PS5_Dusklight/",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/premohq/PS5CEMU-HAR",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Globaleliteee/PS5N64",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Globaleliteee/PS5NES",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/Swordpdf/PS5SX2",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/RafaelNGP/xbox-cloud-gaming-ps5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/SynoPiia/PSXS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/mihawk-99/PS5_RetroArch",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/darkxex/SwanStationPS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/ZiZc3/XPSemu",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/StonedModder/VITA5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/jmelovich/Steam-Link-PS5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/blackbearreloaded/ProsperoEden",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/tertiumndatur/ps5-cloud-play",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/heydemoura/ps5-forwarder-manager",
+      "categoryId": "cat-ps5_emulator"
     }
   ]
 }
