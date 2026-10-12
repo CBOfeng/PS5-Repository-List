@@ -991,6 +991,10 @@
     {
       "url": "https://github.com/VivaLaVent/PS5MC",
       "categoryId": "cat-ps5_video_player"
+    },
+    {
+      "url": "https://github.com/rodri0x/ps5-acestream",
+      "categoryId": "cat-ps5_video_player"
     }
   ]
 }
