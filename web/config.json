@@ -1,5 +1,6 @@
 {
-  "sidebarLogo": "https://avatars.githubusercontent.com/u/nexgen999?v=4",
+  "githubUsername": "nexgen999",
+  "sidebarLogo": "",
   "quickAccess": [
     {
       "name": "GitHub Profile",
@@ -18,12 +19,8 @@
       "url": "https://github.com/nexgen999"
     },
     {
-      "name": "Discord Communauté",
-      "url": "https://discord.gg/"
-    },
-    {
       "name": "Twitter / X",
-      "url": "https://twitter.com/"
+      "url": "https://x.com/nexgen999"
     }
   ]
 }
