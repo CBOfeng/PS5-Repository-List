@@ -1,0 +1,29 @@
+{
+  "sidebarLogo": "https://avatars.githubusercontent.com/u/nexgen999?v=4",
+  "quickAccess": [
+    {
+      "name": "GitHub Profile",
+      "url": "https://github.com/nexgen999",
+      "icon": "https://github.githubassets.com/favicons/favicon.svg"
+    },
+    {
+      "name": "PS5 WebKit Host",
+      "url": "https://nexgen999.github.io/ps5webkit/",
+      "icon": ""
+    }
+  ],
+  "socials": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/nexgen999"
+    },
+    {
+      "name": "Discord Communauté",
+      "url": "https://discord.gg/"
+    },
+    {
+      "name": "Twitter / X",
+      "url": "https://twitter.com/"
+    }
+  ]
+}
