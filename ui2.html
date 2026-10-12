@@ -41,7 +41,6 @@
     <!-- SIDEBAR GAUCHE -->
     <aside :class="sidebarCollapsed ? 'w-20' : 'w-64'" class="bg-[#0f1523] border-r border-slate-800/80 flex flex-col justify-between transition-all duration-300 z-30 select-none shrink-0">
       <div>
-        <!-- Logo / Avatar haut de sidebar -->
         <div class="h-20 flex items-center px-5 gap-3 border-b border-slate-800/50">
           <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0 overflow-hidden border border-blue-400/30">
             <img v-if="appConfig.sidebarLogo" :src="appConfig.sidebarLogo" class="w-full h-full object-cover" />
@@ -49,19 +48,17 @@
             <span v-else class="text-white font-bold text-lg">PS</span>
           </div>
           <div v-if="!sidebarCollapsed" class="overflow-hidden">
-            <h1 class="font-bold text-sm text-white truncate">PS5 Hub</h1>
+            <h1 class="font-bold text-sm text-white truncate">PS5-Repository-List</h1>
             <span class="text-[10px] text-slate-400 font-mono">@{{ githubUser.login }}</span>
           </div>
         </div>
 
-        <!-- Options & Raccourcis Sidebar -->
         <div class="p-3 space-y-1.5">
           <button @click="sidebarCollapsed = !sidebarCollapsed" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition">
             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
             <span v-if="!sidebarCollapsed" class="text-xs font-semibold">{{ t('toggleMenu') }}</span>
           </button>
 
-          <!-- Accès rapides depuis /web/config.json -->
           <div v-if="appConfig.quickAccess && appConfig.quickAccess.length > 0" class="pt-2">
             <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">{{ t('quickAccess') }}</span>
             <a v-for="item in appConfig.quickAccess" :key="item.name" :href="item.url" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition mt-1" :title="item.name">
@@ -71,7 +68,6 @@
             </a>
           </div>
 
-          <!-- Si vue Repository : Catégories -->
           <div v-if="currentView === 'repository'" class="pt-4 border-t border-slate-800/50 mt-4">
             <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">{{ t('categories') }}</span>
             
@@ -103,7 +99,6 @@
         </div>
       </div>
 
-      <!-- Bas de sidebar : Options UI & Tiroir -->
       <div class="p-3 border-t border-slate-800/50 space-y-1.5">
         <button @click="useDrawer = !useDrawer" :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'text-slate-400'" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs hover:bg-slate-800 transition">
           <span v-if="!sidebarCollapsed">{{ t('drawerMode') }}</span>
@@ -122,14 +117,12 @@
       
       <!-- HEADER SUPÉRIEUR -->
       <header class="h-20 border-b border-slate-800/80 bg-[#0f1523]/80 backdrop-blur px-6 flex items-center justify-between gap-4 z-20 shrink-0">
-        <!-- Navigation Onglets -->
         <nav class="flex items-center gap-2 bg-[#141b2d] p-1.5 rounded-2xl border border-slate-800">
           <button @click="currentView = 'dashboard'" :class="currentView === 'dashboard' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Dashboard</button>
           <button @click="currentView = 'repository'" :class="currentView === 'repository' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Repository</button>
           <button @click="currentView = 'whatsnew'" :class="currentView === 'whatsnew' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">What's New</button>
         </nav>
 
-        <!-- Recherche globale -->
         <div class="flex-1 max-w-md hidden md:block">
           <div class="relative">
             <input type="text" v-model="searchQuery" :placeholder="t('searchPlaceholder')" class="w-full bg-[#141b2d] border border-slate-800 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" />
@@ -137,14 +130,11 @@
           </div>
         </div>
 
-        <!-- Droite : Traduction FR/EN, Réseaux Sociaux & Avatar utilisateur GitHub -->
         <div class="flex items-center gap-3">
-          <!-- Bouton Sélecteur FR / EN -->
           <button @click="toggleLang" class="bg-[#141b2d] border border-slate-800 hover:border-slate-700 text-slate-200 px-3 py-2 rounded-xl font-mono text-xs font-bold transition">
             {{ currentLang.toUpperCase() }}
           </button>
 
-          <!-- Menu Réseaux Sociaux -->
           <div class="relative">
             <button @click="showSocialMenu = !showSocialMenu" class="w-10 h-10 rounded-xl bg-[#141b2d] border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4m6 0h4v4h-4V4m6 0h4v4h-4V4M4 10h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4M4 16h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4z"/></svg>
@@ -157,21 +147,20 @@
             </div>
           </div>
 
-          <!-- Avatar Github dynamique -->
           <div class="flex items-center gap-3 pl-2 border-l border-slate-800">
             <img :src="githubUser.avatarUrl" class="w-10 h-10 rounded-xl border border-slate-700 object-cover bg-slate-800 shadow-sm" :title="githubUser.login" />
           </div>
         </div>
       </header>
 
-      <!-- MAIN AREA -->
+      <!-- MAIN CONTENT -->
       <main class="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
         
         <!-- ================= VUE 1 : DASHBOARD ================= -->
         <div v-if="currentView === 'dashboard'" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div class="lg:col-span-2 space-y-8">
-            <!-- Pinned Repositories -->
+            <!-- Projets Épinglés (Pinned Repos) -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-white">{{ t('pinnedTitle') }} (@{{ githubUser.login }})</h2>
@@ -191,8 +180,7 @@
 
                   <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between">
                     <div class="flex -space-x-2 overflow-hidden">
-                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="repo.ownerAvatar || githubUser.avatarUrl" />
-                      <img v-for="contrib in (repo.contributors || []).slice(0, 2)" :key="contrib.login" class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="contrib.avatarUrl" />
+                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="githubUser.avatarUrl" />
                     </div>
                     <span class="text-[11px] font-mono text-slate-500">★ {{ repo.stars }}</span>
                   </div>
@@ -200,7 +188,7 @@
               </div>
             </div>
 
-            <!-- Recent Activity -->
+            <!-- Activité Récente (Graphique de contribution & événements réels) -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-white">{{ t('recentActivity') }}</h2>
@@ -210,6 +198,18 @@
                 </div>
               </div>
 
+              <!-- Widget SVG Activité / Contributions style GitHub -->
+              <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-5 space-y-4">
+                <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-3">
+                  <span>Contributions sur l'année récente (@{{ githubUser.login }})</span>
+                  <a :href="'https://github.com/' + githubUser.login" target="_blank" class="text-blue-400 hover:underline">Voir sur GitHub &rarr;</a>
+                </div>
+                <div class="flex justify-center overflow-x-auto py-2">
+                  <img :src="'https://ghchart.rshah.org/' + githubUser.login" alt="GitHub Contributions Chart" class="rounded-xl max-w-full opacity-90 hover:opacity-100 transition" />
+                </div>
+              </div>
+
+              <!-- Liste des commits récents -->
               <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-5 space-y-3">
                 <div v-for="act in filteredActivity" :key="act.sha || act.id" class="flex items-start justify-between gap-4 p-3 rounded-xl bg-[#0f1523] border border-slate-800/50 text-xs">
                   <div class="flex items-start gap-3">
@@ -225,7 +225,7 @@
             </div>
           </div>
 
-          <!-- COLONNE DROITE : Profil & Statistiques réelles -->
+          <!-- COLONNE DROITE : Profil & Stats -->
           <div class="space-y-6">
             <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-6 space-y-6 shadow-sm">
               <div class="flex items-center gap-4">
@@ -278,7 +278,6 @@
             </div>
           </div>
 
-          <!-- Vue Tuiles -->
           <div v-if="viewMode === 'tiles'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div v-for="repo in filteredRepos" :key="repo.id" class="bg-[#111827] border border-slate-800 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
               <div>
@@ -305,7 +304,6 @@
             </div>
           </div>
 
-          <!-- Vue Liste -->
           <div v-else class="bg-[#111827] border border-slate-800 rounded-2xl overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead class="bg-[#0f1523] text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[11px]">
@@ -392,7 +390,7 @@
       </main>
     </div>
 
-    <!-- TIROIR LATÉRAL (DRAWER) POUR README OU COMMITS -->
+    <!-- Tiroir latéral / Modales -->
     <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-[#111827] border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-[#0f1523]">
@@ -415,7 +413,6 @@
       </div>
     </div>
 
-    <!-- MODALE CLASSIQUE README -->
     <div v-if="!useDrawer && activeReadmeRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -426,7 +423,6 @@
       </div>
     </div>
 
-    <!-- MODALE CLASSIQUE COMMITS -->
     <div v-if="!useDrawer && activeCommitsRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -449,7 +445,6 @@
       </div>
     </div>
 
-    <!-- MODALE ASSETS / RELEASE -->
     <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -480,7 +475,7 @@
       </div>
     </div>
 
-    <!-- MODALE PARAMÈTRES UI -->
+    <!-- Modale Paramètres -->
     <div v-if="showSettingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-lg p-6 space-y-6 shadow-2xl">
         <div class="flex items-center justify-between border-b border-slate-800 pb-4">
@@ -542,7 +537,7 @@
             searchPlaceholder: 'Rechercher un dépôt, une description...',
             pinnedTitle: 'Projets Épinglés',
             projects: 'projets',
-            recentActivity: 'Activité Récente',
+            recentActivity: 'Activité Récente & Contributions',
             githubRepos: 'Dépôts GitHub',
             githubStars: 'Dépôts Stars',
             hubStats: 'Statistiques du Hub',
@@ -575,7 +570,7 @@
             searchPlaceholder: 'Search repositories, description...',
             pinnedTitle: 'Pinned Projects',
             projects: 'projects',
-            recentActivity: 'Recent Activity',
+            recentActivity: 'Recent Activity & Contributions',
             githubRepos: 'GitHub Repos',
             githubStars: 'Stars Count',
             hubStats: 'Hub Statistics',
@@ -620,30 +615,22 @@
         const activeDrawerTitle = ref('');
         const activeDrawerData = ref(null);
 
-        // Auto-détection universelle du pseudo GitHub depuis l'URL ou config
-        const detectGitHubUsername = () => {
-          if (appConfig.value.githubUsername) return appConfig.value.githubUsername;
-          const hostParts = window.location.hostname.split('.');
-          if (hostParts.length >= 3 && hostParts[1] === 'github' && hostParts[2] === 'io') {
-            return hostParts[0];
-          }
-          return 'nexgen999';
-        };
-
         onMounted(async () => {
           try {
             const cfgRes = await fetch('./web/config.json', { cache: 'no-cache' });
-            if (cfgRes.ok) appConfig.value = await cfgRes.json();
+            if (cfgRes.ok) {
+              appConfig.value = await cfgRes.json();
+            }
           } catch(e) {}
 
-          const detectedUsername = detectGitHubUsername();
-          githubUser.value.login = detectedUsername;
-          githubUser.value.name = detectedUsername;
-          githubUser.value.avatarUrl = `https://avatars.githubusercontent.com/u/${detectedUsername}?v=4`;
+          const username = appConfig.value.githubUsername || 'nexgen999';
+          githubUser.value.login = username;
+          githubUser.value.name = username;
+          githubUser.value.avatarUrl = `https://avatars.githubusercontent.com/u/${username}?v=4`;
 
-          // Récupération dynamique du profil GitHub live
+          // Récupération des données du profil utilisateur public GitHub
           try {
-            const userRes = await fetch(`https://api.github.com/users/${detectedUsername}`);
+            const userRes = await fetch(`https://api.github.com/users/${username}`);
             if (userRes.ok) {
               const uData = await userRes.json();
               githubUser.value.name = uData.name || uData.login;
@@ -652,9 +639,9 @@
             }
           } catch(e) {}
 
-          // Récupération live des repos pinnés
+          // Récupération automatique des projets épinglés (Pinned Repositories)
           try {
-            const pinRes = await fetch(`https://gh-pinned-repos.js.org/?username=${detectedUsername}`);
+            const pinRes = await fetch(`https://gh-pinned-repos.js.org/?username=${username}`);
             if (pinRes.ok) {
               const pData = await pinRes.json();
               if (Array.isArray(pData) && pData.length > 0) {
@@ -671,9 +658,9 @@
             }
           } catch(e) {}
 
-          // Récupération de l'activité récente de l'user
+          // Récupération des événements et activités publiques de l'utilisateur
           try {
-            const evRes = await fetch(`https://api.github.com/users/${detectedUsername}/events/public`);
+            const evRes = await fetch(`https://api.github.com/users/${username}/events/public`);
             if (evRes.ok) {
               const events = await evRes.json();
               const commits = [];
@@ -683,7 +670,7 @@
                     commits.push({
                       repoName: ev.repo.name.split('/')[1] || ev.repo.name,
                       message: c.message,
-                      author: c.author.name || detectedUsername,
+                      author: c.author.name || username,
                       date: ev.created_at,
                       shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
                       url: `https://github.com/${ev.repo.name}/commit/${c.sha}`
@@ -695,7 +682,7 @@
             }
           } catch(e) {}
 
-          // Charger la base de données locale du Hub
+          // Chargement de la base de données locale du Hub
           try {
             const res = await fetch('./json/repos-database.json', { cache: 'no-cache' });
             if (res.ok) {
