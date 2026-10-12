@@ -25,7 +25,7 @@
     }
   </script>
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { font-family: var(--custom-font, 'Plus Jakarta Sans'), sans-serif; font-size: var(--custom-font-size, 13px); }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 9999px; }
@@ -36,7 +36,7 @@
     .markdown-body img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 0.5rem auto; display: block; }
   </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white" :style="{ fontSize: uiFontSize + 'px', fontFamily: uiFontFamily }">
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white" :style="{ '--custom-font-size': uiFontSize + 'px', '--custom-font': uiFontFamily }">
   <div id="app" class="flex h-screen overflow-hidden">
     
     <!-- SIDEBAR GAUCHE -->
@@ -161,29 +161,35 @@
         <div v-if="currentView === 'dashboard'" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div class="lg:col-span-2 space-y-8">
-            <!-- Projets Épinglés -->
+            <!-- Projets Épinglés (Avec options README, Commits, Assets) -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold text-white">{{ t('pinnedTitle') }} (@{{ githubUser.login }})</h2>
                 <span class="text-xs text-slate-400 font-mono">{{ pinnedRepos.length }} {{ t('projects') }}</span>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div v-for="repo in pinnedRepos" :key="repo.name" class="bg-[#111827] border border-slate-800/80 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div v-for="repo in pinnedRepos" :key="repo.name" class="bg-[#111827] border border-slate-800 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
                   <div>
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">{{ repo.language || 'Code' }}</span>
-                      <a :href="repo.htmlUrl" target="_blank" class="text-xs text-slate-500 hover:text-slate-300 font-mono">GitHub &rarr;</a>
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                      <div class="flex items-center gap-3">
+                        <img :src="githubUser.avatarUrl" class="w-8 h-8 rounded-full border border-slate-700 bg-slate-800 object-cover" />
+                        <div>
+                          <a :href="repo.htmlUrl" target="_blank" class="font-bold text-sm text-white hover:text-blue-400 transition block truncate max-w-[150px]">{{ repo.name }}</a>
+                          <span class="text-xs text-slate-400 font-mono">★ {{ repo.stars }}</span>
+                        </div>
+                      </div>
+                      <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">{{ repo.language || 'Code' }}</span>
                     </div>
-                    <h3 class="font-bold text-sm text-white mb-1.5 group-hover:text-blue-400 transition truncate">{{ repo.name }}</h3>
-                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">{{ repo.description || t('noDescription') }}</p>
+                    <p class="text-xs text-slate-400 line-clamp-3 mb-4">{{ repo.description || t('noDescription') }}</p>
                   </div>
 
-                  <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between">
-                    <div class="flex -space-x-2 overflow-hidden">
-                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="githubUser.avatarUrl" />
+                  <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                    <span class="text-slate-500 text-[11px] font-mono">GitHub</span>
+                    <div class="flex items-center gap-1.5">
+                      <button @click="openPinnedCommits(repo)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">Commits</button>
+                      <button @click="openPinnedReadme(repo)" class="px-2 py-1 bg-blue-950/60 hover:bg-blue-900 text-blue-300 border border-blue-800/60 rounded text-xs transition">README</button>
                     </div>
-                    <span class="text-[11px] font-mono text-slate-500">★ {{ repo.stars }}</span>
                   </div>
                 </div>
               </div>
@@ -417,6 +423,7 @@
       </div>
     </div>
 
+    <!-- Modale standard README -->
     <div v-if="!useDrawer && activeReadmeRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -427,6 +434,7 @@
       </div>
     </div>
 
+    <!-- Modale standard Commits -->
     <div v-if="!useDrawer && activeCommitsRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -444,36 +452,6 @@
               </div>
             </div>
             <a :href="c.url" target="_blank" class="font-mono text-xs text-blue-400 hover:underline shrink-0 bg-slate-900 px-2 py-1 rounded border border-slate-800">{{ c.sha }}</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="activeReleaseRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
-        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">{{ activeReleaseRepo.latestRelease.tagName }}</span>
-            <h3 class="font-bold text-sm text-white">{{ activeReleaseRepo.latestRelease.name || 'Release' }}</h3>
-          </div>
-          <button @click="activeReleaseRepo = null" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
-        </div>
-        <div class="p-6 overflow-y-auto flex-1 space-y-6">
-          <div>
-            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">{{ t('downloadAssets') }}</h4>
-            <div class="space-y-2">
-              <div v-for="asset in activeReleaseRepo.latestRelease.assets" :key="asset.id" class="p-3 bg-[#0f1523] border border-slate-800 rounded-xl flex items-center justify-between gap-3 text-xs">
-                <div>
-                  <span class="font-mono font-medium text-slate-200 block">{{ asset.name }}</span>
-                  <span class="text-slate-500 text-[11px]">Taille: {{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
-                </div>
-                <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition">{{ t('download') }}</a>
-              </div>
-            </div>
-          </div>
-          <div v-if="activeReleaseRepo.latestRelease.body">
-            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Notes de Version</h4>
-            <div class="markdown-body p-4 bg-[#0f1523] border border-slate-800 rounded-xl text-xs" v-html="renderMarkdown(activeReleaseRepo.latestRelease.body, activeReleaseRepo)"></div>
           </div>
         </div>
       </div>
@@ -641,7 +619,7 @@
             }
           } catch(e) {}
 
-          // Récupération des commits récents de l'utilisateur via l'API publique GitHub
+          // Chargement robuste des événements publics pour l'activité récente
           try {
             const evRes = await fetch(`https://api.github.com/users/${username}/events/public`);
             if (evRes.ok) {
@@ -653,7 +631,7 @@
                     commits.push({
                       repoName: ev.repo.name.split('/')[1] || ev.repo.name,
                       message: c.message,
-                      author: c.author.name || username,
+                      author: c.author?.name || username,
                       date: ev.created_at,
                       shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
                       url: `https://github.com/${ev.repo.name}/commit/${c.sha}`
@@ -751,6 +729,38 @@
           } catch(e) { return text; }
         };
 
+        // Actions pour les projets épinglés (recherche de README dynamique ou fallback sur github)
+        const openPinnedReadme = async (repo) => {
+          let targetRepo = repos.value.find(r => r.name.toLowerCase() === repo.name.toLowerCase());
+          if (!targetRepo) {
+            // Créer un objet temporaire pour charger le README brut depuis GitHub
+            targetRepo = {
+              name: repo.name,
+              htmlUrl: repo.htmlUrl,
+              defaultBranch: 'main',
+              readme: `# ${repo.name}\n\n[Voir le dépôt sur GitHub](${repo.htmlUrl})`
+            };
+            try {
+              const rmRes = await fetch(`https://raw.githubusercontent.com/${githubUser.value.login}/${repo.name}/main/README.md`);
+              if (rmRes.ok) {
+                targetRepo.readme = await rmRes.text();
+              }
+            } catch(e) {}
+          }
+          openReadme(targetRepo);
+        };
+
+        const openPinnedCommits = (repo) => {
+          let targetRepo = repos.value.find(r => r.name.toLowerCase() === repo.name.toLowerCase());
+          if (!targetRepo) {
+            targetRepo = {
+              name: repo.name,
+              recentCommits: [{ message: 'Dépôt épinglé GitHub', authorName: githubUser.value.login, date: new Date().toISOString(), sha: '0000000', url: repo.htmlUrl }]
+            };
+          }
+          openCommits(targetRepo);
+        };
+
         const openReadme = (repo) => {
           if (useDrawer.value) {
             drawerType.value = 'readme';
@@ -791,7 +801,7 @@
           pinnedRepos, reposWithReleasesCount, filteredRepos, sortedReleases, filteredActivity,
           activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
           activeDrawerContent, drawerType, activeDrawerTitle, activeDrawerData,
-          renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, formatBytes, formatDate
+          renderMarkdown, openReadme, openCommits, openRelease, closeDrawer, openPinnedReadme, openPinnedCommits, formatBytes, formatDate
         };
       }
     }).mount('#app');
