@@ -59,6 +59,12 @@
       "name": "ps5_freeshop",
       "color": "#ffffff",
       "parentId": null
+    },
+    {
+      "id": "cat-ps5_game_dump",
+      "name": "ps5_game_dump",
+      "color": "#408080",
+      "parentId": null
     }
   ],
   "repos": [
@@ -288,6 +294,70 @@
     },
     {
       "url": "https://github.com/D3ATHLY/blackbox",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/juma-sayeh/PS5-Game-Compressor",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/EchoStretch/ps5-app-dumper",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/EchoStretch/dump_installer",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/EchoStretch/dump_runner",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/drakmor/ShadowMountPlus",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/BestPig/BackPork",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/drakmor/dlc_emu",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/drakmor/pgo_stub",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/tsuramatsu1/apr-emu-updater",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/gcoding97/PS5-Game-Compressor",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/exFAT2AMPR/exfat2ampr",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/theghostonline/PS5-LZ4-Compression",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/gameboy829/PS5-LZ4-Game-Compressor",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/KINGDKAK/PS5-FFPFSC-PRO",
+      "categoryId": "cat-ps5_game_dump"
+    },
+    {
+      "url": "https://github.com/romanocry/EmuStore-PS5",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/blackbearreloaded/ProsperoStore",
       "categoryId": "cat-ps5_freeshop"
     }
   ]
