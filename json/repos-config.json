@@ -939,6 +939,22 @@
     {
       "url": "https://github.com/seregonwar/PSXTERM",
       "categoryId": "cat-ps5_sdk_debug"
+    },
+    {
+      "url": "https://github.com/Yahballon/PS5CLEAN",
+      "categoryId": "cat-ps5_fan"
+    },
+    {
+      "url": "https://github.com/dnullptr/AtmoxJB",
+      "categoryId": "cat-ps5_kstuff"
+    },
+    {
+      "url": "https://github.com/SloppyStakes/Prospero-Sender",
+      "categoryId": "cat-ps5_server"
+    },
+    {
+      "url": "https://github.com/pedro9261/ps5-notify-app",
+      "categoryId": "cat-ps5_utility"
     }
   ]
 }
