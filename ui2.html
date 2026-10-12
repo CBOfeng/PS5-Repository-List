@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PS5-Repository-Hub · Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: { 500: '#3b82f6', 600: '#2563eb' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 9999px; }
+    .markdown-body { color: #cbd5e1; line-height: 1.6; }
+    .markdown-body h1, .markdown-body h2 { color: #f8fafc; font-weight: 700; margin-top: 1rem; margin-bottom: 0.5rem; }
+    .markdown-body pre { background: #0f172a; border: 1px solid #334155; border-radius: 0.5rem; padding: 0.75rem; }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white" :style="{ fontSize: uiFontSize + 'px', fontFamily: uiFontFamily }">
+  <div id="app" class="flex h-screen overflow-hidden">
+    
+    <!-- SIDEBAR GAUCHE -->
+    <aside :class="sidebarCollapsed ? 'w-20' : 'w-64'" class="bg-[#0f1523] border-r border-slate-800/80 flex flex-col justify-between transition-all duration-300 z-30 select-none shrink-0">
+      <div>
+        <!-- Logo haut sidebar -->
+        <div class="h-20 flex items-center px-5 gap-3 border-b border-slate-800/50">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0 overflow-hidden border border-blue-400/30">
+            <img v-if="appConfig.sidebarLogo" :src="appConfig.sidebarLogo" class="w-full h-full object-cover" />
+            <span v-else class="text-white font-bold text-lg">PS</span>
+          </div>
+          <div v-if="!sidebarCollapsed" class="overflow-hidden">
+            <h1 class="font-bold text-sm text-white truncate">PS5 Hub</h1>
+            <span class="text-[10px] text-slate-400 font-mono">v2.5 Engine</span>
+          </div>
+        </div>
+
+        <!-- Menu de navigation principal sidebar -->
+        <div class="p-3 space-y-1.5">
+          <button @click="sidebarCollapsed = !sidebarCollapsed" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+            <span v-if="!sidebarCollapsed" class="text-xs font-semibold">Réduire menu</span>
+          </button>
+
+          <!-- Accès rapides / Favoris configurés via web/config.json -->
+          <div v-if="appConfig.quickAccess && appConfig.quickAccess.length > 0" class="pt-2">
+            <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Raccourcis</span>
+            <a v-for="item in appConfig.quickAccess" :href="item.url" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition mt-1" :title="item.name">
+              <img v-if="item.icon" :src="item.icon" class="w-5 h-5 rounded-md object-cover shrink-0" />
+              <svg v-else class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span v-if="!sidebarCollapsed" class="text-xs truncate">{{ item.name }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bas de la sidebar : Paramètres -->
+      <div class="p-3 border-t border-slate-800/50">
+        <button @click="showSettingsModal = true" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span v-if="!sidebarCollapsed" class="text-xs font-semibold">Paramètres & UI</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENEUR PRINCIPAL -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-[#0b0f19]">
+      
+      <!-- TOP NAVIGATION BAR -->
+      <header class="h-20 border-b border-slate-800/80 bg-[#0f1523]/80 backdrop-blur px-6 flex items-center justify-between gap-4 z-20 shrink-0">
+        <!-- Menu principal supérieur -->
+        <nav class="flex items-center gap-2 bg-[#141b2d] p-1.5 rounded-2xl border border-slate-800">
+          <button @click="currentView = 'dashboard'" :class="currentView === 'dashboard' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Dashboard</button>
+          <button @click="currentView = 'repository'" :class="currentView === 'repository' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Repository</button>
+          <button @click="currentView = 'whatsnew'" :class="currentView === 'whatsnew' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">What's New</button>
+        </nav>
+
+        <!-- Barre de recherche -->
+        <div class="flex-1 max-w-md hidden md:block">
+          <div class="relative">
+            <input type="text" v-model="searchQuery" placeholder="Rechercher un dépôt, une techno..." class="w-full bg-[#141b2d] border border-slate-800 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" />
+          </div>
+        </div>
+
+        <!-- Droite : Réseaux sociaux & Avatar utilisateur GitHub dynamique -->
+        <div class="flex items-center gap-3">
+          <!-- Icône petits carrés (Menu Réseaux Sociaux) -->
+          <div class="relative">
+            <button @click="showSocialMenu = !showSocialMenu" class="w-10 h-10 rounded-xl bg-[#141b2d] border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4m6 0h4v4h-4V4m6 0h4v4h-4V4M4 10h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4M4 16h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4z"/></svg>
+            </button>
+            <div v-if="showSocialMenu" class="absolute right-0 mt-2 w-48 bg-[#141b2d] border border-slate-800 rounded-2xl shadow-2xl p-2 space-y-1 z-50">
+              <a v-for="social in appConfig.socials" :href="social.url" target="_blank" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                <span>{{ social.name }}</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Avatar dynamique GitHub -->
+          <div class="flex items-center gap-3 pl-2 border-l border-slate-800">
+            <img :src="githubUser.avatarUrl || 'https://avatars.githubusercontent.com/u/0?v=4'" class="w-10 h-10 rounded-xl border border-slate-700 object-cover bg-slate-800" />
+          </div>
+        </div>
+      </header>
+
+      <!-- ZONE DE CONTENU DYNAMIQUE -->
+      <main class="flex-1 overflow-y-auto p-6 md:p-8">
+        
+        <!-- ================= VUE 1 : DASHBOARD ================= -->
+        <div v-if="currentView === 'dashboard'" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Colonne Gauche / Centrale (2 colonnes sur lg) -->
+          <div class="lg:col-span-2 space-y-8">
+            
+            <!-- SECTION : YOUR PROJECTS (Pinnés ou Repos principaux) -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold text-white">Vos Projets Épinglés</h2>
+                <span class="text-xs text-slate-400 font-mono">{{ pinnedRepos.length }} projets</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="repo in pinnedRepos" :key="repo.id" class="bg-[#111827] border border-slate-800/80 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">{{ repo.language || 'Code' }}</span>
+                      <a :href="repo.htmlUrl" target="_blank" class="text-xs text-slate-500 hover:text-slate-300 font-mono">GitHub &rarr;</a>
+                    </div>
+                    <h3 class="font-bold text-sm text-white mb-1.5 group-hover:text-blue-400 transition truncate">{{ repo.name }}</h3>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">{{ repo.description || 'Aucune description fournie.' }}</p>
+                  </div>
+
+                  <!-- Bulles de contributeurs -->
+                  <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between">
+                    <div class="flex -space-x-2 overflow-hidden">
+                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800" :src="repo.ownerAvatar" :title="repo.owner" />
+                      <img v-for="contrib in (repo.contributors || []).slice(0, 2)" :key="contrib.login" class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800" :src="contrib.avatarUrl" :title="contrib.login" />
+                    </div>
+                    <span class="text-[11px] font-mono text-slate-500">★ {{ repo.stars }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION : WEEKLY / GITHUB ACTIVITY -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold text-white">Activité Récente des Dépôts</h2>
+                <!-- Filtre Activité : Utilisateur GitHub vs Host (notre liste) -->
+                <div class="flex items-center gap-1 bg-[#141b2d] border border-slate-800 p-1 rounded-xl text-xs">
+                  <button @click="activityFilter = 'all'" :class="activityFilter === 'all' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">Tous</button>
+                  <button @click="activityFilter = 'host'" :class="activityFilter === 'host' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">Host (Notre Liste)</button>
+                </div>
+              </div>
+
+              <!-- Timeline / Activité -->
+              <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-5 space-y-3">
+                <div v-for="act in filteredActivity" :key="act.sha || act.id" class="flex items-start justify-between gap-4 p-3 rounded-xl bg-[#0f1523] border border-slate-800/50 text-xs">
+                  <div class="flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+                    <div>
+                      <p class="font-semibold text-slate-200">{{ act.repoName }}: <span class="font-normal text-slate-400">{{ act.message }}</span></p>
+                      <span class="text-[10px] text-slate-500 font-mono mt-1 block">Auteur : {{ act.author }} · {{ formatDate(act.date) }}</span>
+                    </div>
+                  </div>
+                  <a :href="act.url" target="_blank" class="font-mono text-[11px] text-blue-400 hover:underline shrink-0">{{ act.shaSnippet || 'Voir' }}</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Colonne Droite : Profil, Stats & Vue d'ensemble -->
+          <div class="space-y-6">
+            
+            <!-- Carte Hello Utilisateur GitHub -->
+            <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-6 space-y-6 shadow-sm">
+              <div class="flex items-center gap-4">
+                <img :src="githubUser.avatarUrl" class="w-14 h-14 rounded-2xl border-2 border-blue-500/40 object-cover bg-slate-800 shadow-md" />
+                <div>
+                  <h3 class="font-bold text-base text-white">Hello, {{ githubUser.name || githubUser.login || 'Développeur' }}</h3>
+                  <span class="text-xs text-blue-400 font-mono">@{{ githubUser.login || 'github-user' }}</span>
+                </div>
+              </div>
+
+              <!-- Statistiques réelles du compte GitHub -->
+              <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800 text-xs">
+                <div class="bg-[#0f1523] p-3.5 rounded-xl border border-slate-800/60">
+                  <span class="text-slate-400 block mb-1">Dépôts GitHub</span>
+                  <span class="text-lg font-bold font-mono text-white">{{ githubUser.publicReposCount || repos.length }}</span>
+                </div>
+                <div class="bg-[#0f1523] p-3.5 rounded-xl border border-slate-800/60">
+                  <span class="text-slate-400 block mb-1">Dépôts Stars</span>
+                  <span class="text-lg font-bold font-mono text-amber-400">{{ githubUser.starredCount || 0 }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistiques de notre liste (Repository Hub Overview) -->
+            <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-6 space-y-4 shadow-sm">
+              <h3 class="font-bold text-sm text-white">Statistiques du Hub (Liste)</h3>
+              <div class="space-y-3 text-xs">
+                <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
+                  <span class="text-slate-400">Total Dépôts Suivis</span>
+                  <span class="font-mono font-bold text-white text-sm">{{ repos.length }}</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
+                  <span class="text-slate-400">Catégories Actives</span>
+                  <span class="font-mono font-bold text-blue-400 text-sm">{{ categories.length }}</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
+                  <span class="text-slate-400">Releases Disponibles</span>
+                  <span class="font-mono font-bold text-emerald-400 text-sm">{{ reposWithReleasesCount }}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= VUE 2 : REPOSITORY ================= -->
+        <div v-else-if="currentView === 'repository'" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold text-white">Tous les Dépôts ({{ filteredRepos.length }})</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div v-for="repo in filteredRepos" :key="repo.id" class="bg-[#111827] border border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition hover:border-slate-700">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-blue-400">{{ getCategoryName(repo.categoryId) }}</span>
+                  <span class="font-mono text-xs text-slate-400">★ {{ repo.stars }}</span>
+                </div>
+                <h3 class="font-bold text-sm text-white mb-1"><a :href="repo.htmlUrl" target="_blank" class="hover:text-blue-400">{{ repo.name }}</a></h3>
+                <p class="text-xs text-slate-400 line-clamp-3 mb-4">{{ repo.description || 'Aucune description.' }}</p>
+              </div>
+              <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+                <span class="text-emerald-400 font-mono text-[11px]">{{ repo.latestRelease ? repo.latestRelease.tagName : 'Pas de release' }}</span>
+                <a :href="repo.htmlUrl" target="_blank" class="text-slate-400 hover:text-white font-medium">GitHub &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= VUE 3 : WHAT'S NEW ================= -->
+        <div v-else-if="currentView === 'whatsnew'" class="space-y-6 max-w-4xl mx-auto">
+          <div class="border-b border-slate-800 pb-4">
+            <h2 class="text-lg font-bold text-white">🔥 What's New - Dernières Releases</h2>
+            <p class="text-xs text-slate-400 mt-1">Suivi chronologique des mises à jour des outils de l'écosystème.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div v-for="repo in sortedReleases" :key="repo.id" class="bg-[#111827] border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img :src="repo.ownerAvatar" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700" />
+                  <div>
+                    <h3 class="font-bold text-sm text-white">{{ repo.name }}</h3>
+                    <span class="text-[11px] text-slate-400">{{ repo.owner }}</span>
+                  </div>
+                </div>
+                <span class="px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-xs font-bold">
+                  {{ repo.latestRelease.tagName }}
+                </span>
+              </div>
+
+              <div class="bg-[#0f1523] p-4 rounded-xl border border-slate-800/60 text-xs text-slate-300">
+                <p class="font-bold text-white mb-1">{{ repo.latestRelease.name || 'Mise à jour' }}</p>
+                <p class="text-slate-400 line-clamp-4">{{ repo.latestRelease.body || 'Pas de notes de version.' }}</p>
+              </div>
+
+              <div class="flex items-center justify-between text-xs pt-2">
+                <span class="text-slate-500 font-mono">Publié le {{ formatDate(repo.latestRelease.publishedAt) }}</span>
+                <a :href="repo.latestRelease.htmlUrl || repo.htmlUrl" target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium transition">Voir sur GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- MODALE DE CONFIGURATION ET PARAMÈTRES UI -->
+    <div v-if="showSettingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-lg p-6 space-y-6 shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <h3 class="font-bold text-base text-white">Paramètres de l'Interface & UI</h3>
+          <button @click="showSettingsModal = false" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+        </div>
+
+        <div class="space-y-4 text-xs">
+          <!-- Taille de police -->
+          <div class="space-y-2">
+            <label class="text-slate-300 font-semibold block">Taille de police ({{ uiFontSize }}px)</label>
+            <input type="range" min="12" max="18" v-model="uiFontSize" class="w-full accent-blue-600" />
+          </div>
+
+          <!-- Choix de police -->
+          <div class="space-y-2">
+            <label class="text-slate-300 font-semibold block">Police d'écriture</label>
+            <select v-model="uiFontFamily" class="w-full bg-[#0f1523] border border-slate-800 rounded-xl p-2.5 text-white">
+              <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
+              <option value="'Inter', sans-serif">Inter</option>
+              <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex justify-end">
+          <button @click="showSettingsModal = false" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const currentView = ref('dashboard');
+        const sidebarCollapsed = ref(false);
+        const showSocialMenu = ref(false);
+        const showSettingsModal = ref(false);
+        const searchQuery = ref('');
+        const activityFilter = ref('all');
+
+        const uiFontSize = ref(13);
+        const uiFontFamily = ref("'Plus Jakarta Sans', sans-serif");
+
+        const appConfig = ref({
+          sidebarLogo: '',
+          quickAccess: [],
+          socials: []
+        });
+
+        const githubUser = ref({
+          login: 'github-user',
+          name: 'Utilisateur GitHub',
+          avatarUrl: 'https://avatars.githubusercontent.com/u/0?v=4',
+          publicReposCount: 0,
+          starredCount: 0
+        });
+
+        const categories = ref([]);
+        const repos = ref([]);
+
+        onMounted(async () => {
+          // Charger le fichier web/config.json optionnel
+          try {
+            const cfgRes = await fetch('./web/config.json', { cache: 'no-cache' });
+            if (cfgRes.ok) {
+              appConfig.value = await cfgRes.json();
+            }
+          } catch(e) {}
+
+          // Charger la base de données des dépôts
+          try {
+            const res = await fetch('./json/repos-database.json', { cache: 'no-cache' });
+            if (res.ok) {
+              const data = await res.json();
+              categories.value = data.categories || [];
+              repos.value = data.repos || [];
+            }
+          } catch(e) {}
+
+          // Déduire le compte GitHub hôte à partir du premier dépôt ou config
+          if (repos.value.length > 0) {
+            const firstRepo = repos.value[0];
+            githubUser.value.login = firstRepo.owner || 'ps5-developer';
+            githubUser.value.name = firstRepo.owner || 'Développeur';
+            githubUser.value.avatarUrl = firstRepo.ownerAvatar || 'https://avatars.githubusercontent.com/u/316784285?v=4';
+            githubUser.value.publicReposCount = repos.value.length;
+          }
+        });
+
+        const pinnedRepos = computed(() => repos.value.slice(0, 3));
+        const reposWithReleasesCount = computed(() => repos.value.filter(r => r.latestRelease).length);
+
+        const filteredRepos = computed(() => {
+          if (!searchQuery.value.trim()) return repos.value;
+          const q = searchQuery.value.toLowerCase().trim();
+          return repos.value.filter(r => r.name.toLowerCase().includes(q) || r.description?.toLowerCase().includes(q));
+        });
+
+        const sortedReleases = computed(() => {
+          return repos.value
+            .filter(r => r.latestRelease && r.latestRelease.publishedAt)
+            .sort((a, b) => new Date(b.latestRelease.publishedAt) - new Date(a.latestRelease.publishedAt));
+        });
+
+        const filteredActivity = computed(() => {
+          let list = [];
+          repos.value.forEach(r => {
+            if (r.recentCommits) {
+              r.recentCommits.forEach(c => {
+                list.push({
+                  repoName: r.name,
+                  message: c.message,
+                  author: c.authorName,
+                  date: c.date,
+                  shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
+                  url: c.url
+                });
+              });
+            }
+          });
+          return list.slice(0, 6);
+        });
+
+        const getCategoryName = (catId) => {
+          const cat = categories.value.find(c => c.id === catId);
+          return cat ? cat.name : 'Général';
+        };
+
+        const formatDate = (dateStr) => dateStr ? new Date(dateStr.toLocaleDateString ? dateStr : dateStr).toLocaleDateString() : '';
+
+        return {
+          currentView, sidebarCollapsed, showSocialMenu, showSettingsModal, searchQuery, activityFilter,
+          uiFontSize, uiFontFamily, appConfig, githubUser, categories, repos,
+          pinnedRepos, reposWithReleasesCount, filteredRepos, sortedReleases, filteredActivity,
+          getCategoryName, formatDate
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
