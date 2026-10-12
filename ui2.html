@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -41,38 +41,39 @@
     <!-- SIDEBAR GAUCHE -->
     <aside :class="sidebarCollapsed ? 'w-20' : 'w-64'" class="bg-[#0f1523] border-r border-slate-800/80 flex flex-col justify-between transition-all duration-300 z-30 select-none shrink-0">
       <div>
-        <!-- Logo haut sidebar -->
+        <!-- Logo / Avatar haut de sidebar -->
         <div class="h-20 flex items-center px-5 gap-3 border-b border-slate-800/50">
           <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0 overflow-hidden border border-blue-400/30">
             <img v-if="appConfig.sidebarLogo" :src="appConfig.sidebarLogo" class="w-full h-full object-cover" />
-            <img v-else :src="githubUser.avatarUrl" class="w-full h-full object-cover" />
+            <img v-else-if="githubUser.avatarUrl" :src="githubUser.avatarUrl" class="w-full h-full object-cover" />
+            <span v-else class="text-white font-bold text-lg">PS</span>
           </div>
           <div v-if="!sidebarCollapsed" class="overflow-hidden">
             <h1 class="font-bold text-sm text-white truncate">PS5 Hub</h1>
-            <span class="text-[10px] text-slate-400 font-mono">{{ githubUser.login }}</span>
+            <span class="text-[10px] text-slate-400 font-mono">@{{ githubUser.login }}</span>
           </div>
         </div>
 
-        <!-- Menu / Navigation Sidebar -->
+        <!-- Options & Raccourcis Sidebar -->
         <div class="p-3 space-y-1.5">
           <button @click="sidebarCollapsed = !sidebarCollapsed" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition">
             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-            <span v-if="!sidebarCollapsed" class="text-xs font-semibold">Réduire menu</span>
+            <span v-if="!sidebarCollapsed" class="text-xs font-semibold">{{ t('toggleMenu') }}</span>
           </button>
 
           <!-- Accès rapides depuis /web/config.json -->
           <div v-if="appConfig.quickAccess && appConfig.quickAccess.length > 0" class="pt-2">
-            <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Accès Rapides</span>
-            <a v-for="item in appConfig.quickAccess" :href="item.url" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition mt-1" :title="item.name">
+            <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">{{ t('quickAccess') }}</span>
+            <a v-for="item in appConfig.quickAccess" :key="item.name" :href="item.url" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/40 transition mt-1" :title="item.name">
               <img v-if="item.icon" :src="item.icon" class="w-5 h-5 rounded-md object-cover shrink-0" />
               <svg v-else class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               <span v-if="!sidebarCollapsed" class="text-xs truncate">{{ item.name }}</span>
             </a>
           </div>
 
-          <!-- Si on est dans Repository : Afficher les catégories -->
+          <!-- Si vue Repository : Catégories -->
           <div v-if="currentView === 'repository'" class="pt-4 border-t border-slate-800/50 mt-4">
-            <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">Catégories</span>
+            <span v-if="!sidebarCollapsed" class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">{{ t('categories') }}</span>
             
             <div class="space-y-1 text-xs">
               <button 
@@ -80,7 +81,7 @@
                 :class="selectedCategory === null ? 'bg-blue-600/20 text-blue-300 font-semibold border border-blue-500/30' : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'"
                 class="w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition"
               >
-                <span>Toutes</span>
+                <span>{{ t('allCategories') }}</span>
                 <span class="font-mono text-slate-500">{{ repos.length }}</span>
               </button>
 
@@ -99,70 +100,82 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
-      <!-- Bas de sidebar : Paramètres -->
-      <div class="p-3 border-t border-slate-800/50 space-y-2">
-        <button @click="useDrawer = !useDrawer" :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'text-slate-400'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs hover:bg-slate-800 transition">
-          <span>Panneau Latéral : {{ useDrawer ? 'ON' : 'OFF' }}</span>
+      <!-- Bas de sidebar : Options UI & Tiroir -->
+      <div class="p-3 border-t border-slate-800/50 space-y-1.5">
+        <button @click="useDrawer = !useDrawer" :class="useDrawer ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40' : 'text-slate-400'" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs hover:bg-slate-800 transition">
+          <span v-if="!sidebarCollapsed">{{ t('drawerMode') }}</span>
+          <span class="font-bold text-[10px] px-1.5 py-0.5 rounded" :class="useDrawer ? 'bg-indigo-500/30 text-indigo-300' : 'bg-slate-800 text-slate-400'">{{ useDrawer ? 'ON' : 'OFF' }}</span>
         </button>
-        <button @click="showSettingsModal = true" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
+
+        <button @click="showSettingsModal = true" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          <span v-if="!sidebarCollapsed" class="text-xs font-semibold">Paramètres & UI</span>
+          <span v-if="!sidebarCollapsed" class="text-xs font-semibold">{{ t('settings') }}</span>
         </button>
       </div>
     </aside>
 
-    <!-- ZONE CENTRALE -->
+    <!-- ZONE PRINCIPALE -->
     <div class="flex-1 flex flex-col overflow-hidden bg-[#0b0f19]">
       
-      <!-- TOP NAVIGATION -->
+      <!-- HEADER SUPÉRIEUR -->
       <header class="h-20 border-b border-slate-800/80 bg-[#0f1523]/80 backdrop-blur px-6 flex items-center justify-between gap-4 z-20 shrink-0">
+        <!-- Navigation Onglets -->
         <nav class="flex items-center gap-2 bg-[#141b2d] p-1.5 rounded-2xl border border-slate-800">
           <button @click="currentView = 'dashboard'" :class="currentView === 'dashboard' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Dashboard</button>
           <button @click="currentView = 'repository'" :class="currentView === 'repository' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">Repository</button>
           <button @click="currentView = 'whatsnew'" :class="currentView === 'whatsnew' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-bold transition">What's New</button>
         </nav>
 
+        <!-- Recherche globale -->
         <div class="flex-1 max-w-md hidden md:block">
           <div class="relative">
-            <input type="text" v-model="searchQuery" placeholder="Rechercher un dépôt, une description..." class="w-full bg-[#141b2d] border border-slate-800 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" />
+            <input type="text" v-model="searchQuery" :placeholder="t('searchPlaceholder')" class="w-full bg-[#141b2d] border border-slate-800 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" />
             <button v-if="searchQuery" @click="searchQuery = ''" class="absolute right-3 top-2 text-slate-400 hover:text-white text-xs">&times;</button>
           </div>
         </div>
 
+        <!-- Droite : Traduction FR/EN, Réseaux Sociaux & Avatar utilisateur GitHub -->
         <div class="flex items-center gap-3">
+          <!-- Bouton Sélecteur FR / EN -->
+          <button @click="toggleLang" class="bg-[#141b2d] border border-slate-800 hover:border-slate-700 text-slate-200 px-3 py-2 rounded-xl font-mono text-xs font-bold transition">
+            {{ currentLang.toUpperCase() }}
+          </button>
+
+          <!-- Menu Réseaux Sociaux -->
           <div class="relative">
             <button @click="showSocialMenu = !showSocialMenu" class="w-10 h-10 rounded-xl bg-[#141b2d] border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4m6 0h4v4h-4V4m6 0h4v4h-4V4M4 10h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4M4 16h4v4H4v-4m6 0h4v4h-4v-4m6 0h4v4h-4v-4z"/></svg>
             </button>
             <div v-if="showSocialMenu" class="absolute right-0 mt-2 w-48 bg-[#141b2d] border border-slate-800 rounded-2xl shadow-2xl p-2 space-y-1 z-50">
-              <a v-for="social in appConfig.socials" :href="social.url" target="_blank" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition">
+              <a v-for="social in appConfig.socials" :key="social.name" :href="social.url" target="_blank" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition">
                 <span class="w-2 h-2 rounded-full bg-blue-500"></span>
                 <span>{{ social.name }}</span>
               </a>
             </div>
           </div>
 
+          <!-- Avatar Github dynamique -->
           <div class="flex items-center gap-3 pl-2 border-l border-slate-800">
             <img :src="githubUser.avatarUrl" class="w-10 h-10 rounded-xl border border-slate-700 object-cover bg-slate-800 shadow-sm" :title="githubUser.login" />
           </div>
         </div>
       </header>
 
-      <!-- CONTENU -->
+      <!-- MAIN AREA -->
       <main class="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
         
-        <!-- ================= VUE 1 : DASHBOARD (nexgen999) ================= -->
+        <!-- ================= VUE 1 : DASHBOARD ================= -->
         <div v-if="currentView === 'dashboard'" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div class="lg:col-span-2 space-y-8">
+            <!-- Pinned Repositories -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold text-white">Projets Épinglés (@{{ githubUser.login }})</h2>
-                <span class="text-xs text-slate-400 font-mono">{{ pinnedRepos.length }} projets</span>
+                <h2 class="text-base font-bold text-white">{{ t('pinnedTitle') }} (@{{ githubUser.login }})</h2>
+                <span class="text-xs text-slate-400 font-mono">{{ pinnedRepos.length }} {{ t('projects') }}</span>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -173,12 +186,12 @@
                       <a :href="repo.htmlUrl" target="_blank" class="text-xs text-slate-500 hover:text-slate-300 font-mono">GitHub &rarr;</a>
                     </div>
                     <h3 class="font-bold text-sm text-white mb-1.5 group-hover:text-blue-400 transition truncate">{{ repo.name }}</h3>
-                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">{{ repo.description || 'Aucune description.' }}</p>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">{{ repo.description || t('noDescription') }}</p>
                   </div>
 
                   <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between">
                     <div class="flex -space-x-2 overflow-hidden">
-                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="repo.ownerAvatar" />
+                      <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="repo.ownerAvatar || githubUser.avatarUrl" />
                       <img v-for="contrib in (repo.contributors || []).slice(0, 2)" :key="contrib.login" class="inline-block h-6 w-6 rounded-full ring-2 ring-[#111827] bg-slate-800 object-cover" :src="contrib.avatarUrl" />
                     </div>
                     <span class="text-[11px] font-mono text-slate-500">★ {{ repo.stars }}</span>
@@ -187,12 +200,12 @@
               </div>
             </div>
 
-            <!-- ACTIVITÉ RÉCENTE -->
+            <!-- Recent Activity -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold text-white">Activité Récente</h2>
+                <h2 class="text-base font-bold text-white">{{ t('recentActivity') }}</h2>
                 <div class="flex items-center gap-1 bg-[#141b2d] border border-slate-800 p-1 rounded-xl text-xs">
-                  <button @click="activityFilter = 'all'" :class="activityFilter === 'all' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">Tous</button>
+                  <button @click="activityFilter = 'user'" :class="activityFilter === 'user' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">{{ githubUser.login }}</button>
                   <button @click="activityFilter = 'host'" :class="activityFilter === 'host' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition font-medium">Host</button>
                 </div>
               </div>
@@ -203,51 +216,51 @@
                     <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
                     <div>
                       <p class="font-semibold text-slate-200">{{ act.repoName }}: <span class="font-normal text-slate-400">{{ act.message }}</span></p>
-                      <span class="text-[10px] text-slate-500 font-mono mt-1 block">Auteur : {{ act.author }} · {{ formatDate(act.date) }}</span>
+                      <span class="text-[10px] text-slate-500 font-mono mt-1 block">{{ t('author') }} : {{ act.author }} · {{ formatDate(act.date) }}</span>
                     </div>
                   </div>
-                  <a :href="act.url" target="_blank" class="font-mono text-[11px] text-blue-400 hover:underline shrink-0">{{ act.shaSnippet || 'Voir' }}</a>
+                  <a :href="act.url" target="_blank" class="font-mono text-[11px] text-blue-400 hover:underline shrink-0">{{ act.shaSnippet || t('view') }}</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- COLONNE DROITE : PROFIL NEXGEN999 -->
+          <!-- COLONNE DROITE : Profil & Statistiques réelles -->
           <div class="space-y-6">
             <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-6 space-y-6 shadow-sm">
               <div class="flex items-center gap-4">
                 <img :src="githubUser.avatarUrl" class="w-14 h-14 rounded-2xl border-2 border-blue-500/40 object-cover bg-slate-800 shadow-md" />
                 <div>
-                  <h3 class="font-bold text-base text-white">Hello, {{ githubUser.name }}</h3>
+                  <h3 class="font-bold text-base text-white">Hello, {{ githubUser.name || githubUser.login }}</h3>
                   <a :href="'https://github.com/' + githubUser.login" target="_blank" class="text-xs text-blue-400 font-mono hover:underline">@{{ githubUser.login }}</a>
                 </div>
               </div>
 
               <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800 text-xs">
                 <div class="bg-[#0f1523] p-3.5 rounded-xl border border-slate-800/60">
-                  <span class="text-slate-400 block mb-1">Dépôts GitHub</span>
+                  <span class="text-slate-400 block mb-1">{{ t('githubRepos') }}</span>
                   <span class="text-lg font-bold font-mono text-white">{{ githubUser.publicReposCount }}</span>
                 </div>
                 <div class="bg-[#0f1523] p-3.5 rounded-xl border border-slate-800/60">
-                  <span class="text-slate-400 block mb-1">Dépôts Stars</span>
+                  <span class="text-slate-400 block mb-1">{{ t('githubStars') }}</span>
                   <span class="text-lg font-bold font-mono text-amber-400">{{ githubUser.starredCount }}</span>
                 </div>
               </div>
             </div>
 
             <div class="bg-[#111827] border border-slate-800/80 rounded-2xl p-6 space-y-4 shadow-sm">
-              <h3 class="font-bold text-sm text-white">Statistiques du Hub</h3>
+              <h3 class="font-bold text-sm text-white">{{ t('hubStats') }}</h3>
               <div class="space-y-3 text-xs">
                 <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
-                  <span class="text-slate-400">Total Dépôts Suivis</span>
+                  <span class="text-slate-400">{{ t('totalTrackedRepos') }}</span>
                   <span class="font-mono font-bold text-white text-sm">{{ repos.length }}</span>
                 </div>
                 <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
-                  <span class="text-slate-400">Catégories Actives</span>
+                  <span class="text-slate-400">{{ t('activeCategories') }}</span>
                   <span class="font-mono font-bold text-blue-400 text-sm">{{ categories.length }}</span>
                 </div>
                 <div class="flex items-center justify-between p-3 bg-[#0f1523] rounded-xl border border-slate-800/60">
-                  <span class="text-slate-400">Releases Disponibles</span>
+                  <span class="text-slate-400">{{ t('availableReleases') }}</span>
                   <span class="font-mono font-bold text-emerald-400 text-sm">{{ reposWithReleasesCount }}</span>
                 </div>
               </div>
@@ -258,14 +271,14 @@
         <!-- ================= VUE 2 : REPOSITORY ================= -->
         <div v-else-if="currentView === 'repository'" class="space-y-6">
           <div class="flex items-center justify-between bg-[#111827] border border-slate-800 p-4 rounded-2xl">
-            <h2 class="font-bold text-sm text-white">Gestion des Dépôts ({{ filteredRepos.length }})</h2>
+            <h2 class="font-bold text-sm text-white">{{ t('manageRepos') }} ({{ filteredRepos.length }})</h2>
             <div class="flex items-center gap-1 bg-[#0f1523] border border-slate-800 p-1 rounded-xl text-xs">
-              <button @click="viewMode = 'tiles'" :class="viewMode === 'tiles' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1.5 rounded-lg transition font-medium">Tuiles</button>
-              <button @click="viewMode = 'list'" :class="viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1.5 rounded-lg transition font-medium">Liste</button>
+              <button @click="viewMode = 'tiles'" :class="viewMode === 'tiles' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1.5 rounded-lg transition font-medium">{{ t('tilesView') }}</button>
+              <button @click="viewMode = 'list'" :class="viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-slate-400'" class="px-3 py-1.5 rounded-lg transition font-medium">{{ t('listView') }}</button>
             </div>
           </div>
 
-          <!-- VUE TUILES -->
+          <!-- Vue Tuiles -->
           <div v-if="viewMode === 'tiles'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div v-for="repo in filteredRepos" :key="repo.id" class="bg-[#111827] border border-slate-800 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
               <div>
@@ -278,7 +291,7 @@
                     </div>
                   </div>
                 </div>
-                <p class="text-xs text-slate-400 line-clamp-3 mb-4">{{ repo.description || 'Aucune description.' }}</p>
+                <p class="text-xs text-slate-400 line-clamp-3 mb-4">{{ repo.description || t('noDescription') }}</p>
               </div>
 
               <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
@@ -292,7 +305,7 @@
             </div>
           </div>
 
-          <!-- VUE LISTE -->
+          <!-- Vue Liste -->
           <div v-else class="bg-[#111827] border border-slate-800 rounded-2xl overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead class="bg-[#0f1523] text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[11px]">
@@ -334,8 +347,8 @@
         <!-- ================= VUE 3 : WHAT'S NEW ================= -->
         <div v-else-if="currentView === 'whatsnew'" class="space-y-6 max-w-4xl mx-auto">
           <div class="border-b border-slate-800 pb-4">
-            <h2 class="text-lg font-bold text-white">🔥 What's New - Dernières Releases & Assets</h2>
-            <p class="text-xs text-slate-400 mt-1">Suivi chronologique avec notes de version formatées.</p>
+            <h2 class="text-lg font-bold text-white">🔥 What's New - {{ t('availableReleases') }} & Assets</h2>
+            <p class="text-xs text-slate-400 mt-1">{{ t('whatsNewSubtitle') }}</p>
           </div>
 
           <div class="space-y-6">
@@ -356,21 +369,21 @@
               <div v-if="repo.latestRelease.body" class="bg-[#0f1523] p-4 rounded-xl border border-slate-800/80 markdown-body text-xs" v-html="renderMarkdown(repo.latestRelease.body, repo)"></div>
 
               <div v-if="repo.latestRelease.assets && repo.latestRelease.assets.length > 0" class="space-y-2 pt-2">
-                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Fichiers d'installation (Assets) :</span>
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">{{ t('downloadAssets') }} :</span>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div v-for="asset in repo.latestRelease.assets" :key="asset.id" class="bg-[#0f1523] border border-slate-800/80 p-3 rounded-xl flex items-center justify-between gap-3 text-xs">
                     <div class="truncate">
                       <span class="font-mono font-medium text-slate-200 block truncate">{{ asset.name }}</span>
                       <span class="text-slate-500 text-[10px]">{{ formatBytes(asset.size) }} · 📥 {{ asset.downloadCount }}</span>
                     </div>
-                    <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition shrink-0">Télécharger</a>
+                    <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition shrink-0">{{ t('download') }}</a>
                   </div>
                 </div>
               </div>
 
               <div class="flex items-center justify-between text-xs pt-3 border-t border-slate-800/60">
-                <span class="text-slate-500 font-mono">Publié le {{ formatDate(repo.latestRelease.publishedAt) }}</span>
-                <a :href="repo.latestRelease.htmlUrl || repo.htmlUrl" target="_blank" class="text-blue-400 hover:underline font-medium">Voir la release sur GitHub &rarr;</a>
+                <span class="text-slate-500 font-mono">{{ t('publishedOn') }} {{ formatDate(repo.latestRelease.publishedAt) }}</span>
+                <a :href="repo.latestRelease.htmlUrl || repo.htmlUrl" target="_blank" class="text-blue-400 hover:underline font-medium">{{ t('viewOnGithub') }} &rarr;</a>
               </div>
             </div>
           </div>
@@ -379,7 +392,7 @@
       </main>
     </div>
 
-    <!-- TIROIR LATÉRAL (DRAWER) POUR README OU COMMITS (Si useDrawer est actif) -->
+    <!-- TIROIR LATÉRAL (DRAWER) POUR README OU COMMITS -->
     <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-[#111827] border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-[#0f1523]">
@@ -402,21 +415,22 @@
       </div>
     </div>
 
-    <!-- MODALES CLASSIQUES (Si useDrawer est désactivé) -->
+    <!-- MODALE CLASSIQUE README -->
     <div v-if="!useDrawer && activeReadmeRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-          <h3 class="font-bold text-sm text-white">README.md · {{ activeReadmeRepo.fullName }}</h3>
+          <h3 class="font-bold text-sm text-white">README.md · {{ activeReadmeRepo.fullName || activeReadmeRepo.name }}</h3>
           <button @click="activeReadmeRepo = null" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
         </div>
         <div class="p-6 overflow-y-auto markdown-body text-xs md:text-sm flex-1" v-html="renderMarkdown(activeReadmeRepo.readme, activeReadmeRepo)"></div>
       </div>
     </div>
 
+    <!-- MODALE CLASSIQUE COMMITS -->
     <div v-if="!useDrawer && activeCommitsRepo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-          <h3 class="font-bold text-sm text-white">Commits Récents · {{ activeCommitsRepo.fullName }}</h3>
+          <h3 class="font-bold text-sm text-white">Commits Récents · {{ activeCommitsRepo.fullName || activeCommitsRepo.name }}</h3>
           <button @click="activeCommitsRepo = null" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
         </div>
         <div class="p-4 overflow-y-auto space-y-3 flex-1">
@@ -447,14 +461,14 @@
         </div>
         <div class="p-6 overflow-y-auto flex-1 space-y-6">
           <div>
-            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">Assets Disponibles</h4>
+            <h4 class="font-semibold text-xs text-slate-300 uppercase tracking-wider mb-2">{{ t('downloadAssets') }}</h4>
             <div class="space-y-2">
               <div v-for="asset in activeReleaseRepo.latestRelease.assets" :key="asset.id" class="p-3 bg-[#0f1523] border border-slate-800 rounded-xl flex items-center justify-between gap-3 text-xs">
                 <div>
                   <span class="font-mono font-medium text-slate-200 block">{{ asset.name }}</span>
                   <span class="text-slate-500 text-[11px]">Taille: {{ formatBytes(asset.size) }} · {{ asset.downloadCount }} téléchargements</span>
                 </div>
-                <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition">Télécharger</a>
+                <a :href="asset.downloadUrl" download target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition">{{ t('download') }}</a>
               </div>
             </div>
           </div>
@@ -470,25 +484,28 @@
     <div v-if="showSettingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-[#111827] border border-slate-800 rounded-3xl w-full max-w-lg p-6 space-y-6 shadow-2xl">
         <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h3 class="font-bold text-base text-white">Paramètres de l'Interface & UI</h3>
+          <h3 class="font-bold text-base text-white">{{ t('settingsTitle') }}</h3>
           <button @click="showSettingsModal = false" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
         </div>
         <div class="space-y-4 text-xs">
           <div class="space-y-2">
-            <label class="text-slate-300 font-semibold block">Taille de police ({{ uiFontSize }}px)</label>
+            <label class="text-slate-300 font-semibold block">{{ t('fontSize') }} ({{ uiFontSize }}px)</label>
             <input type="range" min="12" max="18" v-model="uiFontSize" class="w-full accent-blue-600" />
           </div>
           <div class="space-y-2">
-            <label class="text-slate-300 font-semibold block">Police d'écriture</label>
+            <label class="text-slate-300 font-semibold block">{{ t('fontFamily') }}</label>
             <select v-model="uiFontFamily" class="w-full bg-[#0f1523] border border-slate-800 rounded-xl p-2.5 text-white">
               <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
               <option value="'Inter', sans-serif">Inter</option>
+              <option value="'Outfit', sans-serif">Outfit</option>
+              <option value="'Poppins', sans-serif">Poppins</option>
               <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+              <option value="'Fira Code', monospace">Fira Code</option>
             </select>
           </div>
         </div>
         <div class="pt-4 border-t border-slate-800 flex justify-end">
-          <button @click="showSettingsModal = false" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition">Enregistrer</button>
+          <button @click="showSettingsModal = false" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition">{{ t('save') }}</button>
         </div>
       </div>
     </div>
@@ -505,19 +522,94 @@
         const showSocialMenu = ref(false);
         const showSettingsModal = ref(false);
         const searchQuery = ref('');
-        const activityFilter = ref('all');
+        const activityFilter = ref('user');
         const viewMode = ref('tiles');
         const selectedCategory = ref(null);
         const useDrawer = ref(false);
+        const currentLang = ref('fr');
 
         const uiFontSize = ref(13);
         const uiFontFamily = ref("'Plus Jakarta Sans', sans-serif");
 
-        const appConfig = ref({ sidebarLogo: '', quickAccess: [], socials: [] });
-        const githubUser = ref({ login: 'nexgen999', name: 'nexgen999', avatarUrl: 'https://avatars.githubusercontent.com/u/nexgen999?v=4', publicReposCount: 0, starredCount: 0 });
+        const i18n = {
+          fr: {
+            toggleMenu: 'Réduire menu',
+            quickAccess: 'Accès Rapides',
+            categories: 'Catégories',
+            allCategories: 'Toutes',
+            drawerMode: 'Panneau Latéral',
+            settings: 'Paramètres & UI',
+            searchPlaceholder: 'Rechercher un dépôt, une description...',
+            pinnedTitle: 'Projets Épinglés',
+            projects: 'projets',
+            recentActivity: 'Activité Récente',
+            githubRepos: 'Dépôts GitHub',
+            githubStars: 'Dépôts Stars',
+            hubStats: 'Statistiques du Hub',
+            totalTrackedRepos: 'Total Dépôts Suivis',
+            activeCategories: 'Catégories Actives',
+            availableReleases: 'Releases Disponibles',
+            manageRepos: 'Gestion des Dépôts',
+            tilesView: 'Tuiles',
+            listView: 'Liste',
+            noDescription: 'Aucune description disponible.',
+            whatsNewSubtitle: 'Suivi chronologique avec notes de version et téléchargement direct.',
+            downloadAssets: 'Fichiers d\'installation (Assets)',
+            download: 'Télécharger',
+            publishedOn: 'Publié le',
+            viewOnGithub: 'Voir la release sur GitHub',
+            settingsTitle: 'Paramètres de l\'Interface & UI',
+            fontSize: 'Taille de police',
+            fontFamily: 'Police d\'écriture',
+            save: 'Enregistrer',
+            author: 'Auteur',
+            view: 'Voir'
+          },
+          en: {
+            toggleMenu: 'Collapse menu',
+            quickAccess: 'Quick Access',
+            categories: 'Categories',
+            allCategories: 'All',
+            drawerMode: 'Side Panel',
+            settings: 'Settings & UI',
+            searchPlaceholder: 'Search repositories, description...',
+            pinnedTitle: 'Pinned Projects',
+            projects: 'projects',
+            recentActivity: 'Recent Activity',
+            githubRepos: 'GitHub Repos',
+            githubStars: 'Stars Count',
+            hubStats: 'Hub Statistics',
+            totalTrackedRepos: 'Total Tracked Repos',
+            activeCategories: 'Active Categories',
+            availableReleases: 'Available Releases',
+            manageRepos: 'Repositories Management',
+            tilesView: 'Tiles',
+            listView: 'List',
+            noDescription: 'No description available.',
+            whatsNewSubtitle: 'Chronological feed with version notes and direct asset downloads.',
+            downloadAssets: 'Download Assets',
+            download: 'Download',
+            publishedOn: 'Published on',
+            viewOnGithub: 'View release on GitHub',
+            settingsTitle: 'Interface & UI Settings',
+            fontSize: 'Font Size',
+            fontFamily: 'Font Family',
+            save: 'Save',
+            author: 'Author',
+            view: 'View'
+          }
+        };
+
+        const t = (key) => i18n[currentLang.value][key] || key;
+        const toggleLang = () => { currentLang.value = currentLang.value === 'fr' ? 'en' : 'fr'; };
+
+        const appConfig = ref({ githubUsername: '', sidebarLogo: '', quickAccess: [], socials: [] });
+        const githubUser = ref({ login: 'nexgen999', name: 'nexgen999', avatarUrl: 'https://avatars.githubusercontent.com/u/nexgen999?v=4', publicReposCount: 133, starredCount: 431 });
 
         const categories = ref([]);
         const repos = ref([]);
+        const userPinnedRepos = ref([]);
+        const userActivityCommits = ref([]);
 
         const activeReadmeRepo = ref(null);
         const activeCommitsRepo = ref(null);
@@ -528,12 +620,82 @@
         const activeDrawerTitle = ref('');
         const activeDrawerData = ref(null);
 
+        // Auto-détection universelle du pseudo GitHub depuis l'URL ou config
+        const detectGitHubUsername = () => {
+          if (appConfig.value.githubUsername) return appConfig.value.githubUsername;
+          const hostParts = window.location.hostname.split('.');
+          if (hostParts.length >= 3 && hostParts[1] === 'github' && hostParts[2] === 'io') {
+            return hostParts[0];
+          }
+          return 'nexgen999';
+        };
+
         onMounted(async () => {
           try {
             const cfgRes = await fetch('./web/config.json', { cache: 'no-cache' });
             if (cfgRes.ok) appConfig.value = await cfgRes.json();
           } catch(e) {}
 
+          const detectedUsername = detectGitHubUsername();
+          githubUser.value.login = detectedUsername;
+          githubUser.value.name = detectedUsername;
+          githubUser.value.avatarUrl = `https://avatars.githubusercontent.com/u/${detectedUsername}?v=4`;
+
+          // Récupération dynamique du profil GitHub live
+          try {
+            const userRes = await fetch(`https://api.github.com/users/${detectedUsername}`);
+            if (userRes.ok) {
+              const uData = await userRes.json();
+              githubUser.value.name = uData.name || uData.login;
+              githubUser.value.avatarUrl = uData.avatar_url;
+              githubUser.value.publicReposCount = uData.public_repos || 133;
+            }
+          } catch(e) {}
+
+          // Récupération live des repos pinnés
+          try {
+            const pinRes = await fetch(`https://gh-pinned-repos.js.org/?username=${detectedUsername}`);
+            if (pinRes.ok) {
+              const pData = await pinRes.json();
+              if (Array.isArray(pData) && pData.length > 0) {
+                userPinnedRepos.value = pData.map(p => ({
+                  id: p.repo,
+                  name: p.repo,
+                  description: p.description,
+                  language: p.language,
+                  stars: p.stars || 0,
+                  htmlUrl: p.link,
+                  ownerAvatar: githubUser.value.avatarUrl
+                }));
+              }
+            }
+          } catch(e) {}
+
+          // Récupération de l'activité récente de l'user
+          try {
+            const evRes = await fetch(`https://api.github.com/users/${detectedUsername}/events/public`);
+            if (evRes.ok) {
+              const events = await evRes.json();
+              const commits = [];
+              events.forEach(ev => {
+                if (ev.type === 'PushEvent' && ev.payload && ev.payload.commits) {
+                  ev.payload.commits.forEach(c => {
+                    commits.push({
+                      repoName: ev.repo.name.split('/')[1] || ev.repo.name,
+                      message: c.message,
+                      author: c.author.name || detectedUsername,
+                      date: ev.created_at,
+                      shaSnippet: c.sha ? c.sha.substring(0, 7) : '',
+                      url: `https://github.com/${ev.repo.name}/commit/${c.sha}`
+                    });
+                  });
+                }
+              });
+              userActivityCommits.value = commits.slice(0, 7);
+            }
+          } catch(e) {}
+
+          // Charger la base de données locale du Hub
           try {
             const res = await fetch('./json/repos-database.json', { cache: 'no-cache' });
             if (res.ok) {
@@ -542,18 +704,16 @@
               repos.value = data.repos || [];
             }
           } catch(e) {}
-
-          // Forcer le profil principal sur nexgen999 et compter les repos
-          githubUser.value.login = 'nexgen999';
-          githubUser.value.name = 'nexgen999';
-          githubUser.value.avatarUrl = 'https://avatars.githubusercontent.com/u/nexgen999?v=4';
-          githubUser.value.publicReposCount = repos.value.length;
         });
 
         const rootCategories = computed(() => categories.value.filter(c => !c.parentId));
         const getCategoryRepoCount = (catId) => repos.value.filter(r => r.categoryId === catId).length;
 
-        const pinnedRepos = computed(() => repos.value.slice(0, 3));
+        const pinnedRepos = computed(() => {
+          if (userPinnedRepos.value.length > 0) return userPinnedRepos.value;
+          return repos.value.slice(0, 5);
+        });
+
         const reposWithReleasesCount = computed(() => repos.value.filter(r => r.latestRelease).length);
 
         const filteredRepos = computed(() => {
@@ -574,6 +734,9 @@
         });
 
         const filteredActivity = computed(() => {
+          if (activityFilter.value === 'user' && userActivityCommits.value.length > 0) {
+            return userActivityCommits.value;
+          }
           let list = [];
           repos.value.forEach(r => {
             if (r.recentCommits) {
@@ -592,7 +755,6 @@
           return list.slice(0, 7);
         });
 
-        // Correction du rendu des images markdown (liens relatifs convertis en raw GitHub)
         const renderMarkdown = (text, repo) => {
           if (!text) return `<p>Aucun contenu.</p>`;
           try {
@@ -653,7 +815,7 @@
         const formatDate = (dateStr) => dateStr ? new Date(dateStr).toLocaleDateString() : '';
 
         return {
-          currentView, sidebarCollapsed, showSocialMenu, showSettingsModal, searchQuery, activityFilter, viewMode, selectedCategory, useDrawer,
+          currentView, sidebarCollapsed, showSocialMenu, showSettingsModal, searchQuery, activityFilter, viewMode, selectedCategory, useDrawer, currentLang, t, toggleLang,
           uiFontSize, uiFontFamily, appConfig, githubUser, categories, repos, rootCategories, getCategoryRepoCount,
           pinnedRepos, reposWithReleasesCount, filteredRepos, sortedReleases, filteredActivity,
           activeReadmeRepo, activeCommitsRepo, activeReleaseRepo,
