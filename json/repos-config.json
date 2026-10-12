@@ -41,6 +41,24 @@
       "name": "ps5_emulator",
       "color": "#ff00ff",
       "parentId": null
+    },
+    {
+      "id": "cat-ps5_fan",
+      "name": "ps5_fan",
+      "color": "#004080",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_file_explorer",
+      "name": "ps5_file_explorer",
+      "color": "#3B82F6",
+      "parentId": null
+    },
+    {
+      "id": "cat-ps5_freeshop",
+      "name": "ps5_freeshop",
+      "color": "#ffffff",
+      "parentId": null
     }
   ],
   "repos": [
@@ -211,6 +229,66 @@
     {
       "url": "https://github.com/heydemoura/ps5-forwarder-manager",
       "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/owendswang/ps5-fan-control",
+      "categoryId": "cat-ps5_fan"
+    },
+    {
+      "url": "https://github.com/drakmor/fan_target",
+      "categoryId": "cat-ps5_fan"
+    },
+    {
+      "url": "https://github.com/ItsBlurf/BFpilot",
+      "categoryId": "cat-ps5_file_explorer"
+    },
+    {
+      "url": "https://github.com/owendswang/ps5-web-file-manager",
+      "categoryId": "cat-ps5_file_explorer"
+    },
+    {
+      "url": "https://github.com/juma-sayeh/PS5-File-Explorer",
+      "categoryId": "cat-ps5_file_explorer"
+    },
+    {
+      "url": "https://github.com/ArkSama/PS5-Lapy-JB-Daemon/",
+      "categoryId": "cat-ps5_file_explorer"
+    },
+    {
+      "url": "https://github.com/mastersword64/PS5-FM",
+      "categoryId": "cat-ps5_file_explorer"
+    },
+    {
+      "url": "https://github.com/pegasus-ps5/pegasus-dl",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/Phoenixx1202/Spectrum-Library",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/ps5xploit/ps5shopappkg",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/rdiol12/PS5Library",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/PratikHackTR/PS5-PHStore",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/saawant12/orbit-store-ps5",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/half144/overdrive-releases",
+      "categoryId": "cat-ps5_freeshop"
+    },
+    {
+      "url": "https://github.com/D3ATHLY/blackbox",
+      "categoryId": "cat-ps5_freeshop"
     }
   ]
 }
