@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PS5-Repository-List - Hub & Release Tracker</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -169,7 +169,7 @@
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div v-for="repo in pinnedRepos" :key="repo.id" class="bg-[#111827] border border-slate-800/80 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
+                <div v-for="repo in pinnedRepos" :key="repo.name" class="bg-[#111827] border border-slate-800/80 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition group shadow-sm">
                   <div>
                     <div class="flex items-center justify-between mb-3">
                       <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">{{ repo.language || 'Code' }}</span>
@@ -222,8 +222,8 @@
                   </div>
                   <a :href="act.url" target="_blank" class="font-mono text-[11px] text-blue-400 hover:underline shrink-0">{{ act.shaSnippet || t('view') }}</a>
                 </div>
-                <div v-if="filteredActivity.length === 0" class="text-center py-4 text-slate-500 text-xs">
-                  Aucune activité récente trouvée.
+                <div v-if="filteredActivity.length === 0" class="text-center py-6 text-slate-500 text-xs font-mono">
+                  Aucune activité récente trouvée pour ce filtre.
                 </div>
               </div>
             </div>
@@ -394,7 +394,7 @@
       </main>
     </div>
 
-    <!-- Tiroir latéral / Modales -->
+    <!-- Modales & Tiroir -->
     <div v-if="useDrawer && activeDrawerContent" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
       <div class="w-full md:w-[600px] lg:w-[700px] h-full bg-[#111827] border-l border-slate-800 flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-[#0f1523]">
@@ -602,12 +602,11 @@
         const t = (key) => i18n[currentLang.value][key] || key;
         const toggleLang = () => { currentLang.value = currentLang.value === 'fr' ? 'en' : 'fr'; };
 
-        const appConfig = ref({ githubUsername: '', sidebarLogo: '', quickAccess: [], socials: [] });
+        const appConfig = ref({ githubUsername: '', sidebarLogo: '', pinnedRepos: [], quickAccess: [], socials: [] });
         const githubUser = ref({ login: 'nexgen999', name: 'nexgen999', avatarUrl: 'https://avatars.githubusercontent.com/u/nexgen999?v=4', publicReposCount: 133, starredCount: 431 });
 
         const categories = ref([]);
         const repos = ref([]);
-        const userPinnedRepos = ref([]);
         const userActivityCommits = ref([]);
 
         const activeReadmeRepo = ref(null);
@@ -642,25 +641,7 @@
             }
           } catch(e) {}
 
-          try {
-            const pinRes = await fetch(`https://gh-pinned-repos.js.org/?username=${username}`);
-            if (pinRes.ok) {
-              const pData = await pinRes.json();
-              if (Array.isArray(pData) && pData.length > 0) {
-                userPinnedRepos.value = pData.map(p => ({
-                  id: p.repo,
-                  name: p.repo,
-                  description: p.description,
-                  language: p.language,
-                  stars: p.stars || 0,
-                  htmlUrl: p.link,
-                  ownerAvatar: githubUser.value.avatarUrl
-                }));
-              }
-            }
-          } catch(e) {}
-
-          // Récupération des événements et commits récents de l'utilisateur
+          // Récupération des commits récents de l'utilisateur via l'API publique GitHub
           try {
             const evRes = await fetch(`https://api.github.com/users/${username}/events/public`);
             if (evRes.ok) {
@@ -698,7 +679,9 @@
         const getCategoryRepoCount = (catId) => repos.value.filter(r => r.categoryId === catId).length;
 
         const pinnedRepos = computed(() => {
-          if (userPinnedRepos.value.length > 0) return userPinnedRepos.value;
+          if (appConfig.value.pinnedRepos && appConfig.value.pinnedRepos.length > 0) {
+            return appConfig.value.pinnedRepos;
+          }
           return repos.value.slice(0, 5);
         });
 
@@ -725,7 +708,6 @@
           if (activityFilter.value === 'user') {
             return userActivityCommits.value;
           }
-          // Mode Host : Rassemble et trie tous les commits récents de l'ensemble des dépôts du Hub
           let list = [];
           repos.value.forEach(r => {
             if (r.recentCommits) {
