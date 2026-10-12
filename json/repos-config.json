@@ -197,7 +197,11 @@
       "categoryId": "cat-ps5_cloud_gaming"
     },
     {
-      "url": "https://github.com/MisterTemaki/fbneo-ps",
+      "url": "https://github.com/MisterTemaki/fbneo-ps5",
+      "categoryId": "cat-ps5_emulator"
+    },
+    {
+      "url": "https://github.com/MisterTemaki/fceummPS5",
       "categoryId": "cat-ps5_emulator"
     },
     {
