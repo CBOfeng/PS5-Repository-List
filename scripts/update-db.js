@@ -20,6 +20,19 @@ async function fetchGitHub(url) {
 }
 
 async function main() {
+  // 加载现有数据库建立映射字典，保护已有中文描述
+  let existingDbMap = {};
+  if (fs.existsSync(OUTPUT_PATH)) {
+    try {
+      const oldJson = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
+      if (Array.isArray(oldJson.repos)) {
+        for (const r of oldJson.repos) {
+          if (r.url) existingDbMap[r.url] = r;
+        }
+      }
+    } catch (e) {}
+  }
+
   if (!fs.existsSync(CONFIG_PATH)) {
     console.error(`Fichier de configuration introuvable : ${CONFIG_PATH}`);
     process.exit(1);
@@ -120,7 +133,16 @@ async function main() {
         ownerAvatar: repoData.owner ? repoData.owner.avatar_url : '',
         name: repoData.name,
         fullName: repoData.full_name,
-        description: repoData.description || '',
+        description: (function(){
+        // 中文说明守护锁：如果现有数据库中已经有中文，绝不被老外英文覆盖
+        if (existingDbMap && existingDbMap[item.url]) {
+          const oldDesc = existingDbMap[item.url].description;
+          if (oldDesc && /[\u4e00-\u9fa5]/.test(oldDesc)) {
+            return oldDesc;
+          }
+        }
+        return repoData.description || '';
+      })(),
         customNotes: item.customNotes || '',
         tags: item.tags || [],
         categoryId: item.categoryId || 'unassigned',
