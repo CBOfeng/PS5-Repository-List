@@ -3,6 +3,7 @@ const path = require('path');
 
 const CONFIG_PATH = path.join(__dirname, '../json/repos-config.json');
 const OUTPUT_PATH = path.join(__dirname, '../json/repos-database.json');
+const PAYLOADS_PATH = path.join(__dirname, '../json/payloads.json');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const headers = {
@@ -157,6 +158,42 @@ async function main() {
   // Écriture du fichier JSON final consommé par la page web
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(databaseOutput, null, 2), 'utf8');
   console.log(`Succès ! Base de données générée dans ${OUTPUT_PATH} (${processedRepos.length} dépôts intégrés).`);
+
+  // 同步更新 PS5 插件专属 payloads.json 源
+  if (fs.existsSync(PAYLOADS_PATH)) {
+    try {
+      const payloadsData = JSON.parse(fs.readFileSync(PAYLOADS_PATH, 'utf8'));
+      if (Array.isArray(payloadsData.payloads)) {
+        let syncedCount = 0;
+        for (const item of payloadsData.payloads) {
+          if (!item.source) continue;
+          // 寻找匹配的仓库
+          const matchedRepo = processedRepos.find(r => r.url && r.url.toLowerCase() === item.source.toLowerCase());
+          if (matchedRepo && matchedRepo.latestRelease) {
+            const rel = matchedRepo.latestRelease;
+            const newVer = rel.tagName || rel.name;
+            if (newVer && item.version !== newVer) {
+              item.version = newVer;
+              item.last_update = rel.publishedAt ? rel.publishedAt.split('T')[0] : new Date().toISOString().split('T')[0];
+              // 如果有对应文件的 release 附件，更新直链
+              if (Array.isArray(rel.assets) && rel.assets.length > 0) {
+                const targetAsset = rel.assets.find(a => a.name === item.filename) || rel.assets.find(a => a.name.endsWith('.elf') || a.name.endsWith('.bin') || a.name.endsWith('.pkg')) || rel.assets[0];
+                if (targetAsset && targetAsset.downloadUrl) {
+                  item.url = targetAsset.downloadUrl;
+                  item.source_direct = targetAsset.downloadUrl;
+                }
+              }
+              syncedCount++;
+            }
+          }
+        }
+        fs.writeFileSync(PAYLOADS_PATH, JSON.stringify(payloadsData, null, 2), 'utf8');
+        console.log(`同步更新 payloads.json 成功：更新了 ${syncedCount} 个插件条目。`);
+      }
+    } catch (e) {
+      console.warn(`更新 payloads.json 时发生异常:`, e.message);
+    }
+  }
 }
 
 main();

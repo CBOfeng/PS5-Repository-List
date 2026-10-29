@@ -2,151 +2,151 @@
   "categories": [
     {
       "id": "cat-PS5_Cheat",
-      "name": "PS5_Cheat",
+      "name": "金手指与游戏修改",
       "color": "#3B82F6",
       "parentId": null
     },
     {
       "id": "cat-PS5_Overlay",
-      "name": "PS5_Overlay",
+      "name": "屏幕悬浮窗 (Overlay)",
       "color": "#4259ff",
       "parentId": null
     },
     {
       "id": "cat-PS5_Remote",
-      "name": "PS5_Remote",
+      "name": "远程控制与串流",
       "color": "#4448fd",
       "parentId": null
     },
     {
       "id": "cat-ps5-webkit-autoloader",
-      "name": "ps5-webkit-autoloader",
+      "name": "Webkit 网页自动加载器",
       "color": "#00ff80",
       "parentId": null
     },
     {
       "id": "cat-ps5_audio_utility",
-      "name": "ps5_audio_utility",
+      "name": "音频增强与工具",
       "color": "#ffff80",
       "parentId": null
     },
     {
       "id": "cat-ps5_dns",
-      "name": "ps5_dns",
+      "name": "DNS 屏蔽与解析",
       "color": "#ff0000",
       "parentId": null
     },
     {
       "id": "cat-ps5_emulator",
-      "name": "ps5_emulator",
+      "name": "经典模拟器",
       "color": "#ff00ff",
       "parentId": null
     },
     {
       "id": "cat-ps5_fan",
-      "name": "ps5_fan",
+      "name": "风扇转速与温控",
       "color": "#004080",
       "parentId": null
     },
     {
       "id": "cat-ps5_file_explorer",
-      "name": "ps5_file_explorer",
+      "name": "文件浏览器与管理",
       "color": "#3B82F6",
       "parentId": null
     },
     {
       "id": "cat-ps5_freeshop",
-      "name": "ps5_freeshop",
+      "name": "自制商店与下载 (Freeshop)",
       "color": "#ffffff",
       "parentId": null
     },
     {
       "id": "cat-ps5_game_dump",
-      "name": "ps5_game_dump",
+      "name": "游戏转储 (Dump) 工具",
       "color": "#408080",
       "parentId": null
     },
     {
       "id": "cat-ps5_hen_loader",
-      "name": "ps5_hen_loader",
+      "name": "HEN 破解与载荷加载器",
       "color": "#ffff00",
       "parentId": null
     },
     {
       "id": "cat-ps5_kstuff",
-      "name": "ps5_kstuff",
+      "name": "Kstuff 内核补丁与扩展",
       "color": "#800040",
       "parentId": null
     },
     {
       "id": "cat-ps5_linux",
-      "name": "ps5_linux",
+      "name": "Linux 引导与分发",
       "color": "#ffffff",
       "parentId": null
     },
     {
       "id": "cat-ps5_pad_utility",
-      "name": "ps5_pad_utility",
+      "name": "手柄与输入设备工具",
       "color": "#ff8000",
       "parentId": null
     },
     {
       "id": "cat-ps5_pkg_tool",
-      "name": "ps5_pkg_tool",
+      "name": "PKG 打包与安装工具",
       "color": "#008040",
       "parentId": null
     },
     {
       "id": "cat-ps5_saves",
-      "name": "ps5_saves",
+      "name": "游戏存档导入与管理",
       "color": "#ff0080",
       "parentId": null
     },
     {
       "id": "cat-ps5_sdk_debug",
-      "name": "ps5_sdk_debug",
+      "name": "开发 SDK 与调试工具",
       "color": "#8000ff",
       "parentId": null
     },
     {
       "id": "cat-ps5_server",
-      "name": "ps5_server",
+      "name": "本地服务与微服务端",
       "color": "#ffff00",
       "parentId": null
     },
     {
       "id": "cat-ps5_themes-avatars",
-      "name": "ps5_themes-avatars",
+      "name": "自定义主题与头像",
       "color": "#8080ff",
       "parentId": null
     },
     {
       "id": "cat-ps5_utility",
-      "name": "ps5_utility",
+      "name": "综合实用工具",
       "color": "#804000",
       "parentId": null
     },
     {
       "id": "cat-ps5_video_player",
-      "name": "ps5_video_player",
+      "name": "视频与流媒体播放器",
       "color": "#00ff00",
       "parentId": null
     },
     {
       "id": "cat-ps5_cloud_gaming",
-      "name": "ps5_cloud_gaming",
+      "name": "云游戏客户端",
       "color": "#00ffff",
       "parentId": null
     },
     {
       "id": "cat-pc-ps5-dev",
-      "name": "pc-ps5-dev",
+      "name": "PC 侧 PS5 开发套件",
       "color": "#004040",
       "parentId": null
     },
     {
       "id": "cat-pc_apps",
-      "name": "pc_apps",
+      "name": "PC 侧配套工具 (如 PS5Upload)",
       "color": "#00ff00",
       "parentId": null
     }
