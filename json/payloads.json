@@ -962,13 +962,13 @@
     {
       "name": "HYPERHEN (HyperHEN-v0.9.2.elf)",
       "filename": "HyperHEN-v0.9.2.elf",
-      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_3/HyperHEN-v0.9.3.elf",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
       "source": "https://github.com/Michele-M-Media/HYPERHEN",
-      "source_direct": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_3/HyperHEN-v0.9.3.elf",
+      "source_direct": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
       "description": "暂无中文说明",
-      "version": "HYPERHEN_V0_9_3",
+      "version": "HYPERHEN_V0_9_4",
       "category": "ps5_hen_loader",
-      "last_update": "2026-10-28"
+      "last_update": "2026-10-30"
     },
     {
       "name": "PIZZA-HEN (PIZZA-HEN-v2.00.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.7.0/ps5upload-9.7.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.11.0/ps5upload-9.11.0.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.7.0/ps5upload-9.7.0.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.11.0/ps5upload-9.11.0.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v9.7.0",
+      "version": "v9.11.0",
       "category": "ps5_server",
       "last_update": "2026-10-30"
     },
@@ -1798,35 +1798,35 @@
     {
       "name": "PS5SX2 (PS5SX2Installer.elf)",
       "filename": "PS5SX2Installer.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SX2Installer.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SX2Installer.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SX2Installer.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SX2Installer.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-177",
+      "version": "vk-285-182",
       "category": "ps5_emulator",
-      "last_update": "2026-10-19"
+      "last_update": "2026-10-30"
     },
     {
       "name": "PS5SX2 (PS5SXHelper-no-data-mount.elf)",
       "filename": "PS5SXHelper-no-data-mount.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SXHelper-no-data-mount.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SXHelper-no-data-mount.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SXHelper-no-data-mount.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SXHelper-no-data-mount.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-177",
+      "version": "vk-285-182",
       "category": "ps5_emulator",
-      "last_update": "2026-10-19"
+      "last_update": "2026-10-30"
     },
     {
       "name": "PS5SX2 (PS5SXHelper.elf)",
       "filename": "PS5SXHelper.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SXHelper.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SXHelper.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-177/PS5SXHelper.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-182/PS5SXHelper.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-177",
+      "version": "vk-285-182",
       "category": "ps5_emulator",
-      "last_update": "2026-10-19"
+      "last_update": "2026-10-30"
     },
     {
       "name": "omega-dashboard (omega-installer.elf)",
