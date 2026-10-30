@@ -302,13 +302,13 @@
     {
       "name": "ShadowMountPlus (shadowmountplus.elf)",
       "filename": "shadowmountplus.elf",
-      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta10/shadowmountplus.elf",
+      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta11/shadowmountplus.elf",
       "source": "https://github.com/drakmor/ShadowMountPlus",
-      "source_direct": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta10/shadowmountplus.elf",
+      "source_direct": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta11/shadowmountplus.elf",
       "description": "适用于已破解 PS5 的自动后台挂载 Payload，可从内部或外部存储识别、挂载和安装游戏备份，支持 UFS、exFAT、PFS 和嵌套压缩 PFS。",
-      "version": "1.7beta10",
+      "version": "1.7beta11",
       "category": "ps5_game_dump",
-      "last_update": "2026-10-28"
+      "last_update": "2026-10-29"
     },
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.2.1/ps5upload-9.2.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.3.0/ps5upload-9.3.0.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.2.1/ps5upload-9.2.1.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.3.0/ps5upload-9.3.0.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v9.2.1",
+      "version": "v9.3.0",
       "category": "ps5_server",
       "last_update": "2026-10-29"
     },
