@@ -93,24 +93,24 @@
     {
       "name": "ps5-theme (ps5-theme-stop.elf)",
       "filename": "ps5-theme-stop.elf",
-      "url": "https://github.com/Blaze414/ps5-theme/releases/download/v1.64/ps5-theme-stop.elf",
+      "url": "https://github.com/Blaze414/ps5-theme/releases/download/v1.80/ps5-theme-stop.elf",
       "source": "https://github.com/Blaze414/ps5-theme",
-      "source_direct": "https://github.com/Blaze414/ps5-theme/releases/download/v1.64/ps5-theme-stop.elf",
+      "source_direct": "https://github.com/Blaze414/ps5-theme/releases/download/v1.80/ps5-theme-stop.elf",
       "description": "适用于已破解 PS5 的自定义主屏幕主题（etaHEN 插件或独立载荷），可通过只读覆盖层修改背景、图标、音效、字体和主界面音乐。",
-      "version": "v1.64",
+      "version": "v1.80",
       "category": "ps5_themes-avatars",
-      "last_update": "2026-10-26"
+      "last_update": "2026-10-30"
     },
     {
       "name": "ps5-theme (ps5-theme.elf)",
       "filename": "ps5-theme.elf",
-      "url": "https://github.com/Blaze414/ps5-theme/releases/download/v1.64/ps5-theme.elf",
+      "url": "https://github.com/Blaze414/ps5-theme/releases/download/v1.80/ps5-theme.elf",
       "source": "https://github.com/Blaze414/ps5-theme",
-      "source_direct": "https://github.com/Blaze414/ps5-theme/releases/download/v1.64/ps5-theme.elf",
+      "source_direct": "https://github.com/Blaze414/ps5-theme/releases/download/v1.80/ps5-theme.elf",
       "description": "适用于已破解 PS5 的自定义主屏幕主题（etaHEN 插件或独立载荷），可通过只读覆盖层修改背景、图标、音效、字体和主界面音乐。",
-      "version": "v1.64",
+      "version": "v1.80",
       "category": "ps5_themes-avatars",
-      "last_update": "2026-10-26"
+      "last_update": "2026-10-30"
     },
     {
       "name": "visor-ps5 (visor.elf)",
@@ -1226,13 +1226,13 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.3.0/ps5upload-9.3.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.4.1/ps5upload-9.4.1.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.3.0/ps5upload-9.3.0.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v9.4.1/ps5upload-9.4.1.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v9.3.0",
+      "version": "v9.4.1",
       "category": "ps5_server",
-      "last_update": "2026-10-29"
+      "last_update": "2026-10-30"
     },
     {
       "name": "pLinux5-NG (pLinux5-NG-offsets.elf)",
