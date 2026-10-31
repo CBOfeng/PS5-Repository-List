@@ -1039,13 +1039,13 @@
     {
       "name": "snes9xPS5 (Snes9xPS5-v2.8.elf)",
       "filename": "Snes9xPS5-v2.8.elf",
-      "url": "https://github.com/MisterTemaki/snes9xPS5/releases/download/v2.10/Snes9xPS5-v2.10.elf",
+      "url": "https://github.com/MisterTemaki/snes9xPS5/releases/download/v2.11/Snes9xPS5-v2.11.elf",
       "source": "https://github.com/MisterTemaki/snes9xPS5",
-      "source_direct": "https://github.com/MisterTemaki/snes9xPS5/releases/download/v2.10/Snes9xPS5-v2.10.elf",
+      "source_direct": "https://github.com/MisterTemaki/snes9xPS5/releases/download/v2.11/Snes9xPS5-v2.11.elf",
       "description": "Snes9x 1.63 的 PS5 移植版，可运行 SNES 游戏。",
-      "version": "v2.10",
+      "version": "v2.11",
       "category": "ps5_emulator",
-      "last_update": "2026-10-30"
+      "last_update": "2026-10-31"
     },
     {
       "name": "PS-Play (PSPlay-2.1.elf)",
