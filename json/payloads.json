@@ -962,13 +962,13 @@
     {
       "name": "HYPERHEN (HyperHEN-v0.9.2.elf)",
       "filename": "HyperHEN-v0.9.2.elf",
-      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_5/HyperHEN-v0.9.5.elf",
       "source": "https://github.com/Michele-M-Media/HYPERHEN",
-      "source_direct": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
+      "source_direct": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_5/HyperHEN-v0.9.5.elf",
       "description": "暂无中文说明",
-      "version": "HYPERHEN_V0_9_4",
+      "version": "HYPERHEN_V0_9_5",
       "category": "ps5_hen_loader",
-      "last_update": "2026-10-30"
+      "last_update": "2026-11-03"
     },
     {
       "name": "PIZZA-HEN (PIZZA-HEN-v2.00.elf)",
@@ -1127,13 +1127,13 @@
     {
       "name": "CheatRunner (CheatRunner.elf)",
       "filename": "CheatRunner.elf",
-      "url": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18/CheatRunner.elf",
+      "url": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18.1/CheatRunner.elf",
       "source": "https://github.com/notmaj0r/CheatRunner",
-      "source_direct": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18/CheatRunner.elf",
+      "source_direct": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18.1/CheatRunner.elf",
       "description": "适用于 PS5 的网页金手指修改工具。",
-      "version": "v0.18",
+      "version": "v0.18.1",
       "category": "PS5_Cheat",
-      "last_update": "2026-10-10"
+      "last_update": "2026-11-03"
     },
     {
       "name": "ProsperoMgr (ProsperoMgr.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.0/ps5upload-11.0.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.1/ps5upload-11.0.1.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.0/ps5upload-11.0.0.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.1/ps5upload-11.0.1.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v11.0.0",
+      "version": "v11.0.1",
       "category": "ps5_server",
       "last_update": "2026-11-03"
     },
@@ -1743,11 +1743,11 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.6/PS5_Cooling_System_Center_v1.75.6.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.7/PS5_Cooling_System_Center_v1.75.7.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.6/PS5_Cooling_System_Center_v1.75.6.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.7/PS5_Cooling_System_Center_v1.75.7.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.75.6",
+      "version": "v1.75.7",
       "category": "ps5_fan",
       "last_update": "2026-11-03"
     },
