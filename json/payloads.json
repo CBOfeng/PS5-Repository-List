@@ -830,13 +830,13 @@
     {
       "name": "ps5-patchdl (patchdl_0.3.4.elf)",
       "filename": "patchdl_0.3.4.elf",
-      "url": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.11/patchdl_0.3.11.elf",
+      "url": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.12/patchdl_0.3.12.elf",
       "source": "https://github.com/knutwurst/ps5-patchdl",
-      "source_direct": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.11/patchdl_0.3.11.elf",
+      "source_direct": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.12/patchdl_0.3.12.elf",
       "description": "在 PS5 上运行的 PS4/PS5 游戏官方更新下载工具，可通过浏览器检查已安装游戏的最新补丁，支持并行下载、断点续传及直接安装，提供手机、电脑、电视网页界面和主屏幕入口；适用于 1.00 至 13.60 固件。",
-      "version": "v0.3.11",
+      "version": "v0.3.12",
       "category": "ps5_game_dump",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-02"
     },
     {
       "name": "ps5-stream8 (stream8-v0.3.0-audio-1080p60-30mbps-fw1360.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.3/ps5upload-10.7.3.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.5/ps5upload-10.7.5.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.3/ps5upload-10.7.3.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.5/ps5upload-10.7.5.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v10.7.3",
+      "version": "v10.7.5",
       "category": "ps5_server",
       "last_update": "2026-11-02"
     },
