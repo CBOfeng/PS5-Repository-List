@@ -1743,11 +1743,11 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.5/PS5_Cooling_System_Center_v1.76.5.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.7/PS5_Cooling_System_Center_v1.76.7.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.5/PS5_Cooling_System_Center_v1.76.5.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.7/PS5_Cooling_System_Center_v1.76.7.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.76.5",
+      "version": "v1.76.7",
       "category": "ps5_fan",
       "last_update": "2026-11-04"
     },
