@@ -1490,13 +1490,13 @@
     {
       "name": "ps5-dump-forge (ps5-dump-forge-0.3.1-ps5.elf)",
       "filename": "ps5-dump-forge-0.3.1-ps5.elf",
-      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.2/ps5-dump-forge-0.5.2-ps5.elf",
+      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.3/ps5-dump-forge-0.5.3-ps5.elf",
       "source": "https://github.com/quer3q/ps5-dump-forge",
-      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.2/ps5-dump-forge-0.5.2-ps5.elf",
+      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.3/ps5-dump-forge-0.5.3-ps5.elf",
       "description": "处理 PS5 游戏转储的跨平台工具箱，也可以直接在 PS5 上运行。",
-      "version": "v0.5.2",
+      "version": "v0.5.3",
       "category": "ps5_game_dump",
-      "last_update": "2026-11-03"
+      "last_update": "2026-11-05"
     },
     {
       "name": "PS5Library (ps5library-agent.elf)",
@@ -1743,13 +1743,13 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.7/PS5_Cooling_System_Center_v1.76.7.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.8/PS5_Cooling_System_Center_v1.76.8.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.7/PS5_Cooling_System_Center_v1.76.7.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.8/PS5_Cooling_System_Center_v1.76.8.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.76.7",
+      "version": "v1.76.8",
       "category": "ps5_fan",
-      "last_update": "2026-11-04"
+      "last_update": "2026-11-05"
     },
     {
       "name": "kabuki-ps5 (kabuki-ps5.elf)",
