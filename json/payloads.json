@@ -764,13 +764,13 @@
     {
       "name": "ps5-webkit-autoloader (webkit-autoloader-installer_v0.6.1.elf)",
       "filename": "webkit-autoloader-installer_v0.6.1.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0-prerelease-2/webkit-autoloader-installer_v0.7.0-dev-3a34c3b.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0/webkit-autoloader-installer_v0.7.0.elf",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader",
-      "source_direct": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0-prerelease-2/webkit-autoloader-installer_v0.7.0-dev-3a34c3b.elf",
+      "source_direct": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0/webkit-autoloader-installer_v0.7.0.elf",
       "description": "适用于已破解 PS5 的自动化 Payload 加载器。",
-      "version": "v0.7.0-prerelease-2",
+      "version": "v0.7.0",
       "category": "ps5-webkit-autoloader",
-      "last_update": "2026-10-31"
+      "last_update": "2026-11-06"
     },
     {
       "name": "PS5-File-Explorer (file-explorer-core.elf)",
