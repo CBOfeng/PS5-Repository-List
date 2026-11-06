@@ -313,13 +313,13 @@
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
       "filename": "garlic-savemgr.elf",
-      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta9/garlic-savemgr.elf",
+      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta11/garlic-savemgr.elf",
       "source": "https://github.com/earthonion/garlic-savemgr",
-      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta9/garlic-savemgr.elf",
+      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta11/garlic-savemgr.elf",
       "description": "PS5 本地存档管理器。",
-      "version": "v1.15-beta9",
+      "version": "v1.15-beta11",
       "category": "ps5_saves",
-      "last_update": "2026-11-05"
+      "last_update": "2026-11-06"
     },
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.4/ps5upload-11.2.4.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.5/ps5upload-11.2.5.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.4/ps5upload-11.2.4.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.5/ps5upload-11.2.5.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v11.2.4",
+      "version": "v11.2.5",
       "category": "ps5_server",
       "last_update": "2026-11-06"
     },
@@ -1919,13 +1919,13 @@
     {
       "name": "XPSemu (helper.elf)",
       "filename": "helper.elf",
-      "url": "https://github.com/ZiZc3/XPSemu/releases/download/Alpha-2.1/helper.elf",
+      "url": "https://github.com/ZiZc3/XPSemu/releases/download/Alpha-3/PPSA97358.zip",
       "source": "https://github.com/ZiZc3/XPSemu",
-      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/Alpha-2.1/helper.elf",
+      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/Alpha-3/PPSA97358.zip",
       "description": "初代 Xbox 模拟器 Xemu 的 PS5 移植版。",
-      "version": "Alpha-2.1",
+      "version": "Alpha-3",
       "category": "ps5_emulator",
-      "last_update": "2026-10-10"
+      "last_update": "2026-11-06"
     }
   ]
 }
