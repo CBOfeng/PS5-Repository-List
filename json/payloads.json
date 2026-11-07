@@ -1743,13 +1743,13 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.0/PS5_Cooling_System_Center_v1.77.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.1/PS5_Cooling_System_Center_v1.77.1.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.0/PS5_Cooling_System_Center_v1.77.0.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.1/PS5_Cooling_System_Center_v1.77.1.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.77.0",
+      "version": "v1.77.1",
       "category": "ps5_fan",
-      "last_update": "2026-11-06"
+      "last_update": "2026-11-07"
     },
     {
       "name": "kabuki-ps5 (kabuki-ps5.elf)",
