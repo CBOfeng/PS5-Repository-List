@@ -313,35 +313,35 @@
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
       "filename": "garlic-savemgr.elf",
-      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta14/garlic-savemgr.elf",
+      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta15/garlic-savemgr.elf",
       "source": "https://github.com/earthonion/garlic-savemgr",
-      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta14/garlic-savemgr.elf",
+      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta15/garlic-savemgr.elf",
       "description": "PS5 本地存档管理器。",
-      "version": "v1.15-beta14",
+      "version": "v1.15-beta15",
       "category": "ps5_saves",
       "last_update": "2026-11-08"
     },
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
       "filename": "garlic-worker-ps4.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/latest/garlic-worker-ps4.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps4.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/latest/garlic-worker-ps4.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps4.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "latest",
+      "version": "v1.4.0",
       "category": "ps5_saves",
-      "last_update": "2026-04-09"
+      "last_update": "2026-11-08"
     },
     {
       "name": "garlic-worker (garlic-worker-ps5.elf)",
       "filename": "garlic-worker-ps5.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/latest/garlic-worker-ps5.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps5.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/latest/garlic-worker-ps5.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps5.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "latest",
+      "version": "v1.4.0",
       "category": "ps5_saves",
-      "last_update": "2026-04-09"
+      "last_update": "2026-11-08"
     },
     {
       "name": "kstuff (kstuff.elf)",
@@ -1919,13 +1919,13 @@
     {
       "name": "XPSemu (helper.elf)",
       "filename": "helper.elf",
-      "url": "https://github.com/ZiZc3/XPSemu/releases/download/v3.1/PPSA97358.zip",
+      "url": "https://github.com/ZiZc3/XPSemu/releases/download/v3.2/PPSA97358.zip",
       "source": "https://github.com/ZiZc3/XPSemu",
-      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/v3.1/PPSA97358.zip",
+      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/v3.2/PPSA97358.zip",
       "description": "初代 Xbox 模拟器 Xemu 的 PS5 移植版。",
-      "version": "v3.1",
+      "version": "v3.2",
       "category": "ps5_emulator",
-      "last_update": "2026-11-07"
+      "last_update": "2026-11-08"
     }
   ]
 }
