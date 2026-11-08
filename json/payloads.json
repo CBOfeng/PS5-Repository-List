@@ -181,13 +181,13 @@
     {
       "name": "blackbox (blackbox.elf)",
       "filename": "blackbox.elf",
-      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.6/PPSA01453.ffpkg",
+      "url": "https://github.com/D3ATHLY/blackbox/releases/download/2.0.0/BlackBox.exfat",
       "source": "https://github.com/D3ATHLY/blackbox",
-      "source_direct": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.6/PPSA01453.ffpkg",
+      "source_direct": "https://github.com/D3ATHLY/blackbox/releases/download/2.0.0/BlackBox.exfat",
       "description": "BlackBox（BB）项目仓库。",
-      "version": "1.12.6",
+      "version": "2.0.0",
       "category": "ps5_freeshop",
-      "last_update": "2026-10-29"
+      "last_update": "2026-11-08"
     },
     {
       "name": "SwanStationPS5 (SwanStationPS5-DiscDaemon.elf)",
@@ -302,13 +302,13 @@
     {
       "name": "ShadowMountPlus (shadowmountplus.elf)",
       "filename": "shadowmountplus.elf",
-      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta11/shadowmountplus.elf",
+      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta12/shadowmountplus.elf",
       "source": "https://github.com/drakmor/ShadowMountPlus",
-      "source_direct": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta11/shadowmountplus.elf",
+      "source_direct": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta12/shadowmountplus.elf",
       "description": "适用于已破解 PS5 的自动后台挂载 Payload，可从内部或外部存储识别、挂载和安装游戏备份，支持 UFS、exFAT、PFS 和嵌套压缩 PFS。",
-      "version": "1.7beta11",
+      "version": "1.7beta12",
       "category": "ps5_game_dump",
-      "last_update": "2026-10-29"
+      "last_update": "2026-11-08"
     },
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.6.0/ps5upload-11.6.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.0.0/ps5upload-12.0.0.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v11.6.0/ps5upload-11.6.0.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.0.0/ps5upload-12.0.0.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v11.6.0",
+      "version": "v12.0.0",
       "category": "ps5_server",
       "last_update": "2026-11-08"
     },
@@ -1369,35 +1369,35 @@
     {
       "name": "ftpsrv (ftpsrv-ps4.elf)",
       "filename": "ftpsrv-ps4.elf",
-      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps4.elf",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps4.elf",
       "source": "https://github.com/ps5-payload-dev/ftpsrv",
-      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps4.elf",
+      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps4.elf",
       "description": "适用于已破解 PS4 和 PS5 的 FTP 服务器。",
-      "version": "v0.21.1",
+      "version": "v0.22",
       "category": "ps5_server",
-      "last_update": "2026-08-20"
+      "last_update": "2026-11-08"
     },
     {
       "name": "ftpsrv (ftpsrv-ps5-install.elf)",
       "filename": "ftpsrv-ps5-install.elf",
-      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5-install.elf",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5-install.elf",
       "source": "https://github.com/ps5-payload-dev/ftpsrv",
-      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5-install.elf",
+      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5-install.elf",
       "description": "适用于已破解 PS4 和 PS5 的 FTP 服务器。",
-      "version": "v0.21.1",
+      "version": "v0.22",
       "category": "ps5_server",
-      "last_update": "2026-08-20"
+      "last_update": "2026-11-08"
     },
     {
       "name": "ftpsrv (ftpsrv-ps5.elf)",
       "filename": "ftpsrv-ps5.elf",
-      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5.elf",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5.elf",
       "source": "https://github.com/ps5-payload-dev/ftpsrv",
-      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5.elf",
+      "source_direct": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5.elf",
       "description": "适用于已破解 PS4 和 PS5 的 FTP 服务器。",
-      "version": "v0.21.1",
+      "version": "v0.22",
       "category": "ps5_server",
-      "last_update": "2026-08-20"
+      "last_update": "2026-11-08"
     },
     {
       "name": "gdbsrv (gdbsrv-ps4.elf)",
