@@ -313,33 +313,33 @@
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
       "filename": "garlic-savemgr.elf",
-      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta15/garlic-savemgr.elf",
+      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta16/garlic-savemgr.elf",
       "source": "https://github.com/earthonion/garlic-savemgr",
-      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta15/garlic-savemgr.elf",
+      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta16/garlic-savemgr.elf",
       "description": "PS5 本地存档管理器。",
-      "version": "v1.15-beta15",
+      "version": "v1.15-beta16",
       "category": "ps5_saves",
       "last_update": "2026-11-08"
     },
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
       "filename": "garlic-worker-ps4.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps4.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.0/garlic-worker-ps4.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps4.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.0/garlic-worker-ps4.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.4.0",
+      "version": "v1.5.0",
       "category": "ps5_saves",
       "last_update": "2026-11-08"
     },
     {
       "name": "garlic-worker (garlic-worker-ps5.elf)",
       "filename": "garlic-worker-ps5.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps5.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.0/garlic-worker-ps5.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.4.0/garlic-worker-ps5.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.0/garlic-worker-ps5.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.4.0",
+      "version": "v1.5.0",
       "category": "ps5_saves",
       "last_update": "2026-11-08"
     },
@@ -1138,13 +1138,13 @@
     {
       "name": "ProsperoMgr (ProsperoMgr.elf)",
       "filename": "ProsperoMgr.elf",
-      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.1/ProsperoMgr.elf",
+      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.2/ProsperoMgr.elf",
       "source": "https://github.com/notmaj0r/ProsperoMgr",
-      "source_direct": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.1/ProsperoMgr.elf",
+      "source_direct": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.2/ProsperoMgr.elf",
       "description": "适用于 PS5 的一体化管理器。",
-      "version": "v1.1",
+      "version": "v1.2",
       "category": "ps5_hen_loader",
-      "last_update": "2026-09-28"
+      "last_update": "2026-11-09"
     },
     {
       "name": "ps5debug-NG (ps5debug-NG_v1.3.2.elf)",
@@ -1226,13 +1226,13 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.0.0/ps5upload-12.0.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.1.0/ps5upload-12.1.0.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.0.0/ps5upload-12.0.0.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.1.0/ps5upload-12.1.0.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v12.0.0",
+      "version": "v12.1.0",
       "category": "ps5_server",
-      "last_update": "2026-11-08"
+      "last_update": "2026-11-09"
     },
     {
       "name": "pLinux5-NG (pLinux5-NG-offsets.elf)",
