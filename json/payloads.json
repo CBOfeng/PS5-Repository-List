@@ -1919,13 +1919,13 @@
     {
       "name": "XPSemu (helper.elf)",
       "filename": "helper.elf",
-      "url": "https://github.com/ZiZc3/XPSemu/releases/download/v3.4/PPSA97358.zip",
+      "url": "https://github.com/ZiZc3/XPSemu/releases/download/v3.5/PPSA97358.zip",
       "source": "https://github.com/ZiZc3/XPSemu",
-      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/v3.4/PPSA97358.zip",
+      "source_direct": "https://github.com/ZiZc3/XPSemu/releases/download/v3.5/PPSA97358.zip",
       "description": "初代 Xbox 模拟器 Xemu 的 PS5 移植版。",
-      "version": "v3.4",
+      "version": "v3.5",
       "category": "ps5_emulator",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-11"
     }
   ]
 }
