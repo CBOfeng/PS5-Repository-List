@@ -313,35 +313,35 @@
     {
       "name": "garlic-savemgr (garlic-savemgr.elf)",
       "filename": "garlic-savemgr.elf",
-      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta21/garlic-savemgr.elf",
+      "url": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta22/garlic-savemgr.elf",
       "source": "https://github.com/earthonion/garlic-savemgr",
-      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta21/garlic-savemgr.elf",
+      "source_direct": "https://github.com/earthonion/garlic-savemgr/releases/download/v1.15-beta22/garlic-savemgr.elf",
       "description": "PS5 本地存档管理器。",
-      "version": "v1.15-beta21",
+      "version": "v1.15-beta22",
       "category": "ps5_saves",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-11"
     },
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
       "filename": "garlic-worker-ps4.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.4/garlic-worker-ps4.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.5/garlic-worker-ps4.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.4/garlic-worker-ps4.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.5/garlic-worker-ps4.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.5.4",
+      "version": "v1.5.5",
       "category": "ps5_saves",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-11"
     },
     {
       "name": "garlic-worker (garlic-worker-ps5.elf)",
       "filename": "garlic-worker-ps5.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.4/garlic-worker-ps5.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.5/garlic-worker-ps5.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.4/garlic-worker-ps5.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.5/garlic-worker-ps5.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.5.4",
+      "version": "v1.5.5",
       "category": "ps5_saves",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-11"
     },
     {
       "name": "kstuff (kstuff.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.7/ps5upload-12.4.7.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.8/ps5upload-12.4.8.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.7/ps5upload-12.4.7.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.8/ps5upload-12.4.8.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v12.4.7",
+      "version": "v12.4.8",
       "category": "ps5_server",
       "last_update": "2026-11-11"
     },
