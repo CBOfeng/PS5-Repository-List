@@ -324,22 +324,22 @@
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
       "filename": "garlic-worker-ps4.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.8/garlic-worker-ps4.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.9/garlic-worker-ps4.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.8/garlic-worker-ps4.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.9/garlic-worker-ps4.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.5.8",
+      "version": "v1.5.9",
       "category": "ps5_saves",
       "last_update": "2026-11-12"
     },
     {
       "name": "garlic-worker (garlic-worker-ps5.elf)",
       "filename": "garlic-worker-ps5.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.8/garlic-worker-ps5.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.9/garlic-worker-ps5.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.8/garlic-worker-ps5.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.5.9/garlic-worker-ps5.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.5.8",
+      "version": "v1.5.9",
       "category": "ps5_saves",
       "last_update": "2026-11-12"
     },
@@ -1853,13 +1853,13 @@
     {
       "name": "elf-launcher (elf-launcher.elf)",
       "filename": "elf-launcher.elf",
-      "url": "https://github.com/X-F1REBALL-X/elf-launcher/releases/download/v2.0.6/elf-launcher.elf",
+      "url": "https://github.com/X-F1REBALL-X/elf-launcher/releases/download/v2.0.21/elf-launcher.elf",
       "source": "https://github.com/X-F1REBALL-X/elf-launcher",
-      "source_direct": "https://github.com/X-F1REBALL-X/elf-launcher/releases/download/v2.0.6/elf-launcher.elf",
+      "source_direct": "https://github.com/X-F1REBALL-X/elf-launcher/releases/download/v2.0.21/elf-launcher.elf",
       "description": "适用于已破解 PS5 的主屏幕及浏览器 ELF Payload 启动器。",
-      "version": "v2.0.6",
+      "version": "v2.0.21",
       "category": "ps5_utility",
-      "last_update": "2026-11-01"
+      "last_update": "2026-11-07"
     },
     {
       "name": "HearBridge-Browser (hearbridge-browser-1.0.1.elf)",
@@ -1886,13 +1886,13 @@
     {
       "name": "wk-autoloader (wk-autoloader.elf)",
       "filename": "wk-autoloader.elf",
-      "url": "https://github.com/X-F1REBALL-X/wk-autoloader/releases/download/v1.2.1/WK_Autoloader_Store_Restore_V1.2.1.elf",
+      "url": "https://github.com/X-F1REBALL-X/wk-store/releases/download/v1.2.2/WK_Store_Restore_V1.2.2.elf",
       "source": "https://github.com/X-F1REBALL-X/wk-autoloader",
-      "source_direct": "https://github.com/X-F1REBALL-X/wk-autoloader/releases/download/v1.2.1/WK_Autoloader_Store_Restore_V1.2.1.elf",
+      "source_direct": "https://github.com/X-F1REBALL-X/wk-store/releases/download/v1.2.2/WK_Store_Restore_V1.2.2.elf",
       "description": "PS5 主屏幕越狱入口，可运行漏洞利用链并随后启动 ELF Launcher。",
-      "version": "v1.2.1",
+      "version": "v1.2.2",
       "category": "ps5-webkit-autoloader",
-      "last_update": "2026-10-30"
+      "last_update": "2026-11-06"
     },
     {
       "name": "PS5-TabShifter (TabShifter.elf)",
