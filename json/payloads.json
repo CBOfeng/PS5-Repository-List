@@ -1545,24 +1545,24 @@
     {
       "name": "MemDBG (MemDBG-ps4.elf)",
       "filename": "MemDBG-ps4.elf",
-      "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260930-g6e493c9/MemDBG-ps4.elf",
+      "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20261112-g6e31144/MemDBG-ps4.elf",
       "source": "https://github.com/seregonwar/MemDBG",
-      "source_direct": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260930-g6e493c9/MemDBG-ps4.elf",
+      "source_direct": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20261112-g6e31144/MemDBG-ps4.elf",
       "description": "面向 PS4 和 PS5 自制程序研究的高性能内存调试与检查工具集。",
-      "version": "nightly-20260930-g6e493c9",
+      "version": "nightly-20261112-g6e31144",
       "category": "ps5_sdk_debug",
-      "last_update": "2026-09-30"
+      "last_update": "2026-11-13"
     },
     {
       "name": "MemDBG (MemDBG-ps5.elf)",
       "filename": "MemDBG-ps5.elf",
-      "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260930-g6e493c9/MemDBG-ps5.elf",
+      "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20261112-g6e31144/MemDBG-ps5.elf",
       "source": "https://github.com/seregonwar/MemDBG",
-      "source_direct": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260930-g6e493c9/MemDBG-ps5.elf",
+      "source_direct": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20261112-g6e31144/MemDBG-ps5.elf",
       "description": "面向 PS4 和 PS5 自制程序研究的高性能内存调试与检查工具集。",
-      "version": "nightly-20260930-g6e493c9",
+      "version": "nightly-20261112-g6e31144",
       "category": "ps5_sdk_debug",
-      "last_update": "2026-09-30"
+      "last_update": "2026-11-13"
     },
     {
       "name": "PSXTERM (psxtermd-ps4.elf)",
@@ -1743,13 +1743,13 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.80.0/PS5_Cooling_System_Center_v1.80.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.81.0/PS5_Cooling_System_Center_v1.81.0.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.80.0/PS5_Cooling_System_Center_v1.80.0.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.81.0/PS5_Cooling_System_Center_v1.81.0.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.80.0",
+      "version": "v1.81.0",
       "category": "ps5_fan",
-      "last_update": "2026-11-11"
+      "last_update": "2026-11-13"
     },
     {
       "name": "kabuki-ps5 (kabuki-ps5.elf)",
@@ -1897,13 +1897,13 @@
     {
       "name": "PS5-TabShifter (TabShifter.elf)",
       "filename": "TabShifter.elf",
-      "url": "https://github.com/xvvulcanvx/PS5-TabShifter/releases/download/v1.3.0/TabShifter.elf",
+      "url": "https://github.com/xvvulcanvx/PS5-TabShifter/releases/download/v1.4.0/TabShifter.elf",
       "source": "https://github.com/xvvulcanvx/PS5-TabShifter",
-      "source_direct": "https://github.com/xvvulcanvx/PS5-TabShifter/releases/download/v1.3.0/TabShifter.elf",
+      "source_direct": "https://github.com/xvvulcanvx/PS5-TabShifter/releases/download/v1.4.0/TabShifter.elf",
       "description": "在 PS5 主机上运行的独立载荷，可在“游戏”和“媒体”标签之间移动应用，并隐藏离线 PSN 冗余应用，支持 12.xx 至 13.60 固件。",
-      "version": "v1.3.0",
+      "version": "v1.4.0",
       "category": "ps5_utility",
-      "last_update": "2026-10-24"
+      "last_update": "2026-11-13"
     },
     {
       "name": "LiveShell (liveshell.elf)",
