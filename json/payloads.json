@@ -830,13 +830,13 @@
     {
       "name": "ps5-patchdl (patchdl_0.3.4.elf)",
       "filename": "patchdl_0.3.4.elf",
-      "url": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.12/patchdl_0.3.12.elf",
+      "url": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.13/patchdl_0.3.13.elf",
       "source": "https://github.com/knutwurst/ps5-patchdl",
-      "source_direct": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.12/patchdl_0.3.12.elf",
+      "source_direct": "https://github.com/knutwurst/ps5-patchdl/releases/download/v0.3.13/patchdl_0.3.13.elf",
       "description": "在 PS5 上运行的 PS4/PS5 游戏官方更新下载工具，可通过浏览器检查已安装游戏的最新补丁，支持并行下载、断点续传及直接安装，提供手机、电脑、电视网页界面和主屏幕入口；适用于 1.00 至 13.60 固件。",
-      "version": "v0.3.12",
+      "version": "v0.3.13",
       "category": "ps5_game_dump",
-      "last_update": "2026-11-02"
+      "last_update": "2026-11-14"
     },
     {
       "name": "ps5-stream8 (stream8-v0.3.0-audio-1080p60-30mbps-fw1360.elf)",
