@@ -1534,13 +1534,13 @@
     {
       "name": "orbit-store-ps5 (orbit_store.elf)",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.0/orbit_store.elf",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.1/orbit_store.elf",
       "source": "https://github.com/saawant12/orbit-store-ps5",
-      "source_direct": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.0/orbit_store.elf",
+      "source_direct": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.1/orbit_store.elf",
       "description": "现代化 PS5 下载管理器，提供原生电视应用、手机远程控制，以及 Mac/Windows/Linux 端 Orbit Zero。",
-      "version": "v1.9.0",
+      "version": "v1.9.1",
       "category": "ps5_freeshop",
-      "last_update": "2026-11-13"
+      "last_update": "2026-11-15"
     },
     {
       "name": "MemDBG (MemDBG-ps4.elf)",
