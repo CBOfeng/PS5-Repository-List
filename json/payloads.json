@@ -192,13 +192,13 @@
     {
       "name": "SwanStationPS5 (SwanStationPS5-DiscDaemon.elf)",
       "filename": "SwanStationPS5-DiscDaemon.elf",
-      "url": "https://github.com/darkxex/SwanStationPS5/releases/download/1.6.2/SwanStationPS5-DiscDaemon.elf",
+      "url": "https://github.com/darkxex/SwanStationPS5/releases/download/1.6.3/SwanStationPS5-DiscDaemon.elf",
       "source": "https://github.com/darkxex/SwanStationPS5",
-      "source_direct": "https://github.com/darkxex/SwanStationPS5/releases/download/1.6.2/SwanStationPS5-DiscDaemon.elf",
+      "source_direct": "https://github.com/darkxex/SwanStationPS5/releases/download/1.6.3/SwanStationPS5-DiscDaemon.elf",
       "description": "适用于已破解 PS5 的原生 PS1 模拟器，基于 SwanStation 核心。",
-      "version": "1.6.2",
+      "version": "1.6.3",
       "category": "ps5_emulator",
-      "last_update": "2026-10-31"
+      "last_update": "2026-11-15"
     },
     {
       "name": "TitaniaPy (ps5_key_extractV4.elf)",
@@ -1743,13 +1743,13 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.2/PS5_Cooling_System_Center_v1.86.2.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.4/PS5_Cooling_System_Center_v1.86.4.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.2/PS5_Cooling_System_Center_v1.86.2.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.4/PS5_Cooling_System_Center_v1.86.4.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.86.2",
+      "version": "v1.86.4",
       "category": "ps5_fan",
-      "last_update": "2026-11-15"
+      "last_update": "2026-11-16"
     },
     {
       "name": "kabuki-ps5 (kabuki-ps5.elf)",
