@@ -324,22 +324,22 @@
     {
       "name": "garlic-worker (garlic-worker-ps4.elf)",
       "filename": "garlic-worker-ps4.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.0/garlic-worker-ps4.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.2/garlic-worker-ps4.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.0/garlic-worker-ps4.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.2/garlic-worker-ps4.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.6.0",
+      "version": "v1.6.2",
       "category": "ps5_saves",
       "last_update": "2026-11-17"
     },
     {
       "name": "garlic-worker (garlic-worker-ps5.elf)",
       "filename": "garlic-worker-ps5.elf",
-      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.0/garlic-worker-ps5.elf",
+      "url": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.2/garlic-worker-ps5.elf",
       "source": "https://github.com/earthonion/garlic-worker",
-      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.0/garlic-worker-ps5.elf",
+      "source_direct": "https://github.com/earthonion/garlic-worker/releases/download/v1.6.2/garlic-worker-ps5.elf",
       "description": "用于解密、加密以及重新签名 PS4/PS5 游戏存档的工具。",
-      "version": "v1.6.0",
+      "version": "v1.6.2",
       "category": "ps5_saves",
       "last_update": "2026-11-17"
     },
@@ -764,13 +764,13 @@
     {
       "name": "ps5-webkit-autoloader (webkit-autoloader-installer_v0.6.1.elf)",
       "filename": "webkit-autoloader-installer_v0.6.1.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-627ba8c/webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-0850478/webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader",
-      "source_direct": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-627ba8c/webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
+      "source_direct": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-0850478/webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
       "description": "适用于已破解 PS5 的自动化 Payload 加载器。",
-      "version": "v0.8.0-pre-627ba8c",
+      "version": "v0.8.0-pre-0850478",
       "category": "ps5-webkit-autoloader",
-      "last_update": "2026-11-16"
+      "last_update": "2026-11-17"
     },
     {
       "name": "PS5-File-Explorer (file-explorer-core.elf)",
