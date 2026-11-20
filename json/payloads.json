@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.11/ps5upload-12.6.11.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.13/ps5upload-12.6.13.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.11/ps5upload-12.6.11.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.13/ps5upload-12.6.13.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v12.6.11",
+      "version": "v12.6.13",
       "category": "ps5_server",
       "last_update": "2026-11-19"
     },
@@ -1358,13 +1358,13 @@
     {
       "name": "elfldr (elfldr-ps5.elf)",
       "filename": "elfldr-ps5.elf",
-      "url": "https://github.com/ps5-payload-dev/elfldr/releases/download/v0.27/elfldr-ps5.elf",
+      "url": "https://github.com/ps5-payload-dev/elfldr/releases/download/v0.28/elfldr-ps5.elf",
       "source": "https://github.com/ps5-payload-dev/elfldr",
-      "source_direct": "https://github.com/ps5-payload-dev/elfldr/releases/download/v0.27/elfldr-ps5.elf",
+      "source_direct": "https://github.com/ps5-payload-dev/elfldr/releases/download/v0.28/elfldr-ps5.elf",
       "description": "适用于已破解 PS5 的 ELF 加载器，通过 9021 端口接收 Payload。",
-      "version": "v0.27",
+      "version": "v0.28",
       "category": "ps5_server",
-      "last_update": "2026-10-21"
+      "last_update": "2026-11-19"
     },
     {
       "name": "ftpsrv (ftpsrv-ps4.elf)",
@@ -1534,13 +1534,13 @@
     {
       "name": "orbit-store-ps5 (orbit_store.elf)",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.2/orbit_store.elf",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.5/orbit_store.elf",
       "source": "https://github.com/saawant12/orbit-store-ps5",
-      "source_direct": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.2/orbit_store.elf",
+      "source_direct": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.5/orbit_store.elf",
       "description": "现代化 PS5 下载管理器，提供原生电视应用、手机远程控制，以及 Mac/Windows/Linux 端 Orbit Zero。",
-      "version": "v1.9.2",
+      "version": "v1.9.5",
       "category": "ps5_freeshop",
-      "last_update": "2026-11-16"
+      "last_update": "2026-11-19"
     },
     {
       "name": "MemDBG (MemDBG-ps4.elf)",
@@ -1875,13 +1875,13 @@
     {
       "name": "HearBridge-PS5 (HearBridge-1.3.7-beta.1.elf)",
       "filename": "HearBridge-1.3.7-beta.1.elf",
-      "url": "https://github.com/X-F1REBALL-X/HearBridge-PS5/releases/download/v1.4.2/HearBridge-1.4.2.elf",
+      "url": "https://github.com/X-F1REBALL-X/HearBridge-PS5/releases/download/v1.4.3/ESP32-S3-PS5-Audio-Sink.bin",
       "source": "https://github.com/X-F1REBALL-X/HearBridge-PS5",
-      "source_direct": "https://github.com/X-F1REBALL-X/HearBridge-PS5/releases/download/v1.4.2/HearBridge-1.4.2.elf",
+      "source_direct": "https://github.com/X-F1REBALL-X/HearBridge-PS5/releases/download/v1.4.3/ESP32-S3-PS5-Audio-Sink.bin",
       "description": "将 PS5 游戏音频传输到任意蓝牙耳机的 Payload，适用于已破解主机。",
-      "version": "v1.4.2",
+      "version": "v1.4.3",
       "category": "ps5_audio_utility",
-      "last_update": "2026-11-15"
+      "last_update": "2026-11-19"
     },
     {
       "name": "wk-autoloader (wk-autoloader.elf)",
