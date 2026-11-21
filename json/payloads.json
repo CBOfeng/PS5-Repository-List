@@ -1094,35 +1094,35 @@
     {
       "name": "kura (kura-loader-ps4.elf)",
       "filename": "kura-loader-ps4.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader-ps4.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader-ps4.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader-ps4.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader-ps4.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.51",
+      "version": "v1.6.52",
       "category": "ps5_hen_loader",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-20"
     },
     {
       "name": "kura (kura-loader-ps5.elf)",
       "filename": "kura-loader-ps5.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader-ps5.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader-ps5.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader-ps5.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader-ps5.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.51",
+      "version": "v1.6.52",
       "category": "ps5_hen_loader",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-20"
     },
     {
       "name": "kura (kura-loader.elf)",
       "filename": "kura-loader.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.51/kura-loader.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.52/kura-loader.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.51",
+      "version": "v1.6.52",
       "category": "ps5_hen_loader",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-20"
     },
     {
       "name": "CheatRunner (CheatRunner.elf)",
