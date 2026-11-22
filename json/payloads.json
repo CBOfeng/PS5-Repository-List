@@ -1094,33 +1094,33 @@
     {
       "name": "kura (kura-loader-ps4.elf)",
       "filename": "kura-loader-ps4.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader-ps4.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader-ps4.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader-ps4.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader-ps4.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.59",
+      "version": "v1.6.60",
       "category": "ps5_hen_loader",
       "last_update": "2026-11-22"
     },
     {
       "name": "kura (kura-loader-ps5.elf)",
       "filename": "kura-loader-ps5.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader-ps5.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader-ps5.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader-ps5.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader-ps5.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.59",
+      "version": "v1.6.60",
       "category": "ps5_hen_loader",
       "last_update": "2026-11-22"
     },
     {
       "name": "kura (kura-loader.elf)",
       "filename": "kura-loader.elf",
-      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader.elf",
+      "url": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader.elf",
       "source": "https://github.com/NookieAI/kura",
-      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.59/kura-loader.elf",
+      "source_direct": "https://github.com/NookieAI/kura/releases/download/v1.6.60/kura-loader.elf",
       "description": "跨平台 PS1–PS5 与 PS Vita 游戏库扫描、识别、整理和传输工具，附带支持安装、金手指、存档及风扇控制的 PS5 Payload。",
-      "version": "v1.6.59",
+      "version": "v1.6.60",
       "category": "ps5_hen_loader",
       "last_update": "2026-11-22"
     },
@@ -1490,13 +1490,13 @@
     {
       "name": "ps5-dump-forge (ps5-dump-forge-0.3.1-ps5.elf)",
       "filename": "ps5-dump-forge-0.3.1-ps5.elf",
-      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.6/ps5-dump-forge-0.5.6-ps5.elf",
+      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.7/ps5-dump-forge-0.5.7-ps5.elf",
       "source": "https://github.com/quer3q/ps5-dump-forge",
-      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.6/ps5-dump-forge-0.5.6-ps5.elf",
+      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.7/ps5-dump-forge-0.5.7-ps5.elf",
       "description": "处理 PS5 游戏转储的跨平台工具箱，也可以直接在 PS5 上运行。",
-      "version": "v0.5.6",
+      "version": "v0.5.7",
       "category": "ps5_game_dump",
-      "last_update": "2026-11-16"
+      "last_update": "2026-11-22"
     },
     {
       "name": "PS5Library (ps5library-agent.elf)",
