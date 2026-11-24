@@ -1743,11 +1743,11 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.92.0/PS5_Cooling_System_Center_v1.92.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.93.0/PS5_Cooling_System_Center_v1.93.0.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.92.0/PS5_Cooling_System_Center_v1.92.0.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.93.0/PS5_Cooling_System_Center_v1.93.0.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.92.0",
+      "version": "v1.93.0",
       "category": "ps5_fan",
       "last_update": "2026-11-23"
     },
@@ -1798,35 +1798,35 @@
     {
       "name": "PS5SX2 (PS5SX2Installer.elf)",
       "filename": "PS5SX2Installer.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SX2Installer.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SX2Installer.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SX2Installer.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SX2Installer.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-321",
+      "version": "vk-285-329",
       "category": "ps5_emulator",
-      "last_update": "2026-11-15"
+      "last_update": "2026-11-23"
     },
     {
       "name": "PS5SX2 (PS5SXHelper-no-data-mount.elf)",
       "filename": "PS5SXHelper-no-data-mount.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper-no-data-mount.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SXHelper-no-data-mount.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper-no-data-mount.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SXHelper-no-data-mount.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-321",
+      "version": "vk-285-329",
       "category": "ps5_emulator",
-      "last_update": "2026-11-15"
+      "last_update": "2026-11-23"
     },
     {
       "name": "PS5SX2 (PS5SXHelper.elf)",
       "filename": "PS5SXHelper.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper.elf",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SXHelper.elf",
       "source": "https://github.com/Swordpdf/PS5SX2",
-      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper.elf",
+      "source_direct": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-329/PS5SXHelper.elf",
       "description": "PCSX2（PlayStation 2 模拟器）的 PS5 移植版。",
-      "version": "vk-285-321",
+      "version": "vk-285-329",
       "category": "ps5_emulator",
-      "last_update": "2026-11-15"
+      "last_update": "2026-11-23"
     },
     {
       "name": "omega-dashboard (omega-installer.elf)",
