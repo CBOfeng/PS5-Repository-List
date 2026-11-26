@@ -1182,24 +1182,24 @@
     {
       "name": "ps5-web-file-manager (web-file-mgr-v1.11b.elf)",
       "filename": "web-file-mgr-v1.11b.elf",
-      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.14/web-file-mgr-v1.14.elf",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.15/web-file-mgr-v1.15.elf",
       "source": "https://github.com/owendswang/ps5-web-file-manager",
-      "source_direct": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.14/web-file-mgr-v1.14.elf",
+      "source_direct": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.15/web-file-mgr-v1.15.elf",
       "description": "提供 Web 界面的 PS5 文件管理器。",
-      "version": "v1.14",
+      "version": "v1.15",
       "category": "ps5_file_explorer",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-26"
     },
     {
       "name": "ps5-web-file-manager (wfm-7zip-helper.elf)",
       "filename": "wfm-7zip-helper.elf",
-      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.14/wfm-7zip-helper.elf",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.15/wfm-7zip-helper.elf",
       "source": "https://github.com/owendswang/ps5-web-file-manager",
-      "source_direct": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.14/wfm-7zip-helper.elf",
+      "source_direct": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.15/wfm-7zip-helper.elf",
       "description": "提供 Web 界面的 PS5 文件管理器。",
-      "version": "v1.14",
+      "version": "v1.15",
       "category": "ps5_file_explorer",
-      "last_update": "2026-11-10"
+      "last_update": "2026-11-26"
     },
     {
       "name": "ps5-notify-app (notify-bridge.elf)",
@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.31/ps5upload-12.6.31.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.32/ps5upload-12.6.32.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.31/ps5upload-12.6.31.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.32/ps5upload-12.6.32.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v12.6.31",
+      "version": "v12.6.32",
       "category": "ps5_server",
       "last_update": "2026-11-26"
     },
@@ -1490,13 +1490,13 @@
     {
       "name": "ps5-dump-forge (ps5-dump-forge-0.3.1-ps5.elf)",
       "filename": "ps5-dump-forge-0.3.1-ps5.elf",
-      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.7/ps5-dump-forge-0.5.7-ps5.elf",
+      "url": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.6.0/ps5-dump-forge-0.6.0-ps5.elf",
       "source": "https://github.com/quer3q/ps5-dump-forge",
-      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.5.7/ps5-dump-forge-0.5.7-ps5.elf",
+      "source_direct": "https://github.com/quer3q/ps5-dump-forge/releases/download/v0.6.0/ps5-dump-forge-0.6.0-ps5.elf",
       "description": "处理 PS5 游戏转储的跨平台工具箱，也可以直接在 PS5 上运行。",
-      "version": "v0.5.7",
+      "version": "v0.6.0",
       "category": "ps5_game_dump",
-      "last_update": "2026-11-22"
+      "last_update": "2026-11-26"
     },
     {
       "name": "PS5Library (ps5library-agent.elf)",
