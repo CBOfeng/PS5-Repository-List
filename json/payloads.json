@@ -1270,13 +1270,13 @@
     {
       "name": "Common-FPS-for-PS5 (Common_FPS_PS5_v1.2.3.elf)",
       "filename": "Common_FPS_PS5_v1.2.3.elf",
-      "url": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.5/Common_FPS_PS5_v1.2.5.elf",
+      "url": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.6/Common_FPS_PS5_v1.2.6.elf",
       "source": "https://github.com/porhe911/Common-FPS-for-PS5",
-      "source_direct": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.5/Common_FPS_PS5_v1.2.5.elf",
+      "source_direct": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.2.6/Common_FPS_PS5_v1.2.6.elf",
       "description": "适用于 PS5 上 PS4/PS5 游戏的通用实时 FPS 显示插件（v1.0.0），包含独立 ELF 和 etaHEN 插件。",
-      "version": "v1.2.5",
+      "version": "v1.2.6",
       "category": "PS5_Overlay",
-      "last_update": "2026-11-20"
+      "last_update": "2026-11-25"
     },
     {
       "name": "PS5-PHStore (PHStore2-PH.elf)",
@@ -1743,13 +1743,13 @@
     {
       "name": "ps5-cooling-system-center-pro (PS5_Cooling_System_Center_v1.73.1.elf)",
       "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.95.1/PS5_Cooling_System_Center_v1.95.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.96.1/PS5_Cooling_System_Center_v1.96.1.elf",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
-      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.95.1/PS5_Cooling_System_Center_v1.95.1.elf",
+      "source_direct": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.96.1/PS5_Cooling_System_Center_v1.96.1.elf",
       "description": "面向已破解 PS5 的风扇控制、温度监控与系统管理载荷，提供网页界面，支持德语、英语、意大利语、西班牙语、法语和俄语。",
-      "version": "v1.95.1",
+      "version": "v1.96.1",
       "category": "ps5_fan",
-      "last_update": "2026-11-24"
+      "last_update": "2026-11-25"
     },
     {
       "name": "kabuki-ps5 (kabuki-ps5.elf)",
@@ -1765,24 +1765,24 @@
     {
       "name": "pad2c (pad2c-0.2.1.elf)",
       "filename": "pad2c-0.2.1.elf",
-      "url": "https://github.com/sub0x00001/octet/releases/download/v2.0.0/octet-2.0.0.elf",
+      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
       "source": "https://github.com/sub0x00001/pad2c",
-      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.0.0/octet-2.0.0.elf",
+      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
       "description": "通过 2.4G USB 接收器将 8BitDo Ultimate 2C 无线手柄用作已破解 PS5 的第二个 DualSense，无需蓝牙，已在 13.60 固件测试。",
-      "version": "v2.0.0",
+      "version": "v2.1.0-rc1",
       "category": "ps5_pad_utility",
-      "last_update": "2026-11-13"
+      "last_update": "2026-11-25"
     },
     {
       "name": "pad2c (pad2c-probe.elf)",
       "filename": "pad2c-probe.elf",
-      "url": "https://github.com/sub0x00001/octet/releases/download/v2.0.0/octet-2.0.0.elf",
+      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
       "source": "https://github.com/sub0x00001/pad2c",
-      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.0.0/octet-2.0.0.elf",
+      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
       "description": "通过 2.4G USB 接收器将 8BitDo Ultimate 2C 无线手柄用作已破解 PS5 的第二个 DualSense，无需蓝牙，已在 13.60 固件测试。",
-      "version": "v2.0.0",
+      "version": "v2.1.0-rc1",
       "category": "ps5_pad_utility",
-      "last_update": "2026-11-13"
+      "last_update": "2026-11-25"
     },
     {
       "name": "PS5-Network-Mounting (PS5NetworkMounting.elf)",
