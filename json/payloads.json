@@ -1226,11 +1226,11 @@
     {
       "name": "ps5upload (ps5upload-7.1.15.elf)",
       "filename": "ps5upload-7.1.15.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.38/ps5upload-12.6.38.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.42/ps5upload-12.6.42.elf",
       "source": "https://github.com/phantomptr/ps5upload",
-      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.38/ps5upload-12.6.38.elf",
+      "source_direct": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.42/ps5upload-12.6.42.elf",
       "description": "从电脑、手机或浏览器向已破解 PS5 发送游戏、应用和自制程序，并远程管理主机。",
-      "version": "v12.6.38",
+      "version": "v12.6.42",
       "category": "ps5_server",
       "last_update": "2026-11-27"
     },
@@ -1589,46 +1589,46 @@
     {
       "name": "zftpd (zftpd-ps4-v1.6.0.elf)",
       "filename": "zftpd-ps4-v1.6.0.elf",
-      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "source": "https://github.com/seregonwar/zftpd",
-      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "description": "兼容 POSIX 系统的零拷贝 FTP/HTTP 后台服务器。",
-      "version": "v1.7.0",
+      "version": "v1.7.1",
       "category": "ps5_server",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-27"
     },
     {
       "name": "zftpd (zftpd-ps4-zhttp-v1.6.0.elf)",
       "filename": "zftpd-ps4-zhttp-v1.6.0.elf",
-      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "source": "https://github.com/seregonwar/zftpd",
-      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "description": "兼容 POSIX 系统的零拷贝 FTP/HTTP 后台服务器。",
-      "version": "v1.7.0",
+      "version": "v1.7.1",
       "category": "ps5_server",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-27"
     },
     {
       "name": "zftpd (zftpd-ps5-v1.6.0.elf)",
       "filename": "zftpd-ps5-v1.6.0.elf",
-      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "source": "https://github.com/seregonwar/zftpd",
-      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "description": "兼容 POSIX 系统的零拷贝 FTP/HTTP 后台服务器。",
-      "version": "v1.7.0",
+      "version": "v1.7.1",
       "category": "ps5_server",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-27"
     },
     {
       "name": "zftpd (zftpd-ps5-zhttp-v1.6.0.elf)",
       "filename": "zftpd-ps5-zhttp-v1.6.0.elf",
-      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "url": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "source": "https://github.com/seregonwar/zftpd",
-      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.0/zftpd-ps4-v1.7.0.bin",
+      "source_direct": "https://github.com/seregonwar/zftpd/releases/download/v1.7.1/zftpd-ps4-v1.7.1.bin",
       "description": "兼容 POSIX 系统的零拷贝 FTP/HTTP 后台服务器。",
-      "version": "v1.7.0",
+      "version": "v1.7.1",
       "category": "ps5_server",
-      "last_update": "2026-10-28"
+      "last_update": "2026-11-27"
     },
     {
       "name": "ps5-new-overlay (overlay_payload.elf)",
@@ -1765,24 +1765,24 @@
     {
       "name": "pad2c (pad2c-0.2.1.elf)",
       "filename": "pad2c-0.2.1.elf",
-      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
+      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0/octet-2.1.0.elf",
       "source": "https://github.com/sub0x00001/pad2c",
-      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
+      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0/octet-2.1.0.elf",
       "description": "通过 2.4G USB 接收器将 8BitDo Ultimate 2C 无线手柄用作已破解 PS5 的第二个 DualSense，无需蓝牙，已在 13.60 固件测试。",
-      "version": "v2.1.0-rc1",
+      "version": "v2.1.0",
       "category": "ps5_pad_utility",
-      "last_update": "2026-11-25"
+      "last_update": "2026-11-27"
     },
     {
       "name": "pad2c (pad2c-probe.elf)",
       "filename": "pad2c-probe.elf",
-      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
+      "url": "https://github.com/sub0x00001/octet/releases/download/v2.1.0/octet-2.1.0.elf",
       "source": "https://github.com/sub0x00001/pad2c",
-      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0-rc1/octet-2.1.0.elf",
+      "source_direct": "https://github.com/sub0x00001/octet/releases/download/v2.1.0/octet-2.1.0.elf",
       "description": "通过 2.4G USB 接收器将 8BitDo Ultimate 2C 无线手柄用作已破解 PS5 的第二个 DualSense，无需蓝牙，已在 13.60 固件测试。",
-      "version": "v2.1.0-rc1",
+      "version": "v2.1.0",
       "category": "ps5_pad_utility",
-      "last_update": "2026-11-25"
+      "last_update": "2026-11-27"
     },
     {
       "name": "PS5-Network-Mounting (PS5NetworkMounting.elf)",
